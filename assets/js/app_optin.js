@@ -1,23 +1,9 @@
-
-
-
-
  (function($) {
 
 
  $(document).ready(function () {
 
- 	// $('#myModal').modal('show');
-
- //	$( "#primary" ).load( "../../helper/view.html" );
-
-// //   	 $( "body" ).load( "../helper/view.html", function() {
-// //   alert( "Load was performed." );
-// // });
-
-// //});
-//  }(jQuery));
-
+ 	
 
 // (function($) {
 //  	 $(document).ready(function () {
@@ -25,14 +11,26 @@
 
 //  	 alert('test');
 
-// // 		$('#main').waypoint(function() {
+
+ if(!$('#sidebar-pagebottom').hasClass('introduction')) {
+            $('#sidebar-pagebottom').addClass('introduction');
+
+        }
 
 
-// // 		    alert('You have scrolled to my waypoint.');
-// // 		    //notify("Hello World");
-// // 		}, {
-// // 		    offset: '70%'
-// // 		});
+ //$("#myModal").addClass("introduction");
+ // alert('sdfs');
+
+		$('.introduction').waypoint(function() {
+
+			//alert('test');
+			$('#myModal').modal('show');
+		    //alert('You have scrolled to my waypoint.');
+		    
+		    //notify("Hello World");
+		}, {
+		    offset: '70%'
+		});
 
 
 function setinterval() {

@@ -139,6 +139,11 @@ final class TX_XpertOptin
             plugins_url('assets/vendor/bootstrap/js/modal.js', __FILE__),
             array()
         );
+          wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-waypoint-optin-js',
+            plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__),
+            array()
+        );
 
         wp_enqueue_style(
             TX_OPTIN_PREFIX . '-bs-css-load',
