@@ -9,8 +9,11 @@
  //        }
 
 
-$('footer')
-   .waypoint(function(direction) {
+
+
+
+//__footer popup show__//
+$('footer').waypoint(function(direction) {
      // Highlight element when related content
      // is 10% percent from the bottom... 
      // remove if below
