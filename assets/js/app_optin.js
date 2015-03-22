@@ -1,7 +1,7 @@
  (function($) {
  $(document).ready(function () {
 
-
+$('#myModal').modal('show');
 
  // if(!$('#sidebar-pagebottom').hasClass('introduction')) {
  //            $('#sidebar-pagebottom').addClass('introduction');
@@ -13,15 +13,15 @@
 
 
 //__footer popup show__//
-$('footer').waypoint(function(direction) {
-     // Highlight element when related content
-     // is 10% percent from the bottom... 
-     // remove if below
-     $('#myModal').modal('show');
-     getRelatedNavigation(this).toggleClass('active', direction === 'down');
-   }, {
-     offset: '90%' // 
-   })
+// $('footer').waypoint(function(direction) {
+//      // Highlight element when related content
+//      // is 10% percent from the bottom... 
+//      // remove if below
+//      $('#myModal').modal('show');
+//      getRelatedNavigation(this).toggleClass('active', direction === 'down');
+//    }, {
+//      offset: '90%' // 
+//    })
 
 
 //  	$('.introduction').waypoint(function(event, direction) {

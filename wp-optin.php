@@ -13,17 +13,9 @@ Text Domain: xo
 defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
 
-require "helper/view_html.php";
+require "helper/view_lightbox_html.php";
 
-
-
-if( esc_attr( get_option('check_option') ) == 1 ){
-
-  add_action( 'wp_enqueue_scripts',  'frontend_enqueue_script' );
-    
- }
-//$test = get_option('select_option' );
-// echo $test;
+//__Select Optin Type cases__//
 
 switch (get_option('select_option' )) {
 
@@ -45,37 +37,47 @@ switch (get_option('select_option' )) {
 }
 
      function frontend_position1_script(){  
-            wp_enqueue_script('position1-optin-js', plugins_url('assets/js/position/optin-top-position.js', __FILE__), array('jquery') );   
+            wp_enqueue_script('lightbox-show-optin-js', plugins_url('assets/js/optin-type/lightbox_show_optin.js', __FILE__), array('jquery') );   
 
           }
      
      function frontend_position2_script(){  
-            wp_enqueue_script('position2-optin-js', plugins_url('assets/js/position/interval1-optin.js', __FILE__), array('jquery') );   
+            wp_enqueue_script('flyin-show-optin-js', plugins_url('assets/js/optin-type/flyin_show_optin.js', __FILE__), array('jquery') );   
 
           }
 
      function frontend_position3_script(){  
-            wp_enqueue_script('position3-optin-js', plugins_url('assets/js/position/optin-bottom-position.js', __FILE__), array('jquery') );   
+            wp_enqueue_script('stickytop-show-optin-js', plugins_url('assets/js/optin-type/stickytop_show_optin.js', __FILE__), array('jquery') );   
 
       }
 
+//__Select Optin Load cases__//
 
-switch ( get_option('interval_select' ) ) {
+switch ( get_option('optin_load' ) ) {
+
+
+        case 'onload':
+              add_action( 'wp_enqueue_scripts', 'frontend_optin_onload_script' );
+            break;
 
         case '5sec':
-            add_action( 'wp_enqueue_scripts',  'frontend_interval1_script' );
+            add_action( 'wp_enqueue_scripts',  'frontend_optin_5sec_script' );
             break;
 
         case '10sec':
-            add_action( 'wp_enqueue_scripts',  'frontend_interval2_script' );
+            add_action( 'wp_enqueue_scripts',  'frontend_optin_10sec_script' );
             break;
 
         case '15sec':
-             add_action( 'wp_enqueue_scripts',  'frontend_interval3_script' );
+             add_action( 'wp_enqueue_scripts',  'frontend_optin_15sec_script' );
             break;
 
-         case '20sec':
-             add_action( 'wp_enqueue_scripts',  'frontend_interval4_script' );
+        case '20sec':
+             add_action( 'wp_enqueue_scripts',  'frontend_optin_20sec_script' );
+            break;
+
+        case 'scrolldown':
+            add_action( 'wp_enqueue_scripts',  'frontend_onscroll_down_script' );
             break;
         
         default:
@@ -83,36 +85,38 @@ switch ( get_option('interval_select' ) ) {
             break;
 }
 
-   
-    
-    function frontend_interval1_script(){  
-        wp_enqueue_script('interval-optin1-js', plugins_url('assets/js/interval/interval1-optin.js', __FILE__), array('jquery') );   
-
-      }
-
-    function frontend_interval2_script(){  
-        wp_enqueue_script('interval-optin2-js', plugins_url('assets/js/interval/interval2-optin.js', __FILE__), array('jquery') );   
-
-      }
-      function frontend_interval3_script(){  
-        wp_enqueue_script('interval-optin3-js', plugins_url('assets/js/interval/interval3-optin.js', __FILE__), array('jquery') );   
-
-      }
-
-    function frontend_interval4_script(){  
-        wp_enqueue_script('interval-optin4-js', plugins_url('assets/js/interval/interval4-optin.js', __FILE__), array('jquery') );   
-      }
-
-
-     /**
+    /**
       * Enqueue scripts and styles
       */
-      function frontend_enqueue_script(){  
+      function frontend_optin_onload_script(){  
 
-        wp_enqueue_script('app-optin-js', plugins_url('assets/js/app_optin.js', __FILE__), array('jquery') ); 
+        wp_enqueue_script('optin-onload-js', plugins_url('assets/js/optin_load/optin_onload_script.js', __FILE__), array('jquery') ); 
   
+      }
+    
+    function frontend_optin_5sec_script(){  
+        wp_enqueue_script('optin-5sec-js', plugins_url('assets/js/optin_load/optin_5sec_script.js', __FILE__), array('jquery') );   
 
       }
+
+    function frontend_optin_10sec_script(){  
+        wp_enqueue_script('optin-10sec-js', plugins_url('assets/js/optin_load/optin_10sec_script.js', __FILE__), array('jquery') );   
+
+      }
+      function frontend_optin_15sec_script(){  
+        wp_enqueue_script('optin-15sec-js', plugins_url('assets/js/optin_load/optin_15sec_script.js', __FILE__), array('jquery') );   
+
+      }
+
+    function frontend_optin_20sec_script(){  
+        wp_enqueue_script('optin-20sec-js', plugins_url('assets/js/optin_load/optin_20sec_script.js', __FILE__), array('jquery') );   
+      }
+
+     function frontend_onscroll_down_script(){  
+            wp_enqueue_script('optin-scrolling-js', plugins_url('assets/js/optin_load/optin_scrolling_script.js', __FILE__), array('jquery') );   
+
+      }
+    
 
 // echo  get_option('select_option' );
 
@@ -122,6 +126,7 @@ function frontend_function() {
    
 }
 add_action('wp_footer', 'frontend_function');
+
 
 
 
@@ -141,7 +146,7 @@ function wp_create_menu() {
 function register_mysettings() {
 	//register our settings
 	register_setting( 'xpert-settings-group', 'new_option_name' );
-    register_setting( 'xpert-settings-group', 'interval_select' );
+  register_setting( 'xpert-settings-group', 'optin_load' );
 	register_setting( 'xpert-settings-group', 'check_option' );
 	register_setting( 'xpert-settings-group', 'select_option' );
 }
@@ -155,41 +160,44 @@ function xpert_settings_page() {
     <?php settings_fields( 'xpert-settings-group' ); ?>
     <?php do_settings_sections( 'xpert-settings-group' ); ?>
     <table class="form-table">
-      <tr valign="top">
+      <!-- <tr valign="top">
         <th scope="row">Interval</th>
             <td><input type="text" name="new_option_name" value="<?php echo esc_attr( get_option('new_option_name') ); ?>" /></td>
         </tr>
-
+ -->
         <tr valign="top">
-        <th scope="row">Interval Show</th>
+        <th scope="row">Optin Load</th>
             <td>      
-        <select name="interval_select">
+        <select name="optin_load">
 
-            <option value="select"<?php selected( get_option('interval_select' ), 'select' ); ?>>Select Your--</option>
-            <option value="5sec"  <?php selected( get_option('interval_select' ), '5sec' ); ?>>5 SECOND</option>
-            <option value="10sec" <?php selected( get_option('interval_select' ), '10sec' ); ?>>10 SECOND</option>
-            <option value="15sec" <?php selected( get_option('interval_select' ), '15sec' ); ?>>15 SECOND</option>
-            <option value="20sec" <?php selected( get_option('interval_select' ), '20sec' ); ?>>20 SECOND</option>
+            <option value="select"<?php selected( get_option('optin_load' ), 'select' ); ?>>Select Your--</option>
+            <option value="onload"  <?php selected( get_option('optin_load' ), 'onload' ); ?>>On Load</option>
+            <option value="5sec"  <?php selected( get_option('optin_load' ), '5sec' ); ?>>5 SECOND</option>
+            <option value="10sec" <?php selected( get_option('optin_load' ), '10sec' ); ?>>10 SECOND</option>
+            <option value="15sec" <?php selected( get_option('optin_load' ), '15sec' ); ?>>15 SECOND</option>
+            <option value="20sec" <?php selected( get_option('optin_load' ), '20sec' ); ?>>20 SECOND</option>
+            <option value="scrolldown" <?php selected( get_option('optin_load' ), 'scrolldown' ); ?>>On Scroll Down</option>
+
 
         </select>
         </td>
         </tr>
          
-        <tr valign="top">
+       <!--  <tr valign="top">
           <th scope="row">On Page Load Option</th>
             <td>
                  <input type='checkbox' name='check_option' value='1' <?php if ( 1 == get_option('check_option') ) echo 'checked="checked"'; ?> />
-             </tr>
+             </tr> -->
         
         <tr valign="top">
-        <th scope="row">Position</th>
+        <th scope="row">Optin Type</th>
         <td>      
         <select name="select_option">
 
             <option value="select"  <?php selected( get_option('select_option' ), 'select' ); ?>>Select Your--</option>
-            <option value="top"  <?php selected( get_option('select_option' ), 'top' ); ?>>Top</option>
-            <option value="middle" <?php selected( get_option('select_option' ), 'middle' ); ?>>Middle</option>
-            <option value="bottom" <?php selected( get_option('select_option' ), 'bottom' ); ?>>Bottom</option>
+            <option value="lightbox"  <?php selected( get_option('select_option' ), 'lightbox' ); ?>>Light Box</option>
+            <option value="flyin" <?php selected( get_option('select_option' ), 'flyin' ); ?>>FlyIN</option>
+            <option value="stickytop" <?php selected( get_option('select_option' ), 'stickytop' ); ?>>Sticky Top</option>
 
     	</select>
         </td>
