@@ -1,16 +1,18 @@
 (function($) {
  $(document).ready(function () {
 
-	//__footer popup show__//
-	$('head').waypoint(function(direction) {
-	     // Highlight element when related content
-	     // is 10% percent from the bottom... 
-	     // remove if below
-	     $('#myModal').modal('show');
-	     getRelatedNavigation(this).toggleClass('active', direction === 'down');
-	   }, {
-	     offset: '90%' // 
-	   })
+
+     $('#menu-close').on('click',function(){
+    $('#optin-flyin-wrapper').css({'display':'none'});
+	});
+
+
+	    // $('#myModalflyin').modal('show');
+	     $("#optin-flyin-wrapper").animate({bottom: '0px'});
+	   //   getRelatedNavigation(this).toggleClass('active', direction === 'down');
+	   // }, {
+	   //   offset: '90%' // 
+	   // })
 
 	});
 }(jQuery));

@@ -15,20 +15,24 @@ defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
 require "helper/view_lightbox_html.php";
 
+require "helper/view_flying_html.php";
+
 //__Select Optin Type cases__//
 
 switch (get_option('select_option' )) {
 
-        case 'top':
-            add_action( 'wp_enqueue_scripts',  'frontend_position1_script' );
+        case 'lightbox':
+            add_action( 'wp_enqueue_scripts',  'frontend_lightbox_script' );
             break;
 
-        case 'middle':
-            add_action( 'wp_enqueue_scripts',  'frontend_position2_script' );
+        case 'flyin':
+            add_action( 'wp_enqueue_scripts',  'frontend_flyin_script' );
+            add_action('wp_footer', 'frontend_flyin_function');
+
             break;
 
-        case 'bottom':
-            add_action( 'wp_enqueue_scripts',  'frontend_position3_script' );
+        case 'stickytop':
+            add_action( 'wp_enqueue_scripts',  'frontend_stickytop_script' );
             break;
         
         default:
@@ -36,17 +40,17 @@ switch (get_option('select_option' )) {
             break;
 }
 
-     function frontend_position1_script(){  
+     function frontend_lightbox_script(){  
             wp_enqueue_script('lightbox-show-optin-js', plugins_url('assets/js/optin-type/lightbox_show_optin.js', __FILE__), array('jquery') );   
 
           }
      
-     function frontend_position2_script(){  
+     function frontend_flyin_script(){  
             wp_enqueue_script('flyin-show-optin-js', plugins_url('assets/js/optin-type/flyin_show_optin.js', __FILE__), array('jquery') );   
 
           }
 
-     function frontend_position3_script(){  
+     function frontend_stickytop_script(){  
             wp_enqueue_script('stickytop-show-optin-js', plugins_url('assets/js/optin-type/stickytop_show_optin.js', __FILE__), array('jquery') );   
 
       }
@@ -127,7 +131,25 @@ function frontend_function() {
 }
 add_action('wp_footer', 'frontend_function');
 
+// function frontend_test_function() {
+//    // echo '<p>This is inserted at the bottom</p>';
+//     echo frontend_flying_html();   
+  
+// }
+// add_action('wp_footer', 'frontend_test_function');
 
+
+
+
+//if ( get_option('select_option' ) == 'flyin') {
+  # code...
+  function frontend_flyin_function() {
+   // echo '<p>This is inserted at the bottom</p>';
+    echo frontend_flying_html();
+   
+}
+ // add_action('wp_footer', 'frontend_flyin_function');
+//}
 
 
 // create custom plugin settings menu
@@ -159,12 +181,7 @@ function xpert_settings_page() {
 <form method="post" action="options.php">
     <?php settings_fields( 'xpert-settings-group' ); ?>
     <?php do_settings_sections( 'xpert-settings-group' ); ?>
-    <table class="form-table">
-      <!-- <tr valign="top">
-        <th scope="row">Interval</th>
-            <td><input type="text" name="new_option_name" value="<?php echo esc_attr( get_option('new_option_name') ); ?>" /></td>
-        </tr>
- -->
+    <table class="form-table">    
         <tr valign="top">
         <th scope="row">Optin Load</th>
             <td>      
@@ -182,13 +199,7 @@ function xpert_settings_page() {
         </select>
         </td>
         </tr>
-         
-       <!--  <tr valign="top">
-          <th scope="row">On Page Load Option</th>
-            <td>
-                 <input type='checkbox' name='check_option' value='1' <?php if ( 1 == get_option('check_option') ) echo 'checked="checked"'; ?> />
-             </tr> -->
-        
+              
         <tr valign="top">
         <th scope="row">Optin Type</th>
         <td>      
@@ -253,6 +264,12 @@ final class TX_XpertOptin
         wp_enqueue_style(
             TX_OPTIN_PREFIX . '-bs-css-load',
             plugins_url('assets/vendor/bootstrap/css/bootstrap.min.css', __FILE__),
+            array()
+        );
+
+        wp_enqueue_style(
+            TX_OPTIN_PREFIX . '-optin-style-css',
+            plugins_url('assets/css/styles.css', __FILE__),
             array()
         );
     }
