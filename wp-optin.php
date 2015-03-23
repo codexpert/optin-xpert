@@ -35,7 +35,7 @@ switch (get_option('select_option' )) {
 
         case 'stickytop':
             add_action( 'wp_enqueue_scripts',  'frontend_stickytop_script' );
-             add_action('wp_footer', 'frontend_stickytop_function');
+             add_action('wp_head', 'frontend_stickytop_function');
             break;
         
         default:
@@ -262,8 +262,8 @@ final class TX_XpertOptin
 
 
          wp_enqueue_script(
-            TX_OPTIN_PREFIX . '-bs-optin-modal',
-            plugins_url('assets/vendor/bootstrap/js/modal.js', __FILE__),
+            TX_OPTIN_PREFIX . '-bs-optin-js',
+            plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__),
             array()
         );
 

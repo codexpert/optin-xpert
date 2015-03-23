@@ -16,6 +16,10 @@
 
 /* Side Menu */
 
+
+
+
+
 #optin-flyin-wrapper {
     z-index: 1000;
     position: fixed;
@@ -62,20 +66,22 @@
 
 }
 
-#optin-stickytop-wrapper{
+.stickytop-wrapper.affix{
+
+  top:0;
+  width: 100%;
 
 }
 
-
 .stickytop-wrapper {
   
-      padding: 25px 0;
+      padding: 20px 0;
       background-color: rgba(96, 131, 171, 0.5);      
-      position: fixed;
+      
       top: 0;
       left: 0;     
       display: block;    
-      width: 100%;
+    
       text-align: center;
       -webkit-box-shadow: -9px 28px 63px -34px rgba(0,0,0,0.84);
       -moz-box-shadow: -9px 28px 63px -34px rgba(0,0,0,0.84);
@@ -88,7 +94,7 @@
 
     border-radius: 30px;
     background-color: #fff;   
-    margin-top: 20px;
+    margin-top: 0px;
     margin-right: 10px;
 
 }
