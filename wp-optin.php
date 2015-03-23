@@ -17,6 +17,9 @@ require "helper/view_lightbox_html.php";
 
 require "helper/view_flying_html.php";
 
+require "helper/view_stickytop_html.php";
+
+
 //__Select Optin Type cases__//
 
 switch (get_option('select_option' )) {
@@ -27,12 +30,13 @@ switch (get_option('select_option' )) {
 
         case 'flyin':
             add_action( 'wp_enqueue_scripts',  'frontend_flyin_script' );
-            add_action('wp_footer', 'frontend_flyin_function');
-
+           add_action('wp_footer', 'frontend_flyin_function');
+//}
             break;
 
         case 'stickytop':
             add_action( 'wp_enqueue_scripts',  'frontend_stickytop_script' );
+             add_action('wp_footer', 'frontend_stickytop_function');
             break;
         
         default:
@@ -151,6 +155,14 @@ add_action('wp_footer', 'frontend_function');
  // add_action('wp_footer', 'frontend_flyin_function');
 //}
 
+function frontend_stickytop_function() {
+   // echo '<p>This is inserted at the bottom</p>';
+    echo frontend_stickytop_html();
+   
+}
+ // add_action('wp_footer', 'frontend_stickytop_function');
+
+
 
 // create custom plugin settings menu
 add_action('admin_menu', 'wp_create_menu');
@@ -255,6 +267,7 @@ final class TX_XpertOptin
             plugins_url('assets/vendor/bootstrap/js/modal.js', __FILE__),
             array()
         );
+
           wp_enqueue_script(
             TX_OPTIN_PREFIX . '-waypoint-optin-js',
             plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__),

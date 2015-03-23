@@ -33,3 +33,25 @@
     transition: all 0.4s ease 0s;
 }
 
+#optin-stickytop-wrapper{
+
+}
+
+
+.stickytop {
+  
+      padding: 25px 0;
+      background-color: rgba(96, 131, 171, 0.5);      
+      position: fixed;
+      top: 0;
+      left: 0;     
+      display: block;    
+      width: 100%;
+      text-align: center;
+
+}
+
+
+.text-color{
+  
+}

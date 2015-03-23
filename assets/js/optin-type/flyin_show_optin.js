@@ -2,7 +2,9 @@
  $(document).ready(function () {
 
 
-     $('#menu-close').on('click',function(){
+ 	
+ 	
+    $('#menu-close').on('click',function(){
     $('#optin-flyin-wrapper').css({'display':'none'});
 	});
 
