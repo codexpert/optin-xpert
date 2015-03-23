@@ -134,13 +134,6 @@ function frontend_function() {
 }
 add_action('wp_footer', 'frontend_function');
 
-// function frontend_test_function() {
-//    // echo '<p>This is inserted at the bottom</p>';
-//     echo frontend_flying_html();   
-  
-// }
-// add_action('wp_footer', 'frontend_test_function');
-
 
 
 
