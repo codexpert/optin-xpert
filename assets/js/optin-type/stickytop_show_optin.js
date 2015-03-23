@@ -1,6 +1,9 @@
 (function($) {
  $(document).ready(function () {
- 		$('.nav').scrollToFixed();
+
+    $('#stickytop-close').on('click',function(){
+    $('.stickytop-wrapper').css({'display':'none'});
+	});
 
 	});
 }(jQuery));

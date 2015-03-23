@@ -31,7 +31,6 @@ switch (get_option('select_option' )) {
         case 'flyin':
             add_action( 'wp_enqueue_scripts',  'frontend_flyin_script' );
            add_action('wp_footer', 'frontend_flyin_function');
-//}
             break;
 
         case 'stickytop':

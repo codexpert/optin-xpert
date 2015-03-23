@@ -4,7 +4,7 @@
 
  	
  	
-    $('#menu-close').on('click',function(){
+    $('#menu-close-flyin').on('click',function(){
     $('#optin-flyin-wrapper').css({'display':'none'});
 	});
 
