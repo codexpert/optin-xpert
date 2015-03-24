@@ -10,223 +10,208 @@ License: GPLv2 or later
 Text Domain: xo
 */
 
+require_once 'admin-settings.php';
+
 defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
-
-require "helper/view_lightbox_html.php";
-
-require "helper/view_flying_html.php";
-
-require "helper/view_stickytop_html.php";
+$optinType = get_option('optin_type');
+$optinTimer = get_option('optin_timer');
+//$optinTimer1 = get_option('optin_check');
 
 
-//__Select Optin Type cases__//
 
-switch (get_option('select_option' )) {
+define('OPTIN_TIMER', get_option('optin_timer') );
 
-        case 'lightbox':
-            add_action( 'wp_enqueue_scripts',  'frontend_lightbox_script' );
-            break;
+switch ($optinType) {
+  case 'flyin':
 
-        case 'flyin':
-            add_action( 'wp_enqueue_scripts',  'frontend_flyin_script' );
-           add_action('wp_footer', 'frontend_flyin_function');
-            break;
+    if( $optinTimer == 'scrolldown' ){
+      //define('OPTIN_TIMER', 0);
+      add_action('wp_footer', 'load_optin_flyin_scrolling');
+    }else
+    add_action('wp_footer', 'load_optin_flyin');
+    break;
 
-        case 'stickytop':
-            add_action( 'wp_enqueue_scripts',  'frontend_stickytop_script' );
-             add_action('wp_head', 'frontend_stickytop_function');
-            break;
-        
-        default:
-            # code...
-            break;
-}
-
-     function frontend_lightbox_script(){  
-            wp_enqueue_script('lightbox-show-optin-js', plugins_url('assets/js/optin-type/lightbox_show_optin.js', __FILE__), array('jquery') );   
-
-          }
-     
-     function frontend_flyin_script(){  
-            wp_enqueue_script('flyin-show-optin-js', plugins_url('assets/js/optin-type/flyin_show_optin.js', __FILE__), array('jquery') );   
-
-          }
-
-     function frontend_stickytop_script(){  
-            wp_enqueue_script('stickytop-show-optin-js', plugins_url('assets/js/optin-type/stickytop_show_optin.js', __FILE__), array('jquery') );   
-
-      }
-
-//__Select Optin Load cases__//
-
-switch ( get_option('optin_load' ) ) {
-
-
-        case 'onload':
-              add_action( 'wp_enqueue_scripts', 'frontend_optin_onload_script' );
-            break;
-
-        case '5sec':
-            add_action( 'wp_enqueue_scripts',  'frontend_optin_5sec_script' );
-            break;
-
-        case '10sec':
-            add_action( 'wp_enqueue_scripts',  'frontend_optin_10sec_script' );
-            break;
-
-        case '15sec':
-             add_action( 'wp_enqueue_scripts',  'frontend_optin_15sec_script' );
-            break;
-
-        case '20sec':
-             add_action( 'wp_enqueue_scripts',  'frontend_optin_20sec_script' );
-            break;
-
-        case 'scrolldown':
-            add_action( 'wp_enqueue_scripts',  'frontend_onscroll_down_script' );
-            break;
-        
-        default:
-            # code...
-            break;
-}
-
-    /**
-      * Enqueue scripts and styles
-      */
-      function frontend_optin_onload_script(){  
-
-        wp_enqueue_script('optin-onload-js', plugins_url('assets/js/optin_load/optin_onload_script.js', __FILE__), array('jquery') ); 
+  case 'stickytop':
+    add_action('wp_head', 'load_optin_stickytop');
+    break;  
   
-      }
-    
-    function frontend_optin_5sec_script(){  
-        wp_enqueue_script('optin-5sec-js', plugins_url('assets/js/optin_load/optin_5sec_script.js', __FILE__), array('jquery') );   
-
-      }
-
-    function frontend_optin_10sec_script(){  
-        wp_enqueue_script('optin-10sec-js', plugins_url('assets/js/optin_load/optin_10sec_script.js', __FILE__), array('jquery') );   
-
-      }
-      function frontend_optin_15sec_script(){  
-        wp_enqueue_script('optin-15sec-js', plugins_url('assets/js/optin_load/optin_15sec_script.js', __FILE__), array('jquery') );   
-
-      }
-
-    function frontend_optin_20sec_script(){  
-        wp_enqueue_script('optin-20sec-js', plugins_url('assets/js/optin_load/optin_20sec_script.js', __FILE__), array('jquery') );   
-      }
-
-     function frontend_onscroll_down_script(){  
-            wp_enqueue_script('optin-scrolling-js', plugins_url('assets/js/optin_load/optin_scrolling_script.js', __FILE__), array('jquery') );   
-
-      }
-    
-
-// echo  get_option('select_option' );
-
-function frontend_function() {
-   // echo '<p>This is inserted at the bottom</p>';
-    echo frontend_html();
-   
-}
-add_action('wp_footer', 'frontend_function');
-
-
-
-
-//if ( get_option('select_option' ) == 'flyin') {
-  # code...
-  function frontend_flyin_function() {
-   // echo '<p>This is inserted at the bottom</p>';
-    echo frontend_flying_html();
-   
-}
- // add_action('wp_footer', 'frontend_flyin_function');
-//}
-
-function frontend_stickytop_function() {
-   // echo '<p>This is inserted at the bottom</p>';
-    echo frontend_stickytop_html();
-   
-}
- // add_action('wp_footer', 'frontend_stickytop_function');
-
-
-
-// create custom plugin settings menu
-add_action('admin_menu', 'wp_create_menu');
-
-function wp_create_menu() {
-
-	//create new top-level menu
-	add_menu_page('Xpert Optin Menu', 'Xpert Optin', 'administrator', __FILE__, 'xpert_settings_page','dashicons-admin-plugins');
-
-	//call register settings function
-	add_action( 'admin_init', 'register_mysettings' );
+  default:
+    add_action('wp_footer', 'load_optin_modal');
+    break;
 }
 
 
-function register_mysettings() {
-	//register our settings
-	register_setting( 'xpert-settings-group', 'new_option_name' );
-  register_setting( 'xpert-settings-group', 'optin_load' );
-	register_setting( 'xpert-settings-group', 'check_option' );
-	register_setting( 'xpert-settings-group', 'select_option' );
-}
-
-function xpert_settings_page() {
-?>
-<div class="wrap">
-<h2>Your Plugin Name</h2>
-
-<form method="post" action="options.php">
-    <?php settings_fields( 'xpert-settings-group' ); ?>
-    <?php do_settings_sections( 'xpert-settings-group' ); ?>
-    <table class="form-table">    
-        <tr valign="top">
-        <th scope="row">Optin Load</th>
-            <td>      
-        <select name="optin_load">
-
-            <option value="select"<?php selected( get_option('optin_load' ), 'select' ); ?>>Select Your--</option>
-            <option value="onload"  <?php selected( get_option('optin_load' ), 'onload' ); ?>>On Load</option>
-            <option value="5sec"  <?php selected( get_option('optin_load' ), '5sec' ); ?>>5 SECOND</option>
-            <option value="10sec" <?php selected( get_option('optin_load' ), '10sec' ); ?>>10 SECOND</option>
-            <option value="15sec" <?php selected( get_option('optin_load' ), '15sec' ); ?>>15 SECOND</option>
-            <option value="20sec" <?php selected( get_option('optin_load' ), '20sec' ); ?>>20 SECOND</option>
-            <option value="scrolldown" <?php selected( get_option('optin_load' ), 'scrolldown' ); ?>>On Scroll Down</option>
+// switch ($optinTimer1) {
+//   case 1:
+//     # code...
+//   add_action('wp_footer', 'load_optin_flyin_scrolling');
+//     break;
+  
+//   default:
+//     # code...
+//     break;
+// }
 
 
-        </select>
-        </td>
-        </tr>
+function load_optin_flyin_scrolling(){
+
+  $output = '<div class="optin-flyin-display" >
+              <div class="optin-flyin-content">
+                  <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
+              </div>
+              <div clas="text">
+                <h1>Helloooasdfasdf</h1>
+              </div>
+          </div>';
+         
+
+           $ts = "<script>
+            jQuery(document).ready(function () {
+
+                jQuery('#menu-close-flyin').on('click',function(){
+                jQuery('.optin-flyin-display').css({'display':'none'});
+              });
               
-        <tr valign="top">
-        <th scope="row">Optin Type</th>
-        <td>      
-        <select name="select_option">
+              //__footer popup show__//
+                        jQuery('footer').waypoint(function(direction) {
+                            
+                             jQuery('.optin-flyin-display').animate({bottom: '0px'});
+                            
+                           }, {
+                             offset: '90%' // 
+                           }) ;
+                        });
+           </script>";
 
-            <option value="select"  <?php selected( get_option('select_option' ), 'select' ); ?>>Select Your--</option>
-            <option value="lightbox"  <?php selected( get_option('select_option' ), 'lightbox' ); ?>>Light Box</option>
-            <option value="flyin" <?php selected( get_option('select_option' ), 'flyin' ); ?>>FlyIN</option>
-            <option value="stickytop" <?php selected( get_option('select_option' ), 'stickytop' ); ?>>Sticky Top</option>
-
-    	</select>
-        </td>
-        </tr>
-    </table>
-    
-    <?php submit_button(); ?>
-
-</form>
-</div>
-<?php } ?>
+    echo $output . $ts;
+}
 
 
-<?php 
+
+
+function load_optin_flyin(){
+
+  $output = '<div class="optin-flyin-display" >
+              <div class="optin-flyin-content">
+                  <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
+              </div>
+              <div clas="text">
+                <h1>Helloooasdfasdf</h1>
+              </div>
+          </div>';
+
+           
+
+           $js = "<script>
+            jQuery(document).ready(function () {
+                //hide a div after 3 seconds
+
+                jQuery('#menu-close-flyin').on('click',function(){
+                jQuery('.optin-flyin-display').css({'display':'none'});
+              });                            
+                
+           setTimeout( function(){
+                    jQuery('.optin-flyin-display').animate({bottom: '0px'});
+                      }, ". OPTIN_TIMER ." );
+
+            });
+           </script>";
+
+
+
+           // $ts = "<script>
+           //  jQuery(document).ready(function () {
+
+           //      jQuery('#menu-close-flyin').on('click',function(){
+           //      jQuery('.optin-flyin-display').css({'display':'none'});
+           //    });
+              
+           //    //__footer popup show__//
+           //              jQuery('footer').waypoint(function(direction) {
+                            
+           //                   jQuery('.optin-flyin-display').animate({bottom: '0px'});
+                            
+           //                 }, {
+           //                   offset: '90%' // 
+           //                 }) ;
+           //              });
+           // </script>";
+
+    echo $output  . $js;
+}
+
+
+
+
+
+function load_optin_stickytop(){
+
+  $output = '<div id="stickytop-wrapper">
+                 <div class="stickytop-affix">
+                   <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
+                 <div class = "text-color">            
+                     StickytopBar
+                 </div>
+              </div>
+            </div>';
+
+              
+           $js = "<script>
+                  jQuery(document).ready(function () {
+                      
+
+                      jQuery('#stickytop-close').on('click',function(){
+                      jQuery('#stickytop-wrapper').css({'display':'none'});
+            
+                      });    
+                                   
+
+                      setTimeout( function(){
+                        jQuery('#stickytop-wrapper').addClass('in');
+                      }, ". OPTIN_TIMER ." );
+                    
+                 });
+                 </script>";
+
+
+
+
+    echo $output . $js;
+
+}
+
+function load_optin_modal(){
+
+  $output = '<div id="myModal" class="modal fade in">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->';
+
+    $js = "<script>
+            jQuery(document).ready(function () {
+                //hide a div after 3 seconds
+                setTimeout( function(){
+                  jQuery('#myModal').modal('show');
+                }, ". OPTIN_TIMER ." );
+            });
+           </script>";
+
+    echo $output . $js;
+}
 
 final class TX_XpertOptin
 {
@@ -240,8 +225,6 @@ final class TX_XpertOptin
         add_action('wp_enqueue_scripts', array($this, 'loaOptinScripts'));
     }
     
-    
-   
     /**
      * Load Frontend Scripts
      *
@@ -257,7 +240,7 @@ final class TX_XpertOptin
          wp_enqueue_script(
             TX_OPTIN_PREFIX . '-bs-optin-js',
             plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__),
-            array()
+            array('jquery')
         );
 
           wp_enqueue_script(
@@ -267,7 +250,7 @@ final class TX_XpertOptin
         );
 
         wp_enqueue_style(
-            TX_OPTIN_PREFIX . '-bs-css-load',
+            TX_OPTIN_PREFIX . '-bs-optin-css-load',
             plugins_url('assets/vendor/bootstrap/css/bootstrap.min.css', __FILE__),
             array()
         );
