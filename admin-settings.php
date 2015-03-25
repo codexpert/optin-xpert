@@ -12,9 +12,7 @@ add_action('admin_menu', 'wp_create_menu');
 function register_mysettings() {
 	//register our settings
 	register_setting( 'xpert-settings-group', 'new_option_name' );
-  	register_setting( 'xpert-settings-group', 'optin_timer' );
-  	// register_setting( 'xpert-settings-group', 'optin_timer1' );
-	//register_setting( 'xpert-settings-group', 'optin_check' );
+  	register_setting( 'xpert-settings-group', 'optin_timer' );  	
 	register_setting( 'xpert-settings-group', 'optin_type' );
 }
 
@@ -57,14 +55,7 @@ function xpert_settings_page() {
         </select>
         </td>
         </tr>
-		<!--  <tr valign="top">
-		   <th scope="row">Scroll Down Option</th>
-		       <td>
-		     <input type='checkbox' name='optin_check' value='1' <?php if ( 1 == get_option('optin_check') ) echo 'checked="checked"'; ?> />         
-        </tr>
-              
-          <td>    
-         -->
+
     </table>
     
     <?php submit_button(); ?>

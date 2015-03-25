@@ -26,8 +26,7 @@ switch ($optinType) {
 
   case 'flyin':
 
-    if( $optinTimer == 'scrolldown' ){
-      //define('OPTIN_TIMER', 0);
+    if( $optinTimer == 'scrolldown' ){      
       add_action('wp_footer', 'load_optin_flyin_scrolling');
     }else
     add_action('wp_footer', 'load_optin_flyin');
@@ -38,7 +37,7 @@ switch ($optinType) {
 
 
     if( $optinTimer == 'scrolldown' ){
-      //define('OPTIN_TIMER', 0);
+     
       add_action('wp_footer', 'load_optin_stickytop_scrolling');
     }else
     add_action('wp_head', 'load_optin_stickytop');
@@ -48,7 +47,7 @@ switch ($optinType) {
   case 'lightbox':
 
     if( $optinTimer == 'scrolldown' ){
-      //define('OPTIN_TIMER', 0);
+     
       add_action('wp_footer', 'load_optin_modal_scrolling');
     }else
 
@@ -155,7 +154,7 @@ function load_optin_stickytop_scrolling(){
                              jQuery('#stickytop-wrapper').addClass('in');
                             
                            }, {
-                             offset: '90%' // 
+                             offset: '90%' 
                            }) ;
                         });
            </script>";
@@ -167,7 +166,7 @@ function load_optin_stickytop_scrolling(){
 
 function load_optin_stickytop(){
 
-  $output = '<div id="stickytop-wrapper">
+  $output = '<div id="stickytop-wrapper" data-spy="affix" data-offset-top="200">
                  <div class="stickytop-affix">
                    <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
                  <div class = "text-color">            
@@ -221,7 +220,7 @@ function load_optin_modal(){
 
     $js = "<script>
             jQuery(document).ready(function () {
-                //hide a div after 3 seconds
+                //hide a div after  seconds
                 setTimeout( function(){
                   jQuery('#myModal').modal('show');
                 }, ". OPTIN_TIMER ." );
