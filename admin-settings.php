@@ -4,6 +4,8 @@ function wp_create_menu() {
 	//create new top-level menu
 	add_menu_page('Xpert Optin Menu', 'Xpert Optin', 'administrator', __FILE__, 'xpert_settings_page','dashicons-admin-plugins');
 	//call register settings function
+	
+
 	add_action( 'admin_init', 'register_mysettings' );
 }
 // create custom plugin settings menu
@@ -11,10 +13,20 @@ add_action('admin_menu', 'wp_create_menu');
 
 function register_mysettings() {
 	//register our settings
+	register_setting( 'xpert-settings-group', 'wpet_options', 'wpet_validate_options' );
 	register_setting( 'xpert-settings-group', 'new_option_name' );
   	register_setting( 'xpert-settings-group', 'optin_timer' );  	
 	register_setting( 'xpert-settings-group', 'optin_type' );
+	//register_setting( 'xpert-settings-group', 'optin_text' );
 }
+
+
+// Sanitize and validate input. Accepts an array, return a sanitized array.
+function wpet_validate_options($input) {
+	
+	return $input;
+}
+ 
 
 function xpert_settings_page() {
 ?>
@@ -24,6 +36,10 @@ function xpert_settings_page() {
 <form method="post" action="options.php">
     <?php settings_fields( 'xpert-settings-group' ); ?>
     <?php do_settings_sections( 'xpert-settings-group' ); ?>
+
+    
+	<?php $options = get_option('wpet_options'); ?>
+
     <table class="form-table">    
 
         <tr valign="top">
@@ -56,6 +72,24 @@ function xpert_settings_page() {
         </td>
         </tr>
 
+
+         <table class="form-table">
+				<tr>
+					<td>
+						<h3>TinyMCE - Editor 1</h3>
+						<?php
+
+
+
+							$args = array("textarea_name" => "wpet_options[textarea_one]");
+							wp_editor( $options['textarea_one'], "wpet_options[textarea_one]", $args );
+						?>
+					</td>
+				</tr>
+				
+			</table>
+			<?php echo $options['textarea_one'] ?>
+
     </table>
     
     <?php submit_button(); ?>
@@ -64,3 +98,4 @@ function xpert_settings_page() {
 </div>
 <?php }
 ?>
+ 
