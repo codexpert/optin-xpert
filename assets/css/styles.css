@@ -8,23 +8,20 @@
     bottom: -100%;
     width: 250px;
     height: 50%;    
-    background: #6083ab;
-    -webkit-transition: all 0.4s ease 0s;
-    -moz-transition: all 0.4s ease 0s;
-    -ms-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
-    border-top: 3px solid #111;
+    background: #fff;
+    -webkit-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
+    -moz-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
+    box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
+    border-top: 12px solid #0097A7;
 }
-
 
 
 .optin-flyin-content{
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 30px;
-    height: 30px;
+    top: -33px;
+  left: -17px;
+  width: 30px;
+  height: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
@@ -36,14 +33,41 @@
 
 }
 
-#menu-close-flyin{
-  margin-top: 0px;
-  padding: 10px;
-  /* height: 26px; */
-  width: 32px;
-  line-height: 11px;
+
+
+
+.optin-header-flyin h2{
+    margin-top: 0;
+    text-align: center;
+    color: #fff;
+    background: #00B9D2;    
+    padding: 8px;
 
 }
+
+#menu-close-flyin{
+    margin-top: 0px;
+    padding: 12px;    
+    width: 34px;
+    line-height: 1px;
+}
+
+
+ #optin-email{
+      width: 80%;
+      margin: auto;
+      border-radius: 0;
+}
+
+#optin-email-button{
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 0;
+        display: block;
+        background: #00B9D2;
+        border: none;
+}
+
 #stickytop-wrapper{ display: none;}
 #stickytop-wrapper.in{ display: block;}
 

@@ -16,10 +16,11 @@ defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
 $optinType = get_option('optin_type');
 $optinTimer = get_option('optin_timer');
+$optinText = get_option('wp_editor_data');
 //$optinTimer1 = get_option('optin_check');
 
 
-
+define('OPTIN_DATA', get_option('wp_editor_data'));
 define('OPTIN_TIMER', get_option('optin_timer') );
 
 switch ($optinType) {
@@ -63,7 +64,8 @@ function load_optin_flyin_scrolling(){
                   <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
               </div>
               <div clas="text">
-                <h1>Helloooasdfasdf</h1>
+                <h1>Title</h1>
+                '.OPTIN_DATA.'
               </div>
           </div>';
          
@@ -98,10 +100,20 @@ function load_optin_flyin(){
               <div class="optin-flyin-content">
                   <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
               </div>
-              <div clas="text">
-                <h1>Helloooasdfasdf</h1>
+              <div class ="optin-header-flyin">             
+                 <h2>Tx Optin</h2>    
               </div>
-          </div>';
+                <div class = "optin-content-flyin">
+                    '.OPTIN_DATA.'
+                </div>
+
+                <form>
+                  <div id = "optin-email-subcribe" class="form-group">                    
+                    <input type="email" class="form-control" id="optin-email" placeholder="Enter email">
+                  </div>
+                  <button id="optin-email-button" type="submit" class="btn btn-primary ">Subscribe!!</button>
+                </form>
+             </div>';
 
            
 
@@ -131,8 +143,8 @@ function load_optin_stickytop_scrolling(){
   $output = '<div id="stickytop-wrapper">
                  <div class="stickytop-affix">
                    <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
-                 <div class = "text-color">            
-                     StickytopBar
+                 <div clas="optin-text">                
+                     '.OPTIN_DATA.'
                  </div>
               </div>
             </div>';
@@ -169,8 +181,8 @@ function load_optin_stickytop(){
   $output = '<div id="stickytop-wrapper" data-spy="affix" data-offset-top="200">
                  <div class="stickytop-affix">
                    <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
-                 <div class = "text-color">            
-                     StickytopBar
+                 <div clas="optin-text">                
+                     '.OPTIN_DATA.'
                  </div>
               </div>
             </div>';
@@ -208,7 +220,9 @@ function load_optin_modal(){
                 <h4 class="modal-title">Modal title</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <div clas="optin-text">                
+                     '.OPTIN_DATA.'
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -241,7 +255,9 @@ function load_optin_modal_scrolling(){
                 <h4 class="modal-title">Modal title</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <div clas="optin-text">                
+                     '.OPTIN_DATA.'
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
