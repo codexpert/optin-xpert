@@ -17,13 +17,14 @@ defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 $optinType = get_option('optin_type');
 $optinTimer = get_option('optin_timer');
 $optinText = get_option('wp_editor_data');
-//$optinTimer1 = get_option('optin_check');
+$optinPost = get_option('post_id');
 
 
 define('OPTIN_DATA', get_option('wp_editor_data'));
 define('OPTIN_TIMER', get_option('optin_timer') );
+define('OPTIN_POST', get_option('post_id'));
 
-switch ($optinType) {
+/*switch ($optinType) {
 
   case 'flyin':
 
@@ -55,7 +56,7 @@ switch ($optinType) {
     add_action('wp_footer', 'load_optin_modal');
 
     break;
-}
+}*/
 
 function load_optin_flyin_scrolling(){
 
@@ -287,6 +288,58 @@ function load_optin_modal_scrolling(){
 }
 
 
+add_action('template_redirect', 'plugin_is_page');
+
+function plugin_is_page() {
+  global $post;
+  global $optinType;
+  global $optinTimer;
+  global $optinPost;
+
+  //echo $optinPost; 
+/*echo $post->ID; */
+  $newOptinPost = explode(",", $optinPost);
+
+  foreach ($newOptinPost as $key ) {
+
+    if(($post->ID)==$key){
+                  switch ($optinType) {
+
+  case 'flyin':
+
+    if( $optinTimer == 'scrolldown' ){      
+      add_action('wp_footer', 'load_optin_flyin_scrolling');
+    }else
+    add_action('wp_footer', 'load_optin_flyin');
+
+    break;
+
+  case 'stickytop':
+
+
+    if( $optinTimer == 'scrolldown' ){
+     
+      add_action('wp_footer', 'load_optin_stickytop_scrolling');
+    }else
+    add_action('wp_head', 'load_optin_stickytop');
+
+    break;  
+  
+  case 'lightbox':
+
+    if( $optinTimer == 'scrolldown' ){
+     
+      add_action('wp_footer', 'load_optin_modal_scrolling');
+    }else
+
+    add_action('wp_footer', 'load_optin_modal');
+
+    break;
+    }
+  }
+    }
+  }
+
 
 // add_action( 'edit_page_form', 'my_second_editor' );
 // function my_second_editor() {
@@ -350,4 +403,6 @@ final class TX_XpertOptin
 // Kickstart the class
 new TX_XpertOptin();
 
+
+echo  the_title();
 ?>
