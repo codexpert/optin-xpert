@@ -79,13 +79,17 @@ function xpert_settings_page() {
 			        $settings = array( 'wp_editor_data' => 'wp_editor_data',
 					                 'quicktags' => true,
 					                 'media_buttons' => true,
-					                 );
+					                 'teeny' => true,
+					                 'tinymce'=> array(
+					                 'theme_advanced_disable' => 'fullscreen'
+					                 ));
 
 			      wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?>		 
          	</td>
         </tr>
    
-      		
+      
+			
 
     </table>
     
