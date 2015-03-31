@@ -18,11 +18,12 @@ $optinType = get_option('optin_type');
 $optinTimer = get_option('optin_timer');
 $optinText = get_option('wp_editor_data');
 $optinPost = get_option('post_id');
+$optinPage = get_option('page_id');
 
 
 define('OPTIN_DATA', get_option('wp_editor_data'));
 define('OPTIN_TIMER', get_option('optin_timer') );
-define('OPTIN_POST', get_option('post_id'));
+//define('OPTIN_POST', get_option('post_id'));
 
 /*switch ($optinType) {
 
@@ -295,15 +296,22 @@ function plugin_is_page() {
   global $optinType;
   global $optinTimer;
   global $optinPost;
+  global $optinPage;
+  
+
 
   //echo $optinPost; 
-/*echo $post->ID; */
-  $newOptinPost = explode(",", $optinPost);
+ //echo get_the_title(); 
+  // $newOptinPost = explode(",", $optinPost);
 
-  foreach ($newOptinPost as $key ) {
+  // foreach ($newOptinPost as $key ) {
 
-    if(($post->ID)==$key){
-                  switch ($optinType) {
+  //   if(($post->ID)==$key){
+  // echo $page->ID;
+  if(is_page( $optinPage )){
+    //echo $optinPage;
+
+      switch ($optinType) {
 
   case 'flyin':
 
@@ -337,8 +345,8 @@ function plugin_is_page() {
     break;
     }
   }
-    }
-  }
+    // }
+}
 
 
 // add_action( 'edit_page_form', 'my_second_editor' );
@@ -361,6 +369,8 @@ final class TX_XpertOptin
     {
       
         add_action('wp_enqueue_scripts', array($this, 'loaOptinScripts'));
+        //add_action('wp_enqueue_script', array($this, 'loadBackendSiteScripts'));
+        add_action( 'admin_enqueue_scripts', array($this, 'loadBackendSiteScripts' ));
     }
     
     /**
@@ -371,8 +381,7 @@ final class TX_XpertOptin
      * @since 0.1
      */
     public function loaOptinScripts()
-    {
-        
+    {      
 
 
          wp_enqueue_script(
@@ -387,6 +396,7 @@ final class TX_XpertOptin
             array()
         );
 
+        
         wp_enqueue_style(
             TX_OPTIN_PREFIX . '-bs-optin-css-load',
             plugins_url('assets/vendor/bootstrap/css/bootstrap.min.css', __FILE__),
@@ -399,10 +409,34 @@ final class TX_XpertOptin
             array()
         );
     }
+
+ function loadBackendSiteScripts()
+    {
+
+         wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-selectize-js',
+            plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__),
+            array('jquery')
+        );
+
+          wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-optin-app-js',
+            plugins_url('assets/js/app.js', __FILE__),
+            array()
+        );
+           wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-optin-app-test-js',
+            plugins_url('assets/js/app_test.js', __FILE__),
+            array()
+        );
+
+           wp_enqueue_style(
+            TX_OPTIN_PREFIX . '-optin-selectize-css',
+            plugins_url('assets/css/app.css', __FILE__),
+            array()
+        );
+}
+    
 }
 // Kickstart the class
 new TX_XpertOptin();
-
-
-echo  the_title();
-?>

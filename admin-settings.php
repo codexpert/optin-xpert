@@ -21,6 +21,7 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'optin_type' );
   register_setting( 'xpert-settings-group', 'wp_editor_data' );
   register_setting( 'xpert-settings-group', 'post_id' );
+  register_setting( 'xpert-settings-group', 'page_id' );
 }
  
 
@@ -30,6 +31,7 @@ function wpet_validate_options($input) {
   return $input;
 }
  
+
 
 function xpert_settings_page() {
 ?>
@@ -59,7 +61,7 @@ function xpert_settings_page() {
         <select name="optin_timer">
 
             <option value="select"<?php selected( get_option('optin_timer' ), 'select' ); ?>>Select Your--</option>
-            <option value="onload"  <?php selected( get_option('optin_timer' ), 'onload' ); ?>>On Load</option>
+            <option value="onload" <?php selected( get_option('optin_timer' ), 'onload' ); ?>>On Load</option>
             <option value="5000"  <?php selected( get_option('optin_timer' ), '5000' ); ?>>5 SECOND</option>
             <option value="10000" <?php selected( get_option('optin_timer' ), '10000' ); ?>>10 SECOND</option>
             <option value="15000" <?php selected( get_option('optin_timer' ), '15000' ); ?>>15 SECOND</option>
@@ -75,7 +77,58 @@ function xpert_settings_page() {
         <th scope="row">Post ID</th>
         <td><input type="text" name="post_id" value="<?php echo esc_attr( get_option('post_id') ); ?>" /></td>
       </tr>
-   
+
+      
+    
+    <!--  <tr valign="top">
+        <th scope="row">Select Your Page</th>
+            <td name="page_id">
+            <?php $arg = array(
+                  'name' => 'page_id',
+                 'selected' => get_option('page_id'),
+              );
+              wp_dropdown_pages($arg);
+              ?>
+
+             </td>
+        </tr>
+    -->
+
+       <tr valign="top">
+        <th scope="row">Select Your Page</th>
+            <td >
+
+            <select  name="page_id[]" multiple="multiple" accesskey="e">
+            <?php
+            $results = get_pages();
+            $selected = get_option('page_id', array());
+
+            foreach ($results as $page):
+                ?>
+                <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected)); ?>>
+                    <?php echo $page->post_title; ?>
+                </option>
+                <?php
+               endforeach;
+            ?>
+         </select>
+            </td>
+        </tr>
+
+
+<!-- 
+      <tr valign="top">
+        <th scope="row">Select Your Page</th>
+            <td >
+                <select multiple name="page_id">
+                  <option value="0"<?php selected( get_option('page_id' ), '0' ); ?>>Zero</option>
+                  <option value="1"<?php selected( get_option('page_id' ), '1' ); ?>>One</option>
+                  
+                </select>
+
+          </td>
+        </tr> -->
+
       <tr valign="top">
         <th scope="row">Optin Text</th>
             <td name="wp_editor_text">
@@ -101,5 +154,7 @@ function xpert_settings_page() {
 
 </form>
 </div>
+
+
 <?php }
-?>
+?>  
