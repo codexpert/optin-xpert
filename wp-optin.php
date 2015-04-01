@@ -23,7 +23,7 @@ $optinPage = get_option('page_id');
 
 define('OPTIN_DATA', get_option('wp_editor_data'));
 define('OPTIN_TIMER', get_option('optin_timer') );
-//define('OPTIN_POST', get_option('post_id'));
+define('OPTIN_POST', get_option('post_id'));
 
 /*switch ($optinType) {
 
@@ -306,9 +306,9 @@ function plugin_is_page() {
 
   // foreach ($newOptinPost as $key ) {
 
-  //   if(($post->ID)==$key){
+    // if(get_posts ($optinPost )){
   // echo $page->ID;
-  if(is_page( $optinPage )){
+  if(is_page( $optinPage || is_single( $optinPost ))){
     //echo $optinPage;
 
       switch ($optinType) {

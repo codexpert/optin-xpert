@@ -73,10 +73,34 @@ function xpert_settings_page() {
         </td>
         </tr>
 
+
+
+         <tr valign="top">
+        <th scope="row">Select Your Post</th>
+            <td >
+
+            <select  name="post_id[]" multiple="multiple" accesskey="e">
+            <?php
+            $result = get_posts();
+            $selecteded = get_option('post_id', array());
+
+            foreach ($result as $post):
+                ?>
+                <option value="<?php echo $post->post_name; ?>" <?php echo selected(in_array($post->post_name, $selecteded)); ?>>
+                    <?php echo $post->post_title; ?>
+                </option>
+                <?php
+               endforeach;
+            ?>
+         </select>
+            </td>
+        </tr>
+
+<!-- 
      <tr valign="top">
         <th scope="row">Post ID</th>
         <td><input type="text" name="post_id" value="<?php echo esc_attr( get_option('post_id') ); ?>" /></td>
-      </tr>
+      </tr> -->
 
       
     
