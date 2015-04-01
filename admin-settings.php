@@ -22,6 +22,9 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'wp_editor_data' );
   register_setting( 'xpert-settings-group', 'post_id' );
   register_setting( 'xpert-settings-group', 'page_id' );
+  register_setting( 'xpert-settings-group', 'home_page' );
+  
+
 }
  
 
@@ -73,6 +76,13 @@ function xpert_settings_page() {
         </td>
         </tr>
 
+
+         <tr valign="top">
+        <th scope="row">Select Your Home Page</th>
+            <td >
+              <input type='checkbox' name='home_page' value='1' <?php if ( 1 == get_option('home_page') ) echo 'checked="checked"'; ?> />
+            </td>
+        </tr>
 
 
          <tr valign="top">

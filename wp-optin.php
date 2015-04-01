@@ -19,6 +19,9 @@ $optinTimer = get_option('optin_timer');
 $optinText = get_option('wp_editor_data');
 $optinPost = get_option('post_id');
 $optinPage = get_option('page_id');
+$optinHome = get_option('home_page');
+
+//echo $optinHome;
 
 
 define('OPTIN_DATA', get_option('wp_editor_data'));
@@ -292,14 +295,15 @@ function load_optin_modal_scrolling(){
 add_action('template_redirect', 'plugin_is_page');
 
 function plugin_is_page() {
-  global $post;
+  //global $post;
   global $optinType;
   global $optinTimer;
   global $optinPost;
   global $optinPage;
+  global $optinHome;
   
 
-
+echo $optinHome;
   //echo $optinPost; 
  //echo get_the_title(); 
   // $newOptinPost = explode(",", $optinPost);
@@ -308,7 +312,7 @@ function plugin_is_page() {
 
     // if(get_posts ($optinPost )){
   // echo $page->ID;
-  if(is_page( $optinPage) || is_single( $optinPost )){
+  if(is_page( $optinPage) || is_single( $optinPost, $optinHome) ){
     //echo $optinPage;
 
       switch ($optinType) {
