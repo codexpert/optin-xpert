@@ -14,18 +14,20 @@ require_once 'admin-settings.php';
 
 defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
-$optinType = get_option('optin_type');
-$optinTimer = get_option('optin_timer');
-$optinText = get_option('wp_editor_data');
-$optinPost = get_option('post_id');
-$optinPage = get_option('page_id');
-$optinHome = get_option('home_page');
+$optinType         = get_option('optin_type');
+$optinTimer        = get_option('optin_timer');
+$optinText         = get_option('wp_editor_data');
+$optinPost         = get_option('post_id');
+$optinPage         = get_option('page_id');
+$optinSession      = get_option('optin_session_value');
+$optinSessionInput = get_option('optin_session_input');
 
-//echo $optinHome;
+// echo $optinSessionInput;
 
-
-define('OPTIN_DATA', get_option('wp_editor_data'));
-define('OPTIN_TIMER', get_option('optin_timer') );
+define('OPTIN_DATA',    get_option('wp_editor_data'));
+define('OPTIN_TIMER',   get_option('optin_timer') );
+define('OPTIN_SESSION', get_option('optin_session_value'));
+define('OPTIN_SESSION_INPUT', get_option('optin_session_input'));
 //define('OPTIN_POST', get_option('post_id'));
 
 /*switch ($optinType) {
@@ -295,15 +297,19 @@ function load_optin_modal_scrolling(){
 add_action('template_redirect', 'plugin_is_page');
 
 function plugin_is_page() {
-  //global $post;
+  global $post;
   global $optinType;
   global $optinTimer;
   global $optinPost;
   global $optinPage;
-  global $optinHome;
+  
+  $optinFlag = 1;
+  if($optinFlag != $_COOKIE['optinSession']) {
   
 
-echo $optinHome;
+ 
+
+
   //echo $optinPost; 
  //echo get_the_title(); 
   // $newOptinPost = explode(",", $optinPost);
@@ -312,7 +318,7 @@ echo $optinHome;
 
     // if(get_posts ($optinPost )){
   // echo $page->ID;
-  if(is_page( $optinPage) || is_single( $optinPost, $optinHome) ){
+  if(is_page( $optinPage) || is_single( $optinPost )){
     //echo $optinPage;
 
       switch ($optinType) {
@@ -349,6 +355,8 @@ echo $optinHome;
     break;
     }
   }
+
+}
     // }
 }
 
@@ -401,6 +409,12 @@ final class TX_XpertOptin
         );
 
         
+         wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-optin-style-cookie',
+            plugins_url('assets/js/jquery.cookie.js', __FILE__),
+            array()
+        );
+        
         wp_enqueue_style(
             TX_OPTIN_PREFIX . '-bs-optin-css-load',
             plugins_url('assets/vendor/bootstrap/css/bootstrap.min.css', __FILE__),
@@ -412,6 +426,8 @@ final class TX_XpertOptin
             plugins_url('assets/css/styles.css', __FILE__),
             array()
         );
+
+       
     }
 
  function loadBackendSiteScripts()
@@ -444,3 +460,22 @@ final class TX_XpertOptin
 }
 // Kickstart the class
 new TX_XpertOptin();
+
+function headerInjection(){
+  $inJs = "<script>
+              jQuery(document).ready(function () {
+                jQuery('#menu-close-flyin').on('click',function(){
+                     var date = new Date();
+                     var timeVale = ".OPTIN_SESSION_INPUT.";
+                     var totalTime = ". OPTIN_SESSION .";
+                     date.setTime(date.getTime() + (timeVale * totalTime * 1000));
+                     jQuery.cookie('optinSession',1, { expires: date });
+
+             });
+
+          });
+                  </script>";
+          echo $inJs;
+}
+add_action('wp_head','headerInjection');
+
