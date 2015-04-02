@@ -12,6 +12,56 @@ Text Domain: xo
 
 require_once 'admin-settings.php';
 
+//__MailChimp__//
+
+require_once 'assets/vendor/MailChimp/MCAPI.class.php';
+
+  
+             if( isset( $_POST ["optin_mail"] )) $optin_mail = $_POST ["optin_mail"];
+              //echo $optin_mail;
+            
+
+              
+
+$apikey='e8870ce709001c88a58ff5d52839be66-us10'; // Enter your API key
+$api = new MCAPI($apikey);
+$retval = $api->lists();
+
+//var_dump($retval);
+
+if ($api->errorCode){
+   "Code=".$api->errorCode;
+  "Msg=".$api->errorMessage;
+}
+else {
+    foreach ($retval['data'] as $list){
+       $list['name'];// echo "&nbsp"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp";
+       $list['id'];
+     // echo "<br />";
+    }
+  
+}
+
+ $listid= $list['id']; // Enter list Id here
+ // $email=''; // Enter subscriber email address
+  $name=''; // Enter subscriber first name
+  $lname=''; // Enter subscriber last name
+
+// // By default this sends a confirmation email - you will not see new members
+// // until the link contained in it is clicked!
+
+$merge_vars = array('FNAME' => $name, 'LNAME' => $lname);
+if($api->listSubscribe($listid, $optin_mail,$merge_vars) === true) {
+  // echo 'success';
+ }
+
+ //  global $optin_email;
+  //echo $_POST['subject']; 
+ //__End MailChimp__//
+
+
+
+
 defined( 'TX_OPTIN_PREFIX' ) or define( 'TX_OPTIN_PREFIX', 'tx_optin' );
 
 $optinType = get_option('optin_type');
@@ -26,6 +76,7 @@ $optinHome = get_option('home_page');
 
 define('OPTIN_DATA', get_option('wp_editor_data'));
 define('OPTIN_TIMER', get_option('optin_timer') );
+//define('OPTIN_HOME', get_option('home_page') );
 //define('OPTIN_POST', get_option('post_id'));
 
 /*switch ($optinType) {
@@ -112,19 +163,24 @@ function load_optin_flyin(){
                     '.OPTIN_DATA.'
                 </div>
 
-                <form>
+               
+                <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
                   <div id = "optin-email-subcribe" class="form-group">                    
-                    <input type="email" class="form-control" id="optin-email" placeholder="Enter email">
+                    <input  type="email" name="optin_mail" value="'.$optin_mail.'" class="form-control" id="optin_mail" placeholder="Enter email">
                   </div>
                   <button id="optin-email-button" type="submit" class="btn btn-primary ">Subscribe!!</button>
-                </form>
+                  
+               </form>
+
              </div>';
 
-           
+
+                   
 
            $js = "<script>
             jQuery(document).ready(function () {
                 //hide a div after 3 seconds
+              
 
                 jQuery('#menu-close-flyin').on('click',function(){
                 jQuery('.optin-flyin-display').css({'display':'none'});
@@ -292,33 +348,40 @@ function load_optin_modal_scrolling(){
 }
 
 
+
+
 add_action('template_redirect', 'plugin_is_page');
 
 function plugin_is_page() {
-  //global $post;
-  global $optinType;
-  global $optinTimer;
-  global $optinPost;
-  global $optinPage;
-  global $optinHome;
+   global $post;
+   global $optinType;
+   global $optinTimer;
+   global $optinPost;
+   global $optinPage;
+   global $optinHome;
   
 
-echo $optinHome;
+//echo OPTIN_HOME;
+//echo $optinHome;
   //echo $optinPost; 
  //echo get_the_title(); 
   // $newOptinPost = explode(",", $optinPost);
+
+// if(is_home()== $optinHome){
+
+//   echo "test";
 
   // foreach ($newOptinPost as $key ) {
 
     // if(get_posts ($optinPost )){
   // echo $page->ID;
-  if(is_page( $optinPage) || is_single( $optinPost, $optinHome) ){
+  if(is_page( $optinPage) || is_single( $optinPost) || is_home()== $optinHome){
     //echo $optinPage;
 
       switch ($optinType) {
 
   case 'flyin':
-
+  
     if( $optinTimer == 'scrolldown' ){      
       add_action('wp_footer', 'load_optin_flyin_scrolling');
     }else
@@ -444,3 +507,4 @@ final class TX_XpertOptin
 }
 // Kickstart the class
 new TX_XpertOptin();
+
