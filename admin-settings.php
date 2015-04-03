@@ -22,9 +22,8 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'wp_editor_data' );
   register_setting( 'xpert-settings-group', 'post_id' );
   register_setting( 'xpert-settings-group', 'page_id' );
-  register_setting( 'xpert-settings-group', 'home_page' );
-  
-
+  register_setting( 'xpert-settings-group', 'optin_session_value' );
+  register_setting( 'xpert-settings-group', 'optin_session_input' );
 }
  
 
@@ -76,13 +75,20 @@ function xpert_settings_page() {
         </td>
         </tr>
 
-
-         <tr valign="top">
-        <th scope="row">Select Your Home Page</th>
-            <td >
-              <input type='checkbox' name='home_page' value='1' <?php if ( 1 == get_option('home_page') ) echo 'checked="checked"'; ?> />
-            </td>
+        <tr valign="top">
+          <th scope="row">Optin Session</th>
+          <td>  
+            <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" /> 
+            <select name="optin_session_value">
+              <option value="select"  <?php selected( get_option('optin_session_value' ), 'select' ); ?>>Select Your--</option>
+              <option value="60"  <?php selected( get_option('optin_session_value' ), '60' ); ?>>Minutes</option>
+              <option value="3600"  <?php selected( get_option('optin_session_value' ), '3600' ); ?>>Hours</option>
+              <option value="86400"  <?php selected( get_option('optin_session_value' ), '86400' ); ?>>Days</option>
+              <option value="2592000"  <?php selected( get_option('optin_type' ), '2592000' ); ?>>Months</option>
+             </select>
+          </td>
         </tr>
+
 
 
          <tr valign="top">
@@ -191,4 +197,22 @@ function xpert_settings_page() {
 
 
 <?php }
+
+
+
+
+/*$flag = 1;
+
+if($flag == 1){
+  $cookie_name = 'WP-Optin';
+  $cookie_value = 1;
+  setcookie($cookie_name, $cookie_value, time() + (10 * 1), '/'); 
+  $flag += $_COOKIE[$cookie_name];
+}
+
+
+echo $flag;
+
+*/
 ?>  
+
