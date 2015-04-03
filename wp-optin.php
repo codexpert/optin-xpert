@@ -16,6 +16,8 @@ require_once 'admin-settings.php';
 
 require_once 'assets/vendor/MailChimp/MCAPI.class.php';
 
+
+         // if (count($_POST)>0) echo '<div id="form-submit-alert">Form Submitted!</div>'
   
              if( isset( $_POST ["optin_mail"] )) $optin_mail = $_POST ["optin_mail"];
               //echo $optin_mail;
@@ -43,7 +45,7 @@ else {
 }
 
  $listid= $list['id']; // Enter list Id here
- // $email=''; // Enter subscriber email address
+  global $optin_mail; // Enter subscriber email address
   $name=''; // Enter subscriber first name
   $lname=''; // Enter subscriber last name
 
@@ -51,8 +53,18 @@ else {
 // // until the link contained in it is clicked!
 
 $merge_vars = array('FNAME' => $name, 'LNAME' => $lname);
-if($api->listSubscribe($listid, $optin_mail,$merge_vars) === true) {
-  // echo 'success';
+if($api->listSubscribe($listid, $optin_mail, $merge_vars) === true) {
+  // echo 'subscribed!!';
+
+  
+            // $ts = "<script>
+            //       jQuery('#optin-email-button').on('click',function(){ 
+            //            alert('tss');
+
+            //      });
+            // </script>";
+           // echo $ts;
+  
  }
 
  //  global $optin_email;
@@ -166,10 +178,10 @@ function load_optin_flyin(){
                
                 <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
                   <div id = "optin-email-subcribe" class="form-group">                    
-                    <input  type="email" name="optin_mail" value="'.$optin_mail.'" class="form-control" id="optin_mail" placeholder="Enter email">
+                    <input  type="email" name="optin_mail" value="'.$optin_mail.'" class="form-control" id="optin_mail" placeholder="Enter email" required>
                   </div>
                   <button id="optin-email-button" type="submit" class="btn btn-primary ">Subscribe!!</button>
-                  
+
                </form>
 
              </div>';
@@ -180,7 +192,11 @@ function load_optin_flyin(){
            $js = "<script>
             jQuery(document).ready(function () {
                 //hide a div after 3 seconds
-              
+                
+                 //  jQuery('#optin-email-button').on('click',function(){ 
+                 //       alert('tss');
+
+                 // });
 
                 jQuery('#menu-close-flyin').on('click',function(){
                 jQuery('.optin-flyin-display').css({'display':'none'});
