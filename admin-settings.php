@@ -273,10 +273,11 @@ function xpert_settings_page() {
             <td name="wp_editor_text">
              <?php
               $settings = array( 'wp_editor_data' => 'wp_editor_data',
-                           'quicktags' => true,
+                           'quicktags' => false,
                            'wpautop' => false,
-                           'media_buttons' => true,
-                           'teeny' => true,
+                           'mce-ico' => false,
+                           'media_buttons' => true,                           
+                           'teeny' => false,
                            'tinymce'=> array(
                             'forced_root_block' => "h2",
                            'theme_advanced_disable' => 'fullscreen'
@@ -299,8 +300,53 @@ function xpert_settings_page() {
 
 <?php }
 
+add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line
+add_filter("mce_buttons_2", "tinymce_editor_buttons_second_row", 99); //targets the second line
+// add_filter("mce_buttons_3", "tinymce_editor_buttons_second_row", 99);
+// add_filter("mce_buttons_4", "tinymce_editor_buttons_second_row", 99);
+
+function tinymce_editor_buttons($buttons) {
+return array(
+    "forecolor",   
+    "bold",      
+    "italic",
+    "alignleft",
+    "aligncenter",
+    "alignright",
+    
 
 
+
+    
+    
+    
+
+    //"separator",
+    //"bullist", 
+    //"separator",
+    //add more here...
+    );
+}
+
+function tinymce_editor_buttons_second_row($buttons) {
+   //return an empty array to remove this line
+    return array('block_formats'=> 'h1');
+}
+
+remove_filter('the_excerpt','wpautop');
+
+// function wpa_45815($arr){
+//     $arr['block_formats'] = 'h4';
+//     return $arr;
+//   }
+// add_filter('tiny_mce_before_init', 'wpa_45815');
+
+
+//__tinymc button name__//
+
+//bold,italic,strikethrough,underline,separator,bullist,numlist,outdent,indent,separator,justifyleft,justifycenter,justifyright,separator,link,unlink,separator,image,styleprops,separator,wp_more,wp_page,separator,spellchecker,search,separator,fullscreen,wp_adv,NextGEN,cforms,vvqYouTube,vvqGoogleVideo,vvqDailyMotion,vvqVimeo,vvqVeoh,vvqViddler,vvqMetacafe,vvqBlipTV,vvqFlickrVideo,vvqSpike,vvqMySpace,vvqFLV,vvqQuicktime,vvqVideoFile,slidedeck", theme_advanced_buttons2:"fontsizeselect,formatselect,pastetext,pasteword,removeformat,separator,charmap,print,separator,forecolor,backcolor,emotions,separator,sup,sub,media,separator,undo,redo,attribs,wp_help", theme_advanced_buttons3:"", theme_advanced_buttons4:"", language:"en", spellchecker_languages:"+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv", theme_advanced_toolbar_location:"top", theme_advanced_toolbar_align:"left", theme_advanced_statusbar_location:"bottom", theme_advanced_resizing:"1", theme_advanced_resize_horizontal:"", dialog_type:"modal", relative_urls:"", remove_script_host:"", convert_urls:"", apply_source_formatting:"", remove_linebreaks:"1", gecko_spellcheck:"1", entities:"38,amp,60,lt,62,gt", accessibility_focus:"1", tabfocus_elements:"major-publishing-actions", media_strict:"", paste_remove_styles:"1", paste_remove_spans:"1", paste_strip_class_attributes:"all", wpeditimage_disable_captions:"", plugins:"safari,inlinepopups,spellchecker,paste,wordpress,media,fullscreen,wpeditimage,wpgallery,tabfocus,-NextGEN,-cforms,-vipersvideoquicktags,-slidedeck,-style,-emotions,-print,-searchreplace,-xhtmlxtras,-advlink,-advimage"
+
+//__End_tinymc button name__//
 
 /*$flag = 1;
 
