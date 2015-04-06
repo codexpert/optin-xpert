@@ -47,7 +47,7 @@ function xpert_settings_page() {
     <?php do_settings_sections( 'xpert-settings-group' ); ?>    
 
     <table class="form-table">   
-        <tr valign="top">
+        <!-- <tr valign="top">
           <th scope="row">Optin Type</th>
           <td>      
             <select name="optin_type">
@@ -57,7 +57,63 @@ function xpert_settings_page() {
               <option value="stickytop" <?php selected( get_option('optin_type' ), 'stickytop' ); ?>>Sticky Top</option>
              </select>
           </td>
+        </tr> -->
+
+
+      <tr valign="top">
+          <th scope="row">Optin Type</th>
+          <td>      
+            <select name="optin_type" id="optin_type_hook">
+              <option value="select"  <?php selected( get_option('optin_type' ), 'select' ); ?>>Select Your--</option>
+              <option value="lightbox"  <?php selected( get_option('optin_type' ), 'lightbox' ); ?>>Light Box</option>
+              <option value="flyin" <?php selected( get_option('optin_type' ), 'flyin' ); ?>>Flyin</option>
+              <option value="stickytop" <?php selected( get_option('optin_type' ), 'stickytop' ); ?>>Sticky Top</option>
+             </select>
+          </td>
         </tr>
+
+          <tr valign="top">
+          <th scope="row">Optin layout</th>
+          <td>  
+            <div class="xpert-optin-layout"> 
+                <div class="layout-flyer">
+                  <div class="layout-flyer-1">
+                     <?php
+                      echo '<img src="' . plugins_url('assets/image/flyer.png', __FILE__). '" > ';
+                      ?>
+                  </div>
+                </div>
+             </div>
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"></th>
+          <td>  
+              <div class="xpert-optin-preview xpert-optin-preview-none">
+                  <div class="flyer-preview">
+                     <div class="flyer-pre-back">
+                        <?php
+                        echo '<img src="' . plugins_url('assets/image/flyer_pre.png', __FILE__). '" > ';
+                        ?>
+
+                           <div class="flyer-pre-front">
+                              <?php
+                                echo '<img src="' . plugins_url('assets/image/flyer-icon.png', __FILE__). '" > ';
+                                ?>
+                              <h2>Join Our Daily Newsletters</h2>
+                              <p>Recieve the most recent enws about <br /> product releases and promotions.</p>
+                          </div>
+                      </div>
+                    
+                  </div>
+              </div>
+          </td>
+        </tr>
+
+
+
+        <!--  -->
+
 
         <tr valign="top">
         <th scope="row">Optin Time</th>
@@ -198,7 +254,7 @@ function xpert_settings_page() {
           </td>
         </tr>
 
-        
+
       <!-- 
       <tr valign="top">
         <th scope="row">Select Your Page</th>
