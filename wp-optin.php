@@ -21,14 +21,12 @@ require_once 'assets/vendor/MailChimp/MCAPI.class.php';
   
              if( isset( $_POST ["optin_mail"] )) $optin_mail = $_POST ["optin_mail"];
               //echo $optin_mail;
-            
-
-              
-
-$apikey='e8870ce709001c88a58ff5d52839be66-us10'; // Enter your API key
+ 
+$apikey= get_option('optin_mailchimp_api'); // Enter your API key
 $api = new MCAPI($apikey);
 $retval = $api->lists();
 
+// echo $apikey;
 //var_dump($retval);
 
 if ($api->errorCode){
@@ -83,9 +81,10 @@ $optinTimer        = get_option('optin_timer');
 $optinText         = get_option('wp_editor_data');
 $optinPost         = get_option('post_id');
 $optinPage         = get_option('page_id');
-$optinHome = get_option('home_page');
+$optinHome         = get_option('home_page');
 $optinSession      = get_option('optin_session_value');
 $optinSessionInput = get_option('optin_session_input');
+$MailChimp_content = get_option('optin_mailchimp_content' );
 
 // echo $optinSessionInput;
 
@@ -93,6 +92,7 @@ define('OPTIN_DATA',    get_option('wp_editor_data'));
 define('OPTIN_TIMER',   get_option('optin_timer') );
 define('OPTIN_SESSION', get_option('optin_session_value'));
 define('OPTIN_SESSION_INPUT', get_option('optin_session_input'));
+define('OPTIN_MAILCHIMP_CONTENT', get_option('optin_mailchimp_content'));
 
 //define('OPTIN_POST', get_option('post_id'));
 
@@ -129,6 +129,7 @@ define('OPTIN_SESSION_INPUT', get_option('optin_session_input'));
 
     break;
 }*/
+
 
 function load_optin_flyin_scrolling(){
 
@@ -180,7 +181,7 @@ function load_optin_flyin(){
                     '.OPTIN_DATA.'
                 </div>
 
-               
+
                 <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
                   <div id = "optin-email-subcribe" class="form-group">                    
                     <input  type="email" name="optin_mail" value="'.$optin_mail.'" class="form-control" id="optin_mail" placeholder="Enter email" required>
@@ -189,19 +190,29 @@ function load_optin_flyin(){
 
                </form>
 
+
              </div>';
 
 
                    
 
            $js = "<script>
+           
+                console.log(".OPTIN_MAILCHIMP_CONTENT.");
             jQuery(document).ready(function () {
                 //hide a div after 3 seconds
                 
+
+
+                // if(".OPTIN_MAILCHIMP_CONTENT." == 'name'){
+                //   alert('test');
+                // }
                  //  jQuery('#optin-email-button').on('click',function(){ 
                  //       alert('tss');
 
                  // });
+
+
 
                 jQuery('#menu-close-flyin').on('click',function(){
                 jQuery('.optin-flyin-display').css({'display':'none'});

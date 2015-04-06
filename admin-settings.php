@@ -24,6 +24,8 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'page_id' );
   register_setting( 'xpert-settings-group', 'optin_session_value' );
   register_setting( 'xpert-settings-group', 'optin_session_input' );
+  register_setting( 'xpert-settings-group', 'optin_mailchimp_api' );
+  register_setting( 'xpert-settings-group', 'optin_mailchimp_content' );
 }
  
 
@@ -156,7 +158,48 @@ function xpert_settings_page() {
         </tr>
 
 
-<!-- 
+    <tr valign="top">
+     <th scope="row">MailChimp API Key</th>
+      <td>  
+        <input type="text" name="optin_mailchimp_api" placehold="Enter MailChimp API Key" value="<?php echo esc_attr( get_option('optin_mailchimp_api') ); ?>" /> 
+      </td>
+    </tr>
+
+    <!--   <tr valign="top">
+        <th scope="row">MailChimp Content</th>
+            <td >
+
+            <select  name="optin_mailchimp_content[]" multiple="multiple" accesskey="e">
+            <?php
+            //$results = get_pages();
+            $selected = get_option('optin_mailchimp_content', array());
+
+            foreach ($results as $page):
+                ?>
+                <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected)); ?>>
+                    <?php echo $page->post_title; ?>
+                </option>
+                <?php
+               endforeach;
+            ?>
+         </select>
+            </td>
+      </tr> -->
+
+        <tr valign="top">
+          <th scope="row">MailChimp Content</th>
+          <td>              
+            <select name="optin_mailchimp_content">
+              <option value="select_"  <?php selected( get_option('optin_mailchimp_content' ), 'select_' ); ?>>Select Your--</option>
+              <option value="name"  <?php selected( get_option('optin_mailchimp_content' ), 'name' ); ?>>Name</option>
+              <option value="email"  <?php selected( get_option('optin_mailchimp_content' ), 'email' ); ?>>E-Mail Address</option>     
+               <option value="name_email"  <?php selected( get_option('optin_mailchimp_content' ), 'name_email' ); ?>>Name With E-Mail</option>                     
+             </select>
+          </td>
+        </tr>
+
+        
+      <!-- 
       <tr valign="top">
         <th scope="row">Select Your Page</th>
             <td >
@@ -175,9 +218,11 @@ function xpert_settings_page() {
              <?php
               $settings = array( 'wp_editor_data' => 'wp_editor_data',
                            'quicktags' => true,
+                           'wpautop' => false,
                            'media_buttons' => true,
                            'teeny' => true,
                            'tinymce'=> array(
+                            'forced_root_block' => "h2",
                            'theme_advanced_disable' => 'fullscreen'
                            ));
 
