@@ -7,12 +7,16 @@
 
 		$('.layout-flyer-1').on('click',function(){
 			var shortClosest      = $(this).closest('.form-table');
-			var flyer_one_header  = ".OPTIN_SESSION_INPUT.";
-			var flyer_one_para    = "Receive the most recent news";
-			var flyer_one_image   = "Receive the most recent news";
+			var flyer_one_header  = '.OPTIN_DATA.';
+			// var flyer_one_para    = "Receive the most recent news";
+			// var flyer_one_image   = "Receive the most recent news";
 			shortClosest.find('.flyer-pre-front > h2').text(flyer_one_header);
             shortClosest.find('.xpert-optin-preview').removeClass('xpert-optin-preview-none');
 		});
+
+
+		
+	
 
 	});
 }(jQuery));

@@ -19,7 +19,7 @@
   top: 30px;;
   text-align: center;
   font-size: 16px;
-  margin-left: 15px;
+  margin-left: 100px;
 }
 .xpert-optin-preview .flyer-preview .flyer-pre-front h2 {
   color:#fff;
@@ -34,4 +34,13 @@
 
 .xpert-optin-preview-none {
   display: none;
+}
+
+img.alignnone {
+    border: 2px solid;
+  border-radius: 150px;
+  position: absolute;
+  top: 0;
+  left: -19px;
+}
 }

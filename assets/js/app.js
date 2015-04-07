@@ -7,5 +7,11 @@ $(function() {
 });
 
 
+
+// $(document).on('keyup', '#editor_input', function(){
+// 	alert('sd');
+// });
+
+
 	
 }(jQuery));

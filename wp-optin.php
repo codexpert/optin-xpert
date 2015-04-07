@@ -610,3 +610,4 @@ function headerInjection(){
 }
 add_action('wp_head','headerInjection');
 
+?>

@@ -44,7 +44,8 @@ function xpert_settings_page() {
 
 <form method="post" action="options.php">
     <?php settings_fields( 'xpert-settings-group' ); ?>
-    <?php do_settings_sections( 'xpert-settings-group' ); ?>    
+    <?php do_settings_sections( 'xpert-settings-group' ); ?>   
+
 
     <table class="form-table">   
         <!-- <tr valign="top">
@@ -100,8 +101,8 @@ function xpert_settings_page() {
                               <?php
                                 echo '<img src="' . plugins_url('assets/image/flyer-icon.png', __FILE__). '" > ';
                                 ?>
-                              <h2>Join Our Daily Newsletters</h2>
-                              <p>Recieve the most recent enws about <br /> product releases and promotions.</p>
+                              
+                               <?php echo get_option('wp_editor_data');  ?>
                           </div>
                       </div>
                     
@@ -110,7 +111,30 @@ function xpert_settings_page() {
           </td>
         </tr>
 
+      <tr valign="top" id="editor_input">
+        <th scope="row">Optin Text</th>
+            <td name="wp_editor_text">
+            <div>
+             <?php
+              $settings = array( 'wp_editor_data' => 'wp_editor_data',
+                           'quicktags' => false,
+                           'wpautop' => false,
+                           'mce-ico' => false,
+                           'textarea_id'=> 20,
+                           'media_buttons' => true,                           
+                           'teeny' => false,
+                           'tinymce'=> array(
+                            'height' => '200',
+                            'width' => '40',
+                            'forced_root_block' => "h2",
+                           'theme_advanced_disable' => 'fullscreen'
+                           ));
 
+            wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?> 
+            </div>   
+          </td>
+      </tr>
+   
 
         <!--  -->
 
@@ -268,25 +292,7 @@ function xpert_settings_page() {
           </td>
         </tr> -->
 
-      <tr valign="top">
-        <th scope="row">Optin Text</th>
-            <td name="wp_editor_text">
-             <?php
-              $settings = array( 'wp_editor_data' => 'wp_editor_data',
-                           'quicktags' => false,
-                           'wpautop' => false,
-                           'mce-ico' => false,
-                           'media_buttons' => true,                           
-                           'teeny' => false,
-                           'tinymce'=> array(
-                            'forced_root_block' => "h2",
-                           'theme_advanced_disable' => 'fullscreen'
-                           ));
-
-            wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?>    
-          </td>
-        </tr>
-   
+ 
       
       
 
@@ -302,8 +308,6 @@ function xpert_settings_page() {
 
 add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line
 add_filter("mce_buttons_2", "tinymce_editor_buttons_second_row", 99); //targets the second line
-// add_filter("mce_buttons_3", "tinymce_editor_buttons_second_row", 99);
-// add_filter("mce_buttons_4", "tinymce_editor_buttons_second_row", 99);
 
 function tinymce_editor_buttons($buttons) {
 return array(
@@ -312,18 +316,9 @@ return array(
     "italic",
     "alignleft",
     "aligncenter",
-    "alignright",
-    
+    "alignright", 
+      
 
-
-
-    
-    
-    
-
-    //"separator",
-    //"bullist", 
-    //"separator",
     //add more here...
     );
 }
@@ -335,12 +330,6 @@ function tinymce_editor_buttons_second_row($buttons) {
 
 remove_filter('the_excerpt','wpautop');
 
-// function wpa_45815($arr){
-//     $arr['block_formats'] = 'h4';
-//     return $arr;
-//   }
-// add_filter('tiny_mce_before_init', 'wpa_45815');
-
 
 //__tinymc button name__//
 
@@ -348,18 +337,31 @@ remove_filter('the_excerpt','wpautop');
 
 //__End_tinymc button name__//
 
-/*$flag = 1;
 
-if($flag == 1){
-  $cookie_name = 'WP-Optin';
-  $cookie_value = 1;
-  setcookie($cookie_name, $cookie_value, time() + (10 * 1), '/'); 
-  $flag += $_COOKIE[$cookie_name];
+add_action('admin_footer','my_tinyMCE');
+
+function my_tinyMCE(){
+
+        echo "
+
+        <script>
+
+                jQuery(document).ready(function() {
+                  // Alerts the currently selected contents
+alert(tinyMCE.activeEditor.selection.getContent());
+
+// Alerts the currently selected contents as plain text
+alert(tinyMCE.activeEditor.selection.getContent({format : 'text'}));
+
+                });
+
+        </script>
+
+        ";
+
 }
 
 
-echo $flag;
 
-*/
 ?>  
 
