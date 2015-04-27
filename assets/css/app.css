@@ -43,4 +43,15 @@ img.alignnone {
   top: 0;
   left: -19px;
 }
+
+
+
+.hide {
+  display: none;
 }
+
+.layout-hide {
+  display: none;
+}
+
+

@@ -11,6 +11,7 @@ Text Domain: xo
 */
 
 require_once 'admin-settings.php';
+require_once 'helper/view.php';
 
 //__MailChimp__//
 
@@ -25,8 +26,9 @@ require_once 'assets/vendor/MailChimp/MCAPI.class.php';
 $apikey= get_option('optin_mailchimp_api'); // Enter your API key
 $api = new MCAPI($apikey);
 $retval = $api->lists();
+//global $list;
 
-// echo $apikey;
+ //echo $apikey;
 //var_dump($retval);
 
 if ($api->errorCode){
@@ -42,7 +44,7 @@ else {
   
 }
 
- $listid= $list['id']; // Enter list Id here
+  $listid= $list['id']; // Enter list Id here
   global $optin_mail; // Enter subscriber email address
   $name=''; // Enter subscriber first name
   $lname=''; // Enter subscriber last name
@@ -88,144 +90,36 @@ $MailChimp_content = get_option('optin_mailchimp_content' );
 
 // echo $optinSessionInput;
 
+
+
 define('OPTIN_DATA',    get_option('wp_editor_data'));
 define('OPTIN_TIMER',   get_option('optin_timer') );
 define('OPTIN_SESSION', get_option('optin_session_value'));
 define('OPTIN_SESSION_INPUT', get_option('optin_session_input'));
 define('OPTIN_MAILCHIMP_CONTENT', get_option('optin_mailchimp_content'));
 
-//define('OPTIN_POST', get_option('post_id'));
-
-/*switch ($optinType) {
-
-  case 'flyin':
-
-    if( $optinTimer == 'scrolldown' ){      
-      add_action('wp_footer', 'load_optin_flyin_scrolling');
-    }else
-    add_action('wp_footer', 'load_optin_flyin');
-
-    break;
-
-  case 'stickytop':
-
-
-    if( $optinTimer == 'scrolldown' ){
-     
-      add_action('wp_footer', 'load_optin_stickytop_scrolling');
-    }else
-    add_action('wp_head', 'load_optin_stickytop');
-
-    break;  
-  
-  case 'lightbox':
-
-    if( $optinTimer == 'scrolldown' ){
-     
-      add_action('wp_footer', 'load_optin_modal_scrolling');
-    }else
-
-    add_action('wp_footer', 'load_optin_modal');
-
-    break;
-}*/
 
 
 function load_optin_flyin_scrolling(){
 
-  $output = '<div class="optin-flyin-display" >
-              <div class="optin-flyin-content">
-                  <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
-              </div>
-              <div clas="text">
-                <h1>Title</h1>
-                '.OPTIN_DATA.'
-              </div>
-          </div>';
-         
-
-           $js = "<script>
-            jQuery(document).ready(function () {
-
-                jQuery('#menu-close-flyin').on('click',function(){
-                jQuery('.optin-flyin-display').css({'display':'none'});
-              });
-              
-              //__footer popup show__//
-                        jQuery('footer').waypoint(function(direction) {
-                            
-                             jQuery('.optin-flyin-display').animate({bottom: '0px'});
-                            
-                           }, {
-                             offset: '90%' // 
-                           }) ;
-                        });
-           </script>";
-
-    echo $output . $js;
+  $DATA = array( 
+      'OPTIN_DATA'=> OPTIN_DATA      
+    ); 
+echo view(__DIR__."/views/front/flying.scrolling.tpl.php", $DATA);
+ 
 }
 
 
 
 
 function load_optin_flyin(){
-
-  $output = '<div class="optin-flyin-display" >
-              <div class="optin-flyin-content">
-                  <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
-              </div>
-              <div class ="optin-header-flyin">             
-                 <h2>Tx Optin</h2>    
-              </div>
-                <div class = "optin-content-flyin">
-                    '.OPTIN_DATA.'
-                </div>
-
-
-                <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
-                  <div id = "optin-email-subcribe" class="form-group">                    
-                    <input  type="email" name="optin_mail" value="'.$optin_mail.'" class="form-control" id="optin_mail" placeholder="Enter email" required>
-                  </div>
-                  <button id="optin-email-button" type="submit" class="btn btn-primary ">Subscribe!!</button>
-
-               </form>
-
-
-             </div>';
-
-
-                   
-
-           $js = "<script>
-
-                console.log(".OPTIN_MAILCHIMP_CONTENT.");
-            jQuery(document).ready(function () {
-                //hide a div after 3 seconds
-                
-
-
-                // if(".OPTIN_MAILCHIMP_CONTENT." == 'name'){
-                //   alert('test');
-                // }
-                 //  jQuery('#optin-email-button').on('click',function(){ 
-                 //       alert('tss');
-
-                 // });
-
-
-
-                jQuery('#menu-close-flyin').on('click',function(){
-                jQuery('.optin-flyin-display').css({'display':'none'});
-              });                            
-                
-           setTimeout( function(){
-                    jQuery('.optin-flyin-display').animate({bottom: '0px'});
-                      }, ". OPTIN_TIMER ." );
-
-            });
-           </script>";
-
-    echo $output  . $js;
+    // echo "<pre>";  die();
+    $DATA = array(
+      'OPTIN_TIMER'=> OPTIN_TIMER,
+      'OPTIN_DATA'=> OPTIN_DATA,
+      'optin_mail' => $optin_mail
+    ); 
+echo view(__DIR__."/views/front/flying.tpl.php", $DATA);
 }
 
 
@@ -233,150 +127,47 @@ function load_optin_flyin(){
 
 function load_optin_stickytop_scrolling(){
 
-  $output = '<div id="stickytop-wrapper">
-                 <div class="stickytop-affix">
-                   <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
-                 <div clas="optin-text">                
-                     '.OPTIN_DATA.'
-                 </div>
-              </div>
-            </div>';
+      $DATA = array( 
+      'OPTIN_DATA'=> OPTIN_DATA      
+    ); 
+echo view(__DIR__."/views/front/stickytop.scrolling.tpl.php", $DATA);
 
-
-
-
-           $js = "<script>
-            jQuery(document).ready(function () {
-
-                jQuery('#stickytop-close').on('click',function(){
-                      jQuery('#stickytop-wrapper').css({'display':'none'});
-            
-                      });    
-              
-              //__footer popup show__//
-                        jQuery('footer').waypoint(function(direction) {
-                            
-                             jQuery('#stickytop-wrapper').addClass('in');
-                            
-                           }, {
-                             offset: '90%' 
-                           }) ;
-                        });
-           </script>";
-                       
-
-    echo $output . $js;
-
+ 
 }
 
 function load_optin_stickytop(){
 
-  $output = '<div id="stickytop-wrapper" data-spy="affix" data-offset-top="200">
-                 <div class="stickytop-affix">
-                   <a id="stickytop-close" href="#" class="btn pull-right">X</a>          
-                 <div clas="optin-text">                
-                     '.OPTIN_DATA.'
-                 </div>
-              </div>
-            </div>';
+    $DATA = array(
+      'OPTIN_TIMER'=> OPTIN_TIMER,
+      'OPTIN_DATA' => OPTIN_DATA,
+      'optin_mail' => $optin_mail
+    ); 
+echo view(__DIR__."/views/front/stickytop.tpl.php", $DATA);
 
-              
-           $js = "<script>
-                  jQuery(document).ready(function () {
-                      
+  
+}
 
-                      jQuery('#stickytop-close').on('click',function(){
-                      jQuery('#stickytop-wrapper').css({'display':'none'});
-            
-                      });    
-                                   
+function load_optin_lightBox(){
 
-                      setTimeout( function(){
-                        jQuery('#stickytop-wrapper').addClass('in');
-                      }, ". OPTIN_TIMER ." );
-                    
-                 });
-                 </script>";
-
-
-    echo $output . $js;
+  $DATA = array(
+      'OPTIN_TIMER'=> OPTIN_TIMER,
+      'OPTIN_DATA'=> OPTIN_DATA,
+      //'optin_mail' => $optin_mail
+    ); 
+echo view(__DIR__."/views/front/lightbox.tpl.php", $DATA);
 
 }
 
-function load_optin_modal(){
 
-  $output = '<div id="myModal" class="modal fade in">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                <div clas="optin-text">                
-                     '.OPTIN_DATA.'
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->';
+function load_optin_lightBox_scrolling(){
 
-    $js = "<script>
-            jQuery(document).ready(function () {
-                //hide a div after  seconds
-                setTimeout( function(){
-                  jQuery('#myModal').modal('show');
-                }, ". OPTIN_TIMER ." );
-            });
-           </script>";
-
-    echo $output . $js;
-}
-
-
-function load_optin_modal_scrolling(){
-
-  $output = '<div id="myModal" class="modal fade in">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                <div clas="optin-text">                
-                     '.OPTIN_DATA.'
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->';
-
-   
-           $js = "<script>
-            jQuery(document).ready(function () {
-              
-              //__footer popup show__//
-                        jQuery('footer').waypoint(function(direction) {
-                            
-                            jQuery('#myModal').modal('show');
-                            getRelatedNavigation(this).toggleClass('active', direction === 'down');
-
-                           }, {
-                             offset: '90%' // 
-                           }) ;
-                        });
-           </script>";
-
-    echo $output . $js;
+    $DATA = array(
+      'OPTIN_TIMER'=> OPTIN_TIMER,
+      'OPTIN_DATA'=> OPTIN_DATA,
+      //'optin_mail' => $optin_mail
+    ); 
+echo view(__DIR__."/views/front/lightbox.scrolling.tpl.php", $DATA);
+  
 }
 
 
@@ -392,28 +183,12 @@ function plugin_is_page() {
   global $optinPost;
   global $optinPage;
   global $optinHome;
-
+  //global $optinSession;
+  
+  $_COOKIE['optinSession']=0;
   $optinFlag = 1;
   if($optinFlag != $_COOKIE['optinSession']) {
   
-
- 
-
-
-
-  //echo $optinPost; 
- //echo get_the_title(); 
-  // $newOptinPost = explode(",", $optinPost);
-
-// if(is_home()== $optinHome){
-
-//   echo "test";
-
-  // foreach ($newOptinPost as $key ) {
-
-    // if(get_posts ($optinPost )){
-  // echo $page->ID;
-
   if(is_page( $optinPage) || is_single( $optinPost) || is_home()== $optinHome){
  
     //echo $optinPage;
@@ -444,10 +219,10 @@ function plugin_is_page() {
 
     if( $optinTimer == 'scrolldown' ){
      
-      add_action('wp_footer', 'load_optin_modal_scrolling');
+      add_action('wp_footer', 'load_optin_lightBox_scrolling');
     }else
 
-    add_action('wp_footer', 'load_optin_modal');
+    add_action('wp_footer', 'load_optin_lightBox');
 
     break;
     }
@@ -499,13 +274,13 @@ final class TX_XpertOptin
             array('jquery')
         );
 
-          wp_enqueue_script(
+         wp_enqueue_script(
             TX_OPTIN_PREFIX . '-waypoint-optin-js',
             plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__),
             array()
         );
 
-        
+         
          wp_enqueue_script(
             TX_OPTIN_PREFIX . '-optin-style-cookie',
             plugins_url('assets/js/jquery.cookie.js', __FILE__),
@@ -563,14 +338,34 @@ final class TX_XpertOptin
             array('jquery')
         );
 
+         wp_enqueue_script(
+            TX_OPTIN_PREFIX . '-image-picker-js',
+            plugins_url('assets/vendor/image-picker/js/image-picker.min.js', __FILE__),
+            array()
+        );
+        
+
           wp_enqueue_script(
             TX_OPTIN_PREFIX . '-optin-app-js',
             plugins_url('assets/js/app.js', __FILE__),
             array()
         );
+
+          wp_localize_script( 
+            TX_OPTIN_PREFIX . '-optin-app-js', 
+            'layout_style', 
+            get_option('optin_type') 
+          );
+
            wp_enqueue_script(
             TX_OPTIN_PREFIX . '-optin-app-options-js',
             plugins_url('assets/js/app_optin.js', __FILE__),
+            array()
+        );
+
+          wp_enqueue_style(
+            TX_OPTIN_PREFIX . '-image-picker-css',
+            plugins_url('assets/vendor/image-picker/css/image-picker.css', __FILE__),
             array()
         );
 
@@ -579,6 +374,7 @@ final class TX_XpertOptin
             plugins_url('assets/vendor/selectize/css/app.css', __FILE__),
             array()
         );
+
 
           wp_enqueue_style(
             TX_OPTIN_PREFIX . '-optin-app-back-css',
@@ -598,7 +394,7 @@ function headerInjection(){
                 jQuery('#menu-close-flyin').on('click',function(){
                      var date = new Date();
                      var timeVale = ".OPTIN_SESSION_INPUT.";
-                     var totalTime = ". OPTIN_SESSION .";
+                     var totalTime = ".OPTIN_SESSION.";
                      date.setTime(date.getTime() + (timeVale * totalTime * 1000));
                      jQuery.cookie('optinSession',1, { expires: date });
 

@@ -19,9 +19,9 @@
 .optin-flyin-content{
     position: absolute;
     top: -33px;
-  left: -17px;
-  width: 30px;
-  height: 30px;
+    left: -17px;
+    width: 30px;
+    height: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
@@ -32,8 +32,6 @@
     cursor: pointer;
 
 }
-
-
 
 
 .optin-header-flyin h2{
