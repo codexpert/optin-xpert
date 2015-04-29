@@ -10,7 +10,7 @@
          
 
 <script>
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
 
   $('#menu-close-flyin').on('click',function(){
 

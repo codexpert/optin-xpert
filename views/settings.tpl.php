@@ -3,13 +3,13 @@
 
 <form method="post" action="options.php">
     <?php settings_fields( 'xpert-settings-group' ); ?>
-    <?php do_settings_sections( 'xpert-settings-group' ); ?>   
+    <?php do_settings_sections( 'xpert-settings-group' ); ?>
 
 <table class="form-table">
 
   <tr valign="top">
     <th scope="row">Optin Type</th>
-      <td>      
+      <td>
         <select name="optin_type" id="optin_type_hook">
           <option data-addon-layout="select" value="select"  <?php selected( get_option('optin_type' ), 'select' ); ?>>Select Your--</option>
           <option data-addon-layout="lightbox-layout" value="lightbox"  <?php selected( get_option('optin_type' ), 'lightbox' ); ?>>Light Box</option>
@@ -19,16 +19,17 @@
       </td>
   </tr>
 
-         
-     
+
+
 
   <tr class="addon-settings-layout lightbox layout-hide" data-addon-layout="lightbox-layout"  valign="top">
      <th scope="row">Lightbox Layout Preset</th>
-      <td> 
-        <select id="lightbox-layout" class="image-picker show-html" name="lightbox-layout">            
+      <td>
+        <select id="lightbox-layout" class="image-picker show-html" name="lightbox-layout">
 
-          <option data-addon-layout="lightbox-layout1" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon.png', __DIR__) ?>" value="lightbox-layout1"<?php selected( get_option('lightbox-layout' ), 'lightbox-layout1' ); ?>></option>  
-          <option data-addon-layout="lightbox-layout2" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon_tx.png', __DIR__) ?>" value="lightbox-layout2"<?php selected( get_option('lightbox-layout' ), 'lightbox-layout2' ); ?>></option>                      
+          <option data-addon-layout="lightbox-layout1" data-img-src=" <?php echo plugins_url('assets/image/lightbox/lightbox1.svg', __DIR__) ?>" value="lightbox-layout1"<?php selected( get_option('lightbox-layout' ), 'lightbox-layout1' ); ?>></option>
+          <option data-addon-layout="lightbox-layout2" data-img-src=" <?php echo plugins_url('assets/image/lightbox/lightbox2.svg', __DIR__) ?>" value="lightbox-layout2"<?php selected( get_option('lightbox-layout' ), 'lightbox-layout2' ); ?>></option>
+          <option data-addon-layout="lightbox-layout3" data-img-src=" <?php echo plugins_url('assets/image/lightbox/lightbox3.svg', __DIR__) ?>" value="lightbox-layout3"<?php selected( get_option('lightbox-layout' ), 'lightbox-layout3' ); ?>></option>
 
         </select>
     </td>
@@ -37,11 +38,12 @@
 
   <tr class="addon-settings-layout flyin  layout-hide" data-addon-layout="flyer-layout" valign="top">
      <th scope="row">Flyer Layout Preset</th>
-      <td> 
-        <select id="flyer-layout" class="image-picker show-html" name="flyer-layout">            
+      <td>
+        <select id="flyer-layout" class="image-picker show-html" name="flyer-layout">
 
-          <option data-addon-layout="flyer-layout1" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon.png', __DIR__) ?>" value="flyer-layout1"<?php selected( get_option('flyer-layout' ), 'flyer-layout1' ); ?>></option>  
-          <option data-addon-layout="flyer-layout2" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon_tx.png', __DIR__) ?>" value="flyer-layout2"<?php selected( get_option('flyer-layout' ), 'flyer-layout2' ); ?>></option>                      
+          <option data-addon-layout="flyer-layout1" data-img-src=" <?php echo plugins_url('assets/image/flyer/flyer1.svg', __DIR__) ?>" value="flyer-layout1"<?php selected( get_option('flyer-layout' ), 'flyer-layout1' ); ?>></option>
+          <option data-addon-layout="flyer-layout2" data-img-src=" <?php echo plugins_url('assets/image/flyer/flyer2.svg', __DIR__) ?>" value="flyer-layout2"<?php selected( get_option('flyer-layout' ), 'flyer-layout2' ); ?>></option>
+          <option data-addon-layout="flyer-layout3" data-img-src=" <?php echo plugins_url('assets/image/flyer/flyer3.svg', __DIR__) ?>" value="flyer-layout3"<?php selected( get_option('flyer-layout' ), 'flyer-layout3' ); ?>></option>
 
         </select>
     </td>
@@ -50,11 +52,12 @@
 
   <tr class="addon-settings-layout stickytop layout-hide" data-addon-layout="stickytop-layout" valign="top">
      <th scope="row">Stickytop Layout Preset</th>
-      <td> 
-        <select id="stickytop-layout" class="image-picker show-html" name="stickytop-layout">            
+      <td>
+        <select id="stickytop-layout" class="image-picker show-html" name="stickytop-layout">
 
-          <option data-addon-layout="stickytop-layout1" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon.png', __DIR__) ?>" value="stickytop-layout1"<?php selected( get_option('stickytop-layout' ), 'stickytop-layout1' ); ?>></option>  
-          <option data-addon-layout="stickytop-layout2" data-img-src=" <?php echo plugins_url('assets/image/flyer-icon_tx.png', __DIR__) ?>" value="stickytop-layout2"<?php selected( get_option('stickytop-layout' ), 'stickytop-layout2' ); ?>></option>                      
+          <option data-addon-layout="stickytop-layout1" data-img-src=" <?php echo plugins_url('assets/image/stickytop/stickytop1.svg', __DIR__) ?>" value="stickytop-layout1"<?php selected( get_option('stickytop-layout' ), 'stickytop-layout1' ); ?>></option>
+          <option data-addon-layout="stickytop-layout2" data-img-src=" <?php echo plugins_url('assets/image/stickytop/stickytop2.svg', __DIR__) ?>" value="stickytop-layout2"<?php selected( get_option('stickytop-layout' ), 'stickytop-layout2' ); ?>></option>
+          <option data-addon-layout="stickytop-layout3" data-img-src=" <?php echo plugins_url('assets/image/stickytop/stickytop3.svg', __DIR__) ?>" value="stickytop-layout3"<?php selected( get_option('stickytop-layout' ), 'stickytop-layout3' ); ?>></option>
 
         </select>
     </td>
@@ -72,7 +75,7 @@
                          'mce-ico' => false,
                          'formatselect' => true,
                          'textarea_id'=> 20,
-                         'media_buttons' => true,                           
+                         'media_buttons' => true,
                          'teeny' => false,
                          'tinymce'=> array(
                           'height' => '300',
@@ -81,22 +84,22 @@
                          'theme_advanced_disable' => 'fullscreen'
                          ));
 
-          wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?> 
-        </div>   
+          wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?>
+        </div>
      </td>
   </tr>
 
  <tr  valign="top">
      <th scope="row">MailChimp API Key</th>
-      <td>  
-        <input type="text" name="optin_mailchimp_api" placehold="Enter MailChimp API Key" value="<?php echo esc_attr( get_option('optin_mailchimp_api') ); ?>" /> 
+      <td>
+        <input type="text" name="optin_mailchimp_api" placehold="Enter MailChimp API Key" value="<?php echo esc_attr( get_option('optin_mailchimp_api') ); ?>" />
       </td>
   </tr>
 
 
 <tr valign="top">
   <th scope="row">Optin Time</th>
-    <td>      
+    <td>
       <select name="optin_timer">
         <option value="select"<?php selected( get_option('optin_timer' ), 'select' ); ?>>Select Your--</option>
         <option value="onload"<?php selected( get_option('optin_timer' ), 'onload' ); ?>>On Load</option>
@@ -111,8 +114,8 @@
 
   <tr valign="top">
     <th scope="row">Optin Session</th>
-      <td>  
-        <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" /> 
+      <td>
+        <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" />
         <select name="optin_session_value">
           <option value="select"  <?php selected( get_option('optin_session_value' ), 'select' ); ?>>Select Your--</option>
           <option value="60"  <?php selected( get_option('optin_session_value' ), '60' ); ?>>Minutes</option>
@@ -124,7 +127,7 @@
   </tr>
 
 
-  <tr valign="top">               
+  <tr valign="top">
     <th scope="row">Select Your Post</th>
       <td >
         <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e">
@@ -165,22 +168,22 @@
      </td>
   </tr>
 
- 
+
   <!-- <tr valign="top">
    <th scope="row">MailChimp Content</th>
-    <td>              
+    <td>
       <select name="optin_mailchimp_content">
         <option value="select_"  <?php selected( get_option('optin_mailchimp_content' ), 'select_' ); ?>>Select Your</option>
         <option value="name"  <?php selected( get_option('optin_mailchimp_content' ), 'name' ); ?>>Name</option>
-        <option value="email"  <?php selected( get_option('optin_mailchimp_content' ), 'email' ); ?>>E-Mail Address</option>     
-        <option value="name_email"  <?php selected( get_option('optin_mailchimp_content' ), 'name_email' ); ?>>Name With E-Mail</option>                     
+        <option value="email"  <?php selected( get_option('optin_mailchimp_content' ), 'email' ); ?>>E-Mail Address</option>
+        <option value="name_email"  <?php selected( get_option('optin_mailchimp_content' ), 'name_email' ); ?>>Name With E-Mail</option>
        </select>
     </td>
   </tr>
  -->
 
 </table>
-    
+
     <?php submit_button(); ?>
 
 </form>

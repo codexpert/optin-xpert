@@ -19,7 +19,7 @@
 </div>
 <script>
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
 //__footer popup show__//
   $('footer').waypoint(function(direction) {
 

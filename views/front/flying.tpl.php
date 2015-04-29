@@ -2,8 +2,9 @@
 	<div class="optin-flyin-content">
 		<a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
 	</div>
-	  <div class ="optin-header-flyin">             
-		<h2>Tx Optin</h2>    
+	  <div class ="optin-header-flyin"> 
+	             
+		<div class="test"></div>
 	  </div>
 	<div class = "optin-content-flyin">
 	  <?php echo $OPTIN_DATA; ?>

@@ -19,7 +19,7 @@
 </div>
 
 <script>
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
   var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
 
 //hide a div after  seconds

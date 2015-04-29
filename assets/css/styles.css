@@ -1,6 +1,69 @@
 
 /* Side Menu */
 
+
+
+.modal-content.clearfix.lightbox_layout1{
+  background: green;
+}
+
+
+.modal-content.clearfix.lightbox_layout2{
+  background: red;
+}
+
+
+.modal-content.clearfix.lightbox_layout3{
+  background: yellow;
+}
+
+/*.optin-content-flyin{
+    background-color: white;
+  /*  margin: 0px 95px 0px*/
+}
+*/
+.optin-content-flyin.flyer_layout1{
+    background-color: green;
+   
+}
+
+.optin-flyin-display.flyer_layout1{
+  background: #eee;
+  color: #fff;
+}
+
+.optin-header-flyin.flyer_layout1{
+
+  background: #00B9D2;
+
+}
+
+.optin-content-flyin.flyer_layout2{
+    background: #94CA66;    
+    color: #fff;
+}
+
+.optin-content-flyin.flyer_layout2:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 13px solid #94CA66;
+  border-left: 128px solid transparent;
+  border-right: 130px solid transparent;
+  top: 208px;
+}
+
+.optin-content-flyin.flyer_layout3, .optin-flyin-display.flyer_layout3{
+    background-color: #475B65;
+    color: #fff;
+}
+
+
+
+
 .optin-flyin-display{
     z-index: 1000;
     position: fixed;
@@ -12,7 +75,7 @@
     -webkit-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
     -moz-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
     box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
-    border-top: 12px solid #0097A7;
+    border-top: 12px solid #3e4f56;
 }
 
 
@@ -38,8 +101,9 @@
     margin-top: 0;
     text-align: center;
     color: #fff;
-    background: #00B9D2;    
+    /*background: #00B9D2;    */
     padding: 8px;
+    margin: 0px 0px;
 
 }
 
@@ -62,7 +126,7 @@
         margin: 0 auto;
         border-radius: 0;
         display: block;
-        background: #00B9D2;
+        background: #94CA66;
         border: none;
 }
 
@@ -87,6 +151,7 @@
       -moz-box-shadow: -9px 28px 63px -34px rgba(0,0,0,0.84);
       box-shadow: -9px 28px 63px -34px rgba(0,0,0,0.84);
       border-bottom: 3px solid #111;
+      height: 20%;
 }
 
 
@@ -105,3 +170,16 @@
 }
 
 
+/*
+.test {
+   width: 250px;
+  height: 100px;
+  padding-top: 12px;
+  position: relative;
+  background: red;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}*/

@@ -11,7 +11,7 @@
 
 
 <script>
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
 
   $('#stickytop-close').on('click',function(){
   $('#stickytop-wrapper').css({'display':'none'});
