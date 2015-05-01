@@ -71,6 +71,19 @@
     </td>
   </tr>
 
+
+<tr valign="top">
+    <th scope="row">layout custom</th>
+      <td>
+        <select name="layout_custom">
+          <option  value="no"  <?php selected( get_option('layout_custom' ), 'no' ); ?>>no</option>
+          <option  value="yes"  <?php selected( get_option('layout_custom' ), 'yes' ); ?>>Yes</option>
+          
+         </select>
+      </td>
+  </tr>
+   
+
   <tr  valign="top" id="editor_input">
     <th scope="row">Optin Text</th>
      <td name="wp_editor_text">

@@ -2,9 +2,14 @@
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
           <div class="modal-body">
-            <div class="lightbox-optin-image">           
-              <?php echo '<img src="' . plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) . '" > '; ?>
-            </div>
+            <div class="lightbox-optin-image">
+
+            <?php if(empty($OPTIN_IMAGE)): ?>  
+              <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) ?>"; ?>
+            <?php else: ?>
+              <img src="<?php echo $OPTIN_IMAGE ?>"; ?>
+            <?php endif; ?>
+</div>
             <div class="lightbox-optin-content">
                   <h3>Subscribe with us</h3>
                     <p> Hello there!!! </p>

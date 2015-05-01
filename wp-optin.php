@@ -128,13 +128,12 @@ echo view(__DIR__."/views/front/flying.tpl.php", $DATA);
 
 
 function load_optin_stickytop_scrolling(){
-
-      $DATA = array( 
-      'OPTIN_DATA'=> OPTIN_DATA,
-      'OPTIN_IMAGE' => OPTIN_IMAGE,
-      'optin_mail' => $_POST ["optin_mail"]      
-    ); 
-echo view(__DIR__."/views/front/stickytop.scrolling.tpl.php", $DATA);
+  $DATA = array( 
+    'OPTIN_DATA'=> OPTIN_DATA,
+    'OPTIN_IMAGE' => OPTIN_IMAGE,
+    'optin_mail' => $_POST ["optin_mail"]
+  );
+  echo view(__DIR__."/views/front/stickytop.scrolling.tpl.php", $DATA);
 
  
 }
@@ -157,6 +156,7 @@ function load_optin_lightBox(){
   $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA'=> OPTIN_DATA,
+       'OPTIN_IMAGE' => OPTIN_IMAGE,
       'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/lightbox.tpl.php", $DATA);
@@ -169,6 +169,7 @@ function load_optin_lightBox_scrolling(){
     $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA'=> OPTIN_DATA,
+       'OPTIN_IMAGE' => OPTIN_IMAGE,
       'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/lightbox.scrolling.tpl.php", $DATA);
@@ -185,9 +186,9 @@ function plugin_is_page() {
   global $optinPost;
   global $optinPage;
   global $optinHome;
-  //global $optinSession;
+  global $optinSession;
   
-  $_COOKIE['optinSession']=0;
+  //$_COOKIE['optinSession']=0;
   $optinFlag = 1;
   if($optinFlag != $_COOKIE['optinSession']) {
   
