@@ -25,7 +25,7 @@
 /*
 .optin-content-flyin.flyer_layout1{
     background-color: green;
-   
+
 }
 
 .optin-flyin-display.flyer_layout1{
@@ -40,7 +40,7 @@
 }
 
 .optin-content-flyin.flyer_layout2{
-    background: #94CA66;    
+    background: #94CA66;
     color: #fff;
 }
 
@@ -69,7 +69,7 @@
     right: 0;
     bottom: -100%;
     width: 250px;
-    height: 50%;    
+    height: 50%;
     background: #fff;
     -webkit-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
     -moz-box-shadow: -23px -15px 68px -48px rgba(0,0,0,1);
@@ -100,7 +100,7 @@
     margin-top: 0;
     text-align: center;
     color: #fff;
-    
+
     padding: 8px;
     margin: 0px 0px;
 
@@ -108,7 +108,7 @@
 
 #menu-close-flyin{
     margin-top: 0px;
-    padding: 12px;    
+    padding: 12px;
     width: 34px;
     line-height: 1px;
 }
@@ -135,7 +135,7 @@
 #stickytop-close{
 
     border-radius: 30px;
-    background-color: #fff;   
+    background-color: #fff;
     margin-top: 45px;
     margin-right: 10px;
 
@@ -195,6 +195,8 @@
 
 */
 
+/*lightbox style*/
+
 .modal-content {
   width: 700px;
   display: block;
@@ -242,8 +244,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* height: 0; */
-  /* width: 0; */
   border-style: solid;
   border-width: 150px 60px;
   border-color: transparent transparent transparent #94CA66;
@@ -269,4 +269,165 @@
 
 .lightbox_layout3 .lightbox-optin-image img {
   left: 50%;
+}
+
+/*Stickytop style*/
+
+.stickytop-wrapper{
+  width: 100%;
+  display: block;
+  position: relative;
+  border-bottom: 3px solid red;
+
+}
+
+.stickytop-optin-image {
+    width: 25%;
+    float: left;
+    background: #94CA66;
+    height: 134px;
+    position: relative;
+}
+
+
+.stickytop-optin-image img {
+    position: absolute;
+    top: 15px;
+    left: 24%;
+}
+
+
+.stickytop-optin-content {
+    width: 30%;
+    float: left;
+    padding: 30px 30px 20px 90px;
+    position: relative;
+    color: #fff;
+
+}
+
+.stickytop-text{
+  float: left;
+  position: relative;
+  padding: 0 26px 0 139px;
+  color: #fff;
+}
+
+
+.stickytop_layout1 .stickytop-text:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-width: 67px 54px;
+  border-color: transparent transparent transparent #94CA66;
+}
+
+
+#stickytop-close{
+    border-radius: 30px;
+    background-color: #fff;
+    margin-top: 100px;
+    right: 0px;
+}
+
+
+
+.stickytop-wrapper.stickytop_layout1,
+.stickytop-wrapper.stickytop_layout2,
+.stickytop-wrapper.stickytop_layout3{
+  background: #475b65;
+}
+
+.stickytop_layout3 .stickytop-optin-image {
+  background: #475b65;
+}
+
+
+button#optin-stiky-email-button {
+    float: right;
+    margin-right: -133px;
+    margin-top: -49px;
+
+  }
+
+/*flyer style*/
+
+
+.optin-flyin-display{
+    right: 0;
+    width: 330px;
+    position: fixed;
+    height: 374px;
+    bottom: -100%;
+    z-index: 1000;
+    color: #fff;
+}
+
+.flyin-optin-image {
+    width: 100%;
+    float: left;
+    background: #94CA66;
+    height: 134px;
+    position: relative;
+}
+
+
+.flyin-optin-image img{
+    position: absolute;
+    top: 14px;
+    left: 34%;
+}
+
+
+
+.flyin-optin-content {
+    width: 100%;
+    float: left;
+    padding: 37px 55px 0;
+    position: relative;
+   /*  color: #fff;*/
+    text-align: center;
+  }
+
+
+#menu-close-flyin{
+    border-radius: 30px;
+    background-color: #fff;
+    margin-top: -25px;
+    margin-right: 94%;
+}
+
+.flyin-optin-content.flyer_layout1,
+.flyin-optin-content.flyer_layout2,
+.flyin-optin-content.flyer_layout3{
+  background: #475b65;
+}
+
+
+.flyin-text{
+  float: left;
+  position: relative;
+  padding: 0 26px 0 139px;
+  color: black;
+}
+
+
+.flyin-optin-content.flyer_layout2:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  display: block;
+  border-top: 43px solid #94CA66;
+  border-left: 172px solid transparent;
+  border-right: 205px solid transparent;
+  top: 0px;
+
+
+}
+
+.flyin-optin-image.flyer_layout3 {
+  background: #475b65;
 }

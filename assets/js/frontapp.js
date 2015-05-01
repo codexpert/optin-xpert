@@ -28,21 +28,23 @@ switch (flyer_layout) {
 
   case 'flyer-layout1':
     //  code...
-    $('.optin-content-flyin').addClass('flyer_layout1');
+    $('.flyin-optin-content').addClass('flyer_layout1');
     //$('.optin-flyin-display').addClass('flyer_layout1');
     //$('.optin-header-flyin').addClass('flyer_layout1');
     break;
 
   case 'flyer-layout2':
     //  code...
-    $('.optin-content-flyin').addClass('flyer_layout2');
+    $('.flyin-optin-content').addClass('flyer_layout2');
     //$('.optin-flyin-display').addClass('flyer_layout3');
+    $('.flyin-optin-image').addClass('flyer_layout2');
     break;
 
   case 'flyer-layout3':
     //  code...
-    $('.optin-content-flyin').addClass('flyer_layout3');
+    $('.flyin-optin-content').addClass('flyer_layout3');
     $('.optin-flyin-display').addClass('flyer_layout3');
+     $('.flyin-optin-image').addClass('flyer_layout3');
     break;
 
 }
@@ -65,7 +67,7 @@ switch (stickytop_layout) {
   case 'stickytop-layout3':
     //  code...
     $('.stickytop-wrapper').addClass('stickytop_layout3');
-   
+
     break;
 
 }
