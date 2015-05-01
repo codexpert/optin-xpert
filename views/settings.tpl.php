@@ -63,6 +63,13 @@
     </td>
   </tr>
 
+  <tr valign="top">
+    <th scope="row">Upload Image</th>
+      <td>
+        <input name = "optin_upload_media" type="text" id="tx-new-media-image" size="70" value="<?php echo esc_attr( get_option('optin_upload_media') ); ?>" />
+        <a href="#" class="tx-open-media button button-primary" >Upload Image</a>
+    </td>
+  </tr>
 
   <tr  valign="top" id="editor_input">
     <th scope="row">Optin Text</th>

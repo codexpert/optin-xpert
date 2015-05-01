@@ -36,6 +36,7 @@ switch (flyer_layout) {
   case 'flyer-layout2':
     //  code...
     $('.optin-content-flyin').addClass('flyer_layout2');
+    //$('.optin-flyin-display').addClass('flyer_layout3');
     break;
 
   case 'flyer-layout3':
@@ -46,11 +47,29 @@ switch (flyer_layout) {
 
 }
 
-// if(lightbox_layout=='lightbox-layout3'){
+switch (stickytop_layout) {
 
-//     $('.modal-content.clearfix').addClass('lightbox_layout');
+  case 'stickytop-layout1':
+    //  code...
+    $('.stickytop-wrapper').addClass('stickytop_layout1');
+    //$('.optin-stickytop-display').addClass('stickytop_layout1');
+    //$('.optin-header-stickytop').addClass('stickytop_layout1');
+    break;
 
-// };
+  case 'stickytop-layout2':
+    //  code...
+    $('.stickytop-wrapper').addClass('stickytop_layout2');
+    //$('.optin-stickytop-display').addClass('stickytop_layout3');
+    break;
+
+  case 'stickytop-layout3':
+    //  code...
+    $('.stickytop-wrapper').addClass('stickytop_layout3');
+   
+    break;
+
+}
+
 
 
 

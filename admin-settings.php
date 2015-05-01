@@ -29,6 +29,7 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'optin_session_input' );
   register_setting( 'xpert-settings-group', 'optin_mailchimp_api' );
   register_setting( 'xpert-settings-group', 'optin_mailchimp_content' );
+  register_setting( 'xpert-settings-group', 'optin_upload_media');
 }
  
 

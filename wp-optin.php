@@ -93,6 +93,7 @@ $MailChimp_content = get_option('optin_mailchimp_content' );
 
 
 define('OPTIN_DATA',    get_option('wp_editor_data'));
+define('OPTIN_IMAGE',   get_option('optin_upload_media'));
 define('OPTIN_TIMER',   get_option('optin_timer') );
 define('OPTIN_SESSION', get_option('optin_session_value'));
 define('OPTIN_SESSION_INPUT', get_option('optin_session_input'));
@@ -104,7 +105,7 @@ function load_optin_flyin_scrolling(){
 
   $DATA = array( 
       'OPTIN_DATA'=> OPTIN_DATA,
-      'optin_mail' => $optin_mail      
+      'optin_mail' => $_POST ["optin_mail"]      
     ); 
 echo view(__DIR__."/views/front/flying.scrolling.tpl.php", $DATA);
  
@@ -118,7 +119,7 @@ function load_optin_flyin(){
     $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA'=> OPTIN_DATA,
-      'optin_mail' => $optin_mail
+      'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/flying.tpl.php", $DATA);
 }
@@ -130,7 +131,8 @@ function load_optin_stickytop_scrolling(){
 
       $DATA = array( 
       'OPTIN_DATA'=> OPTIN_DATA,
-      'optin_mail' => $optin_mail      
+      'OPTIN_IMAGE' => OPTIN_IMAGE,
+      'optin_mail' => $_POST ["optin_mail"]      
     ); 
 echo view(__DIR__."/views/front/stickytop.scrolling.tpl.php", $DATA);
 
@@ -142,7 +144,8 @@ function load_optin_stickytop(){
     $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA' => OPTIN_DATA,
-      'optin_mail' => $optin_mail
+      'OPTIN_IMAGE' => OPTIN_IMAGE,
+      'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/stickytop.tpl.php", $DATA);
 
@@ -154,7 +157,7 @@ function load_optin_lightBox(){
   $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA'=> OPTIN_DATA,
-      'optin_mail' => $optin_mail
+      'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/lightbox.tpl.php", $DATA);
 
@@ -166,7 +169,7 @@ function load_optin_lightBox_scrolling(){
     $DATA = array(
       'OPTIN_TIMER'=> OPTIN_TIMER,
       'OPTIN_DATA'=> OPTIN_DATA,
-      'optin_mail' => $optin_mail
+      'optin_mail' => $_POST ["optin_mail"]
     ); 
 echo view(__DIR__."/views/front/lightbox.scrolling.tpl.php", $DATA);
   
@@ -257,6 +260,7 @@ final class TX_XpertOptin
         add_action('wp_enqueue_scripts', array($this, 'loaOptinScripts'));
         //add_action('wp_enqueue_script', array($this, 'loadBackendSiteScripts'));
         add_action( 'admin_enqueue_scripts', array($this, 'loadBackendSiteScripts' ));
+        
     }
     
     /**
@@ -359,6 +363,8 @@ final class TX_XpertOptin
 
  {
 
+         wp_enqueue_media();
+         
          wp_enqueue_script(
             TX_OPTIN_PREFIX . '-selectize-js',
             plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__),

@@ -1,19 +1,24 @@
+
+
 <div id="lightBox" class="modal fade in">
   <div class="modal-dialog">
-    <div class="modal-content clearfix">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-        </div>
+    <div class="modal-content clearfix">     
           <div class="modal-body">
-            <div clas="optin-text">                
-              <?php echo $OPTIN_DATA; ?>
+            <div class="lightbox-optin-image">           
+              <?php echo '<img src="' . plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) . '" > '; ?>
             </div>
-          </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+            <div class="lightbox-optin-content">
+                  <h3>Subscribe with us</h3>
+                    <p> Hello there!!! </p>
+                <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                  <div id = "optin-email-subcribe" class="form-group">                    
+                  <input  type="email" name="optin_mail" value="<?php echo $optin_mail; ?>" class="form-control" id="optin_mail" placeholder="Enter email" required>
+                  </div>
+                  <button id="optin-email-button" type="submit" class="btn btn-success ">Subscribe!!</button>
+                </form>
+            </div>
+        </div>
+        
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
