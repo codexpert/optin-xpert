@@ -175,9 +175,6 @@ echo view(__DIR__."/views/front/lightbox.scrolling.tpl.php", $DATA);
   
 }
 
-
-
-
 add_action('template_redirect', 'plugin_is_page');
 
 function plugin_is_page() {

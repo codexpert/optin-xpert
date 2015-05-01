@@ -1,5 +1,3 @@
-
-
 <div id="lightBox" class="modal fade in">
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
@@ -12,15 +10,14 @@
                     <p> Hello there!!! </p>
                 <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                   <div id = "optin-email-subcribe" class="form-group">                    
-                  <input  type="email" name="optin_mail" value="<?php echo $optin_mail; ?>" class="form-control" id="optin_mail" placeholder="Enter email" required>
+                  <input  type="email" name="optin_mail" value="" class="form-control" id="optin_mail" placeholder="Enter email" required>
                   </div>
                   <button id="optin-email-button" type="submit" class="btn btn-success ">Subscribe!!</button>
                 </form>
             </div>
-        </div>
-        
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+        </div>        
+    </div>
+  </div>
 </div>
 
 <script>

@@ -122,7 +122,7 @@
   <tr valign="top">
     <th scope="row">Optin Session</th>
       <td>
-        <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" />
+        <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" required/>
         <select name="optin_session_value">
           <option value="select"  <?php selected( get_option('optin_session_value' ), 'select' ); ?>>Select Your--</option>
           <option value="60"  <?php selected( get_option('optin_session_value' ), '60' ); ?>>Minutes</option>
