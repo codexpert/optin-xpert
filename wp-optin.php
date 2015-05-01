@@ -185,9 +185,9 @@ function plugin_is_page() {
   global $optinPost;
   global $optinPage;
   global $optinHome;
-  //global $optinSession;
+  global $optinSession;
   
-  $_COOKIE['optinSession']=0;
+  //$_COOKIE['optinSession']=0;
   $optinFlag = 1;
   if($optinFlag != $_COOKIE['optinSession']) {
   
