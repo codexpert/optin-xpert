@@ -30,6 +30,8 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'optin_mailchimp_api' );
   register_setting( 'xpert-settings-group', 'optin_mailchimp_content' );
   register_setting( 'xpert-settings-group', 'optin_upload_media');
+  register_setting( 'xpert-settings-group', 'layout_checkbox');
+  register_setting( 'xpert-settings-group', 'layout_custom');
 }
  
 
