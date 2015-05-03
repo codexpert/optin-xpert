@@ -63,7 +63,18 @@
     </td>
   </tr>
 
-  <tr valign="top">
+
+<tr valign="top">
+    <th scope="row">layout custom</th>
+      <td>
+        <select name="layout_custom" id="layout_custom">          
+          <option value="no"<?php selected( get_option('layout_custom' ), 'no' ); ?>>No</option>
+          <option data-addon="layout-custom" value="yes"  <?php selected( get_option('layout_custom' ), 'yes' ); ?>>Yes</option>        
+        </select>
+      </td>
+  </tr>   
+
+  <tr class="addon-settings hide" data-addon="layout-custom" valign="top">
     <th scope="row">Upload Image</th>
       <td>
         <input name = "optin_upload_media" type="text" id="tx-new-media-image" size="70" value="<?php echo esc_attr( get_option('optin_upload_media') ); ?>" />
@@ -71,20 +82,7 @@
     </td>
   </tr>
 
-
-<tr valign="top">
-    <th scope="row">layout custom</th>
-      <td>
-        <select name="layout_custom">
-          <option  value="no"  <?php selected( get_option('layout_custom' ), 'no' ); ?>>no</option>
-          <option  value="yes"  <?php selected( get_option('layout_custom' ), 'yes' ); ?>>Yes</option>
-          
-         </select>
-      </td>
-  </tr>
-   
-
-  <tr  valign="top" id="editor_input">
+  <tr class="addon-settings hide" data-addon="layout-custom" valign="top" id="editor_input">
     <th scope="row">Optin Text</th>
      <td name="wp_editor_text">
         <div>
@@ -146,6 +144,12 @@
       </td>
   </tr>
 
+<tr valign="top">
+<th scope="row">Home page</th>
+  <td>
+    <input type="checkbox" name="is_home" value="true"<?php if (get_option('is_home')==true) echo 'checked="checked" '; ?>>    
+  </td>
+</tr>
 
   <tr valign="top">
     <th scope="row">Select Your Post</th>

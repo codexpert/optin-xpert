@@ -7,21 +7,20 @@ $(document).ready(function(){
   	$("#flyer-layout").imagepicker();
   	$("#stickytop-layout").imagepicker();
 
+    var layoutCustom = function(){
+        var addon = $("#layout_custom").find("option:selected").attr("data-addon");
+        $("tr.addon-settings").addClass("hide");
+        $("tr[data-addon="+addon+"]").removeClass('hide');
+    };
 
-  // 	$(document).on('change', '#optin_layout', function(){
-		// 	var addon = $(this).find("option:selected").attr("data-addon");
-		// 	$("tr.addon-settings").addClass("hide");
-		// 	$("tr[data-addon="+addon+"]").removeClass('hide');
-
-		// console.log("adfsd");
-		
-		//  });
+  	$(document).on('change', '#layout_custom', layoutCustom);
+    layoutCustom();
 
 
   	$(document).on('change', '#optin_type_hook', function(){
 		var addon_layout = $(this).find("option:selected").attr("data-addon-layout");
-			$("tr.addon-settings-layout").addClass("layout-hide");
-			$("tr[data-addon-layout="+addon_layout+"]").removeClass('layout-hide');
+		$("tr.addon-settings-layout").addClass("layout-hide");
+		$("tr[data-addon-layout="+addon_layout+"]").removeClass('layout-hide');
 	});
 
 	$('tr.addon-settings-layout.'+layout_style).removeClass('layout-hide');
