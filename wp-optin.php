@@ -246,15 +246,6 @@ function plugin_is_page()
 }
 
 
-// add_action( 'edit_page_form', 'my_second_editor' );
-// function my_second_editor() {
-//   // get and set $content somehow...
-//   wp_editor( $content, 'mysecondeditor' );
-// }
-
-
-
-
 
 final class TX_XpertOptin
 {
@@ -288,9 +279,7 @@ final class TX_XpertOptin
     {
         
         
-        wp_enqueue_script(TX_OPTIN_PREFIX . '-bs-optin-js', plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__), array(
-            'jquery'
-        ));
+        wp_enqueue_script(TX_OPTIN_PREFIX . '-bs-optin-js', plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
         
         wp_enqueue_script(TX_OPTIN_PREFIX . '-waypoint-optin-js', plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__), array());
         
@@ -313,57 +302,12 @@ final class TX_XpertOptin
         
     }
     
-    function loadBackendSiteScripts()
-    //     {
-        
-    //          wp_enqueue_script(
-        
-    //             TX_OPTIN_PREFIX . '-selectize-js',
-        
-    //             plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__),
-        
-    //             array('jquery')
-        
-    //         );
-        
-    //           wp_enqueue_script(
-        
-    //             TX_OPTIN_PREFIX . '-optin-app-js',
-        
-    //             plugins_url('assets/js/app.js', __FILE__),
-        
-    //             array()
-        
-    //         );
-        
-    //            wp_enqueue_script(
-        
-    //             TX_OPTIN_PREFIX . '-optin-app-test-js',
-        
-    //             plugins_url('assets/js/app_test.js', __FILE__),
-        
-    //             array()
-        
-    //         );
-        
-    //            wp_enqueue_style(
-        
-    //             TX_OPTIN_PREFIX . '-optin-selectize-css',
-        
-    //             plugins_url('assets/css/app.css', __FILE__),
-        
-    //             array()
-        
-    //         );
-        
-    // }
+    function loadBackendSiteScripts()    
     {
         
         wp_enqueue_media();
         
-        wp_enqueue_script(TX_OPTIN_PREFIX . '-selectize-js', plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__), array(
-            'jquery'
-        ));
+        wp_enqueue_script(TX_OPTIN_PREFIX . '-selectize-js', plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__), array('jquery'));
         
         wp_enqueue_script(TX_OPTIN_PREFIX . '-image-picker-js', plugins_url('assets/vendor/image-picker/js/image-picker.min.js', __FILE__), array());
         
@@ -391,10 +335,10 @@ function headerInjection()
 {
     $inJs = "<script>
               jQuery(document).ready(function () {
-                jQuery('#menu-close-flyin').on('click',function(){
+                jQuery('#menu-close-flyin, #stickytop-close, #lightBox').on('click',function(){
                      var date = new Date();
-                     var timeVale = " . OPTIN_SESSION_INPUT . ";
-                     var totalTime = " . OPTIN_SESSION . ";
+                     var timeVale = ".OPTIN_SESSION_INPUT.";
+                     var totalTime = ".OPTIN_SESSION.";
                      date.setTime(date.getTime() + (timeVale * totalTime * 1000));
                      jQuery.cookie('optinSession',1, { expires: date });
 

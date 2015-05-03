@@ -276,10 +276,20 @@
 .stickytop-wrapper{
   width: 100%;
   display: block;
-  position: relative;
-  border-bottom: 3px solid red;
-
+  position: relative; 
+ 
 }
+
+
+#stickytop-wrapper.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+   
+}
+
+
+
 
 .stickytop-optin-image {
     width: 25%;
@@ -287,6 +297,7 @@
     background: #94CA66;
     height: 134px;
     position: relative;
+
 }
 
 
@@ -338,8 +349,10 @@
 .stickytop-wrapper.stickytop_layout1,
 .stickytop-wrapper.stickytop_layout2,
 .stickytop-wrapper.stickytop_layout3{
-  background: #475b65;
+  background: #475b65;   
+  z-index: 9999;
 }
+
 
 .stickytop_layout3 .stickytop-optin-image {
   background: #475b65;
@@ -354,7 +367,6 @@ button#optin-stiky-email-button {
   }
 
 /*flyer style*/
-
 
 .optin-flyin-display{
     right: 0;
@@ -431,3 +443,4 @@ button#optin-stiky-email-button {
 .flyin-optin-image.flyer_layout3 {
   background: #475b65;
 }
+

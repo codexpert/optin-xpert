@@ -4,6 +4,16 @@ console.log(lightbox_layout);
 console.log(flyer_layout);
 console.log(stickytop_layout);
 
+//$('#stickytop-wrapper').affix();
+//$('#stickytop-wrapper').affix();
+ $('#stickytop-wrapper').affix({
+  offset: {
+    top: 100,
+    bottom: function () {
+      return (this.bottom = $('.footer').outerHeight(true));
+    }
+  }
+});
 
 switch (lightbox_layout) {
 

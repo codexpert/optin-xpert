@@ -1,6 +1,7 @@
-<div class= "stickytop-wrapper" id="stickytop-wrapper" data-spy="affix" data-offset-top="200">
-  <div class="stickytop-affix stikcytop-optin-content">
+<div class="stickytop-wrapper clearfix" id="stickytop-wrapper"  data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+  <div class="stikcytop-optin-content">
        <a id="stickytop-close" href="#" class="btn pull-right">X</a>
+       
 
     <div class="stickytop-optin-image">
       <?php if(empty($OPTIN_IMAGE)): ?>  
