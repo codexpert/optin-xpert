@@ -32,6 +32,7 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'optin_upload_media');
   register_setting( 'xpert-settings-group', 'layout_checkbox');
   register_setting( 'xpert-settings-group', 'layout_custom');
+  register_setting( 'xpert-settings-group', 'is_home');
 }
  
 

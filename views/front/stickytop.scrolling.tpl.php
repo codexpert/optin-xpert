@@ -1,13 +1,24 @@
 <div class= "stickytop-wrapper" id="stickytop-wrapper" data-spy="affix" data-offset-top="200">
   <div class="stickytop-affix stikcytop-optin-content">
        <a id="stickytop-close" href="#" class="btn pull-right">X</a>
+    
      <div class="stickytop-optin-image">
-        <?php echo '<img src="' . plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) . '" > '; ?>
+        <?php if(empty($OPTIN_IMAGE)): ?>  
+          <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) ?>"; ?>
+        <?php else: ?>
+          <img src="<?php echo $OPTIN_IMAGE ?>"; ?>
+        <?php endif; ?> 
     </div>
-        <div class="stickytop-text">
-            <h3>Subscribe with us</h3>
-            <p> Hello there!!! </p>
-        </div>
+
+    <div class="stickytop-text">
+       <?php if(empty($OPTIN_DATA)): ?>  
+          <h3>Subscribe with us</h3>
+          <p> Hello there!!! </p>
+        <?php else: ?>
+           <?php echo $OPTIN_DATA; ?>
+        <?php endif; ?> 
+    </div>
+        
         <div class="stickytop-optin-content">
           <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <div id = "optin-email-subcribe" class="form-group">
