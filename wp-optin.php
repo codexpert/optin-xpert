@@ -30,6 +30,12 @@ $retval = $api->lists();
 
 //echo $apikey;
 //var_dump($retval);
+foreach ($retval['data'] as $listname) {
+  
+  var_dump($listname['name']);
+
+}
+
 
 if ($api->errorCode) {
     "Code=" . $api->errorCode;
@@ -39,9 +45,11 @@ if ($api->errorCode) {
         $list['name']; // echo "&nbsp"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp";
         $list['id'];
         // echo "<br />";
+        // var_dump($list['name']); 
     }
-    
+  
 }
+ 
 
 $listid = $list['id']; // Enter list Id here
 global $optin_mail; // Enter subscriber email address
@@ -55,24 +63,10 @@ $merge_vars = array(
     'FNAME' => $name,
     'LNAME' => $lname
 );
+
 if ($api->listSubscribe($listid, $optin_mail, $merge_vars) === true) {
-    // echo 'subscribed!!';
-    
-    
-    // $ts = "<script>
-    //       jQuery('#optin-email-button').on('click',function(){ 
-    //            alert('tss');
-    
-    //      });
-    // </script>";
-    // echo $ts;
-    
+
 }
-
-//  global $optin_email;
-//echo $_POST['subject']; 
-//__End MailChimp__//
-
 
 
 
@@ -91,6 +85,7 @@ $optinSessionInput = get_option('optin_session_input');
 $MailChimp_content = get_option('optin_mailchimp_content');
 
 // echo $optinSessionInput;
+
 
 
 
@@ -199,15 +194,15 @@ function plugin_is_page()
     global $optinHome;
     global $optinSession;
     
+
     
     $optinFlag = isset($_COOKIE['optinSession']) ? $_COOKIE['optinSession'] : false;
     
     if (!$optinFlag) {
         
-        if (is_page($optinPage) || is_single($optinPost) || is_home($optinHome)) {
-            
-            //echo $optinPage;
-            
+        if (is_page($optinPage) || is_single($optinPost) || is_home($optinHome)==$optinHome) {
+          
+           
             switch ($optinType) {
                 
                 case 'flyin':
@@ -277,52 +272,27 @@ final class TX_XpertOptin
      */
     public function loaOptinScripts()
     {
-        
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-bs-optin-js', plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-waypoint-optin-js', plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__), array());
-        
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-style-cookie', plugins_url('assets/js/jquery.cookie.js', __FILE__), array());
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-frontapp-js', plugins_url('assets/js/frontapp.js', __FILE__), array());
-        
         wp_localize_script(TX_OPTIN_PREFIX . '-optin-frontapp-js', 'lightbox_layout', get_option('lightbox-layout'));
-        
         wp_localize_script(TX_OPTIN_PREFIX . '-optin-frontapp-js', 'flyer_layout', get_option('flyer-layout'));
-        
         wp_localize_script(TX_OPTIN_PREFIX . '-optin-frontapp-js', 'stickytop_layout', get_option('stickytop-layout'));
-        
-        
         wp_enqueue_style(TX_OPTIN_PREFIX . '-bs-optin-css-load', plugins_url('assets/vendor/bootstrap/css/bootstrap.min.css', __FILE__), array());
-        
         wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-style-css', plugins_url('assets/css/styles.css', __FILE__), array());
-        
-        
     }
     
     function loadBackendSiteScripts()    
     {
-        
         wp_enqueue_media();
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-selectize-js', plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__), array('jquery'));
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-image-picker-js', plugins_url('assets/vendor/image-picker/js/image-picker.min.js', __FILE__), array());
-        
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-app-js', plugins_url('assets/js/app.js', __FILE__), array());
-        
         wp_localize_script(TX_OPTIN_PREFIX . '-optin-app-js', 'layout_style', get_option('optin_type'));
-        
         wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-app-options-js', plugins_url('assets/js/app_optin.js', __FILE__), array());
-        
         wp_enqueue_style(TX_OPTIN_PREFIX . '-image-picker-css', plugins_url('assets/vendor/image-picker/css/image-picker.css', __FILE__), array());
-        
         wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-selectize-css', plugins_url('assets/vendor/selectize/css/app.css', __FILE__), array());
-        
-        
         wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-app-back-css', plugins_url('assets/css/app.css', __FILE__), array());
     }
     
@@ -333,20 +303,20 @@ new TX_XpertOptin();
 
 function headerInjection()
 {
-    $inJs = "<script>
-              jQuery(document).ready(function () {
-                jQuery('#menu-close-flyin, #stickytop-close, #lightBox').on('click',function(){
-                     var date = new Date();
-                     var timeVale = ".OPTIN_SESSION_INPUT.";
-                     var totalTime = ".OPTIN_SESSION.";
-                     date.setTime(date.getTime() + (timeVale * totalTime * 1000));
-                     jQuery.cookie('optinSession',1, { expires: date });
+    ?>
+    <script>
+      jQuery(document).ready(function ($) {
+        $('#menu-close-flyin, #stickytop-close, #lightBox').on('click',function(){
+          var date = new Date();
+          var timeVale = ".OPTIN_SESSION_INPUT.";
+          var totalTime = ".OPTIN_SESSION.";
+          date.setTime(date.getTime() + (timeVale * totalTime * 1000));
 
-             });
-
-          });
-                  </script>";
-    echo $inJs;
+          $.cookie('optinSession',1, { expires: date });
+        });
+      });
+    </script>
+    <?php
 }
 add_action('wp_head', 'headerInjection');
 
