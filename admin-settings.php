@@ -30,6 +30,7 @@ function register_mysettings() {
   register_setting( 'xpert-settings-group', 'layout_checkbox');
   register_setting( 'xpert-settings-group', 'layout_custom');
   register_setting( 'xpert-settings-group', 'is_home');
+  register_setting( 'xpert-settings-group', 'mc_list');
 }
  
 
@@ -45,9 +46,10 @@ function wpet_validate_options($input) {
 
 function xpert_settings_page() {
   $mc_api_key = get_option('optin_mailchimp_api');
-  $mc_list = getMailChimpLists($mc_api_key);
+  $mc_lists = getMailChimpLists($mc_api_key);
+  $mc_list = get_option('mc_list', "");
 
-  echo view(__DIR__. "/views/settings.tpl.php", compact('mc_list', 'mc_api_key'));
+  echo view(__DIR__. "/views/settings.tpl.php", compact('mc_lists', 'mc_api_key', 'mc_list'));
 }
 
 add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line

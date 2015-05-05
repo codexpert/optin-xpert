@@ -114,11 +114,12 @@
           placeholder="Enter MailChimp API Key" 
           value="<?php echo $mc_api_key; ?>" />
 
-        <select name="mc_list">
-          <?php foreach ($mc_list as $list): ?>
-            <option value="<?php echo $list['id'] ?>"><?php echo $list['name']; ?></option>
+        <select name="mc_list"> 
+          <?php foreach ((array)$mc_lists as $list): ?>
+              <option value="<?php echo $list['id'] ?>" <?php echo selected($list['id'], $mc_list); ?>>
+                 <?php echo $list['name']; ?>
+              </option>
           <?php endforeach; ?>
-          
         </select>
       </td>
   </tr>
