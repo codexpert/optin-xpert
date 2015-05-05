@@ -1,4 +1,4 @@
-<div class="stickytop-wrapper clearfix" id="stickytop-wrapper"  data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+<div id="stickytop-wrapper" class="stickytop-wrapper clearfix">
   <div class="stikcytop-optin-content">
        <a id="stickytop-close" href="#" class="btn pull-right">X</a>
        
@@ -13,8 +13,7 @@
 
     <div class="stickytop-text">
       <?php if(empty($OPTIN_DATA)): ?>  
-        <h3>Subscribe with us</h3>
-        <p> Hello there!!! </p>
+        <h3>Subscribe with us</h3>       
       <?php else: ?>
          <?php echo $OPTIN_DATA; ?>
       <?php endif; ?> 
@@ -31,19 +30,45 @@
     </div>
 </div>
 
-<script>
-jQuery(document).ready(function ($) {
 
-var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
+<?php if($OPTIN_TIMER === "scrolldown"): ?>
+<script> 
+    jQuery(document).ready(function ($) {
 
-    $('#stickytop-close').on('click',function(){
-    $('#stickytop-wrapper').css({'display':'none'});
+     
+      $('#stickytop-close').on('click',function(){
+      $('#stickytop-wrapper').css({'display':'none'});
+     
+      });    
 
-  });
+        //__footer popup show__//
+        $('footer:last-child').waypoint(function(direction) {
 
-  setTimeout( function(){
-    $('#stickytop-wrapper').addClass('in');
-  }, TIMER );
+        $('#stickytop-wrapper').addClass('in');
 
-});
-</script>
+        }, {
+      offset: '90%' 
+      }) ;
+    });
+    </script>
+
+
+ <?php else: ?>
+  <script>
+    jQuery(document).ready(function ($) {
+       $('body').css({'margin-top':'120px'});
+    var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
+
+        $('#stickytop-close').on('click',function(){
+        $('#stickytop-wrapper').css({'display':'none'});
+        $('body').css({'margin-top':'0'});
+      });
+
+      setTimeout( function(){
+        $('#stickytop-wrapper').addClass('in');
+      }, TIMER );
+
+    });
+    </script>
+<?php endif; ?>
+

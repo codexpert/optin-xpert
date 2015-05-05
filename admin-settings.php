@@ -1,8 +1,5 @@
  <?php
 
- 
-
-
 function wp_create_menu() {
   //create new top-level menu
   add_menu_page('Xpert Optin Menu', 'Xpert Optin', 'administrator', __FILE__, 'xpert_settings_page','dashicons-admin-plugins');
@@ -47,9 +44,10 @@ function wpet_validate_options($input) {
  
 
 function xpert_settings_page() {
-  
-  // echo $image_url; die();
-  echo view(__DIR__. "/views/settings.tpl.php");
+  $mc_api_key = get_option('optin_mailchimp_api');
+  $mc_list = getMailChimpLists($mc_api_key);
+
+  echo view(__DIR__. "/views/settings.tpl.php", compact('mc_list', 'mc_api_key'));
 }
 
 add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line

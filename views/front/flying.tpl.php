@@ -10,7 +10,7 @@
     
     <div class="flyin-optin-content">
         <?php if(empty($OPTIN_DATA)): ?>  
-          <h3>Subscribe with us</h3>
+          <h4>Subscribe with us</h4>
           <p> Hello there!!! </p>
         <?php else: ?>
            <?php echo $OPTIN_DATA; ?>
@@ -26,8 +26,28 @@
 </div>
 </div>
 
-<script>
 
+
+<?php if($OPTIN_TIMER === "scrolldown"): ?>
+<script>
+jQuery(document).ready(function ($) {
+
+  $('#menu-close-flyin').on('click',function(){
+     $('.optin-flyin-display').css({'display':'none'});
+
+  });
+    //__footer popup show__//
+    $('footer:last-child').waypoint(function(direction) {
+     $('.optin-flyin-display').animate({bottom: '0px'});
+    }, {
+
+   offset: '90%' // 
+  }) ;
+});
+</script>
+<?php else: ?>
+
+<script>
 //console.log(".OPTIN_MAILCHIMP_CONTENT.");
 jQuery(document).ready(function ($) {
   var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
@@ -42,3 +62,4 @@ jQuery(document).ready(function ($) {
 
 });
 </script>
+<?php endif; ?>
