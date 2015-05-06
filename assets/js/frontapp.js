@@ -60,7 +60,9 @@ jQuery(document).ready(function($){
       $.post("", data, function(response) {
         if(response.sent){
           alert("sent message");
-          $("#tx-optin-form input[name=optin_mail]").val("");
+           $(".optin-flyin-display").fadeOut("slow");
+           $("#tx-optin-form input[name=optin_mail]").val("");
+           //$('.optin-flyin-display').fadeOut('slow');
         } else {
           alert("please try again later");
         }
