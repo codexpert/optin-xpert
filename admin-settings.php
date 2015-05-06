@@ -1,4 +1,4 @@
- <?php
+<?php
 
 function wp_create_menu() {
   //create new top-level menu
@@ -35,45 +35,25 @@ function register_mysettings() {
  
 
 
-
-// Sanitize and validate input. Accepts an array, return a sanitized array.
-function wpet_validate_options($input) {
-  
-  return $input;
-}
- 
- 
-
 function xpert_settings_page() {
   $mc_api_key = get_option('optin_mailchimp_api');
-  $mc_lists = getMailChimpLists($mc_api_key);
+  $mc_lists = get_mail_chimp_lists($mc_api_key);
   $mc_list = get_option('mc_list', "");
 
   echo view(__DIR__. "/views/settings.tpl.php", compact('mc_lists', 'mc_api_key', 'mc_list'));
 }
 
 add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line
-add_filter("mce_buttons_2", "tinymce_editor_buttons_second_row", 99); //targets the second line
 
 function tinymce_editor_buttons($buttons) {
-return array(
+  return array(
     "forecolor",   
     "bold",      
     "italic",
     "alignleft",
     "aligncenter",
     "alignright", 
-    "formatselect",
-      
-
-    //add more here...
-    );
+    "formatselect"
+  );
 }
-
-function tinymce_editor_buttons_second_row($buttons) {
-   //return an empty array to remove this line
-    return array('block_formats'=> 'h1');
-}
-
-remove_filter('the_excerpt','wpautop');
 

@@ -16,7 +16,7 @@
            <?php echo $OPTIN_DATA; ?>
         <?php endif; ?> 
 
-        <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form method="post" id="tx-optin-form" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
           <div id = "optin-email-subcribe" class="form-group">
             <input  type="email" name="optin_mail" value="" class="form-control" id="optin_mail" placeholder="Enter email" required>
           </div>
@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
 
   });
     //__footer popup show__//
-    $('footer:last-child').waypoint(function(direction) {
+    $('.optin-flyin-display').waypoint(function(direction) {
      $('.optin-flyin-display').animate({bottom: '0px'});
     }, {
 
@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
 <?php else: ?>
 
 <script>
-//console.log(".OPTIN_MAILCHIMP_CONTENT.");
+
 jQuery(document).ready(function ($) {
   var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
 

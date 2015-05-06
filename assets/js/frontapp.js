@@ -1,78 +1,72 @@
 jQuery(document).ready(function($){
 
-console.log(lightbox_layout);
-console.log(flyer_layout);
-console.log(stickytop_layout);
+  switch (lightbox_layout) {
+    case 'lightbox-layout1':
+      $('.modal-content.clearfix').addClass('lightbox_layout1');
+      break;
+
+    case 'lightbox-layout2':
+      $('.modal-content.clearfix').addClass('lightbox_layout2');
+      break;
+
+    case 'lightbox-layout3':
+      $('.modal-content.clearfix').addClass('lightbox_layout3');
+      break;
+  }
+
+  switch (flyer_layout) {
+    case 'flyer-layout1':
+      $('.flyin-optin-content').addClass('flyer_layout1');
+      break;
+
+    case 'flyer-layout2':
+      $('.flyin-optin-content, .flyin-optin-image').addClass('flyer_layout2');
+      break;
+
+    case 'flyer-layout3':
+      $('.flyin-optin-content, .optin-flyin-display, .flyin-optin-image').addClass('flyer_layout3');
+      break;
+  }
+
+  switch (stickytop_layout) {
+    case 'stickytop-layout1':
+      $('.stickytop-wrapper').addClass('stickytop_layout1');
+      break;
+
+    case 'stickytop-layout2':
+      $('.stickytop-wrapper').addClass('stickytop_layout2');
+      break;
+
+    case 'stickytop-layout3':
+      $('.stickytop-wrapper').addClass('stickytop_layout3');
+      break;
+  }
 
 
-switch (lightbox_layout) {
 
-  case 'lightbox-layout1':
-    //  code...
-    $('.modal-content.clearfix').addClass('lightbox_layout1');
-    break;
+    $("#tx-optin-form").submit(function(e){
+      e.preventDefault();
+      var email = $(this).find("input[name=optin_mail]").val();
 
-  case 'lightbox-layout2':
-    //  code...
-    $('.modal-content.clearfix').addClass('lightbox_layout2');
-    break;
+      subscribeToMailingList(email);
+    });
 
-  case 'lightbox-layout3':
-    //  code...
-    $('.modal-content.clearfix').addClass('lightbox_layout3');
-    break;
+    var subscribeToMailingList = function(email){
+      var data = {
+        'action': 'tx_optin_subscribe_action',
+        'email': email
+      };
 
-}
+      $.post("", data, function(response) {
+        if(response.sent){
+          alert("sent message");
+          $("#tx-optin-form input[name=optin_mail]").val("");
+        } else {
+          alert("please try again later");
+        }
+      });
 
-switch (flyer_layout) {
-
-  case 'flyer-layout1':
-    //  code...
-    $('.flyin-optin-content').addClass('flyer_layout1');
-    //$('.optin-flyin-display').addClass('flyer_layout1');
-    //$('.optin-header-flyin').addClass('flyer_layout1');
-    break;
-
-  case 'flyer-layout2':
-    //  code...
-    $('.flyin-optin-content').addClass('flyer_layout2');
-    //$('.optin-flyin-display').addClass('flyer_layout3');
-    $('.flyin-optin-image').addClass('flyer_layout2');
-    break;
-
-  case 'flyer-layout3':
-    //  code...
-    $('.flyin-optin-content').addClass('flyer_layout3');
-    $('.optin-flyin-display').addClass('flyer_layout3');
-     $('.flyin-optin-image').addClass('flyer_layout3');
-    break;
-
-}
-
-switch (stickytop_layout) {
-
-  case 'stickytop-layout1':
-    //  code...
-    $('.stickytop-wrapper').addClass('stickytop_layout1');
-    //$('.optin-stickytop-display').addClass('stickytop_layout1');
-    //$('.optin-header-stickytop').addClass('stickytop_layout1');
-    break;
-
-  case 'stickytop-layout2':
-    //  code...
-    $('.stickytop-wrapper').addClass('stickytop_layout2');
-    //$('.optin-stickytop-display').addClass('stickytop_layout3');
-    break;
-
-  case 'stickytop-layout3':
-    //  code...
-    $('.stickytop-wrapper').addClass('stickytop_layout3');
-
-    break;
-
-}
-
-
+    };
 
 
 });

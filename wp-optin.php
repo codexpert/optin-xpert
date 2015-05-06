@@ -19,10 +19,10 @@ if (isset($_POST["optin_mail"])){
     $optin_mail = $_POST["optin_mail"];
 }
 
-$apikey = get_option('optin_mailchimp_api'); // Enter your API key
+$api_key = get_option('optin_mailchimp_api'); // Enter your API key
 
-function getMailChimpLists($apikey){
-  $api    = new MCAPI($apikey);
+function get_mail_chimp_lists($api_key){
+  $api    = new MCAPI($api_key);
   $response = $api->lists();
   
   if ($api->errorCode) {
@@ -33,7 +33,32 @@ function getMailChimpLists($apikey){
   return $response['data'];
 }
 
-// getMailChimpLists($apikey);
+
+function tx_ajax_optin_subscribe_action() {
+
+  if(!isset($_POST['action']) || 
+    $_POST['action'] !== "tx_optin_subscribe_action") return false;
+
+  $api_key = get_option('optin_mailchimp_api');
+  $list_id = get_option('mc_list'); 
+  $email = $_POST["email"];
+  
+  $sent = mc_subscribe_user($api_key, $list_id, $email);
+
+  wp_send_json(["sent"=> $sent]);
+
+  wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+
+function mc_subscribe_user($api_key, $list_id, $email){
+  $api    = new MCAPI($api_key);
+
+  return $api->listSubscribe($list_id, $email);
+}
+
+tx_ajax_optin_subscribe_action();
+
 
 defined('TX_OPTIN_PREFIX') or define('TX_OPTIN_PREFIX', 'tx_optin');
 
@@ -103,8 +128,8 @@ final class TX_XpertOptin
         jQuery(document).ready(function ($) {
           $('#menu-close-flyin, #stickytop-close, #lightBox, #optin-email-button, #optin-stiky-email-button').on('click',function(){
             var date = new Date();
-            var timeVale = ".OPTIN_SESSION_INPUT.";
-            var totalTime = ".OPTIN_SESSION.";
+            var timeVale = '<?php echo OPTIN_SESSION_INPUT; ?>';        
+            var totalTime = '<?php echo OPTIN_SESSION; ?>';            
             date.setTime(date.getTime() + (timeVale * totalTime * 1000));
             $.cookie('optinSession',1, { expires: date });
           });
@@ -112,6 +137,9 @@ final class TX_XpertOptin
       </script>
       <?php
     }
+
+
+
 
    function plugin_is_page() {
     global $optinPost;

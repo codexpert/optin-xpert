@@ -20,7 +20,7 @@
     </div>
 
         <div class="stickytop-optin-content">
-          <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+          <form id="tx-optin-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <div id = "optin-email-subcribe" class="form-group">
             <input  type="email" name="optin_mail" value="<?php echo $optin_mail; ?>" class="form-control" id="optin_mail" placeholder="Enter email" required>
             </div>
@@ -56,7 +56,7 @@
  <?php else: ?>
   <script>
     jQuery(document).ready(function ($) {
-       $('body').css({'margin-top':'120px'});
+       
     var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
 
         $('#stickytop-close').on('click',function(){
@@ -65,6 +65,7 @@
       });
 
       setTimeout( function(){
+        $('body').css({'margin-top':'60px'});
         $('#stickytop-wrapper').addClass('in');
       }, TIMER );
 

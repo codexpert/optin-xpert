@@ -19,7 +19,7 @@
                  <?php echo $OPTIN_DATA; ?>
               <?php endif; ?> 
 
-                <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                <form method="post"  id="tx-optin-form"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                   <div id = "optin-email-subcribe" class="form-group">                    
                   <input  type="email" name="optin_mail" value="" class="form-control" id="optin_mail" placeholder="Enter email" required>
                   </div>
@@ -34,6 +34,9 @@
 <?php if($OPTIN_TIMER === "scrolldown"): ?>
   <script>
   jQuery(document).ready(function ($) {
+    function getRelatedNavigation(el){
+      return $(el);
+    }
     $('footer:last-child').waypoint(
       function(direction) {
         $('#lightBox').modal('show');
