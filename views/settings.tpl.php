@@ -201,21 +201,6 @@
         </select>
      </td>
   </tr>
-
-
-  <!-- <tr valign="top">
-   <th scope="row">MailChimp Content</th>
-    <td>
-      <select name="optin_mailchimp_content">
-        <option value="select_"  <?php selected( get_option('optin_mailchimp_content' ), 'select_' ); ?>>Select Your</option>
-        <option value="name"  <?php selected( get_option('optin_mailchimp_content' ), 'name' ); ?>>Name</option>
-        <option value="email"  <?php selected( get_option('optin_mailchimp_content' ), 'email' ); ?>>E-Mail Address</option>
-        <option value="name_email"  <?php selected( get_option('optin_mailchimp_content' ), 'name_email' ); ?>>Name With E-Mail</option>
-       </select>
-    </td>
-  </tr>
- -->
-
 </table>
 
     <?php submit_button(); ?>

@@ -13,7 +13,7 @@
 
     <div class="stickytop-text">
       <?php if(empty($OPTIN_DATA)): ?>  
-        <h3>Subscribe with us</h3>       
+        <p>Subcribe and learn of new tools  </p>
       <?php else: ?>
          <?php echo $OPTIN_DATA; ?>
       <?php endif; ?> 
@@ -34,23 +34,22 @@
 <?php if($OPTIN_TIMER === "scrolldown"): ?>
 <script> 
     jQuery(document).ready(function ($) {
-
      
       $('#stickytop-close').on('click',function(){
       $('#stickytop-wrapper').css({'display':'none'});
      
-      });    
+      });  
 
-        //__footer popup show__//
-        $('footer:last-child').waypoint(function(direction) {
-
-        $('#stickytop-wrapper').addClass('in');
-
-        }, {
-      offset: '90%' 
-      }) ;
+    var waypoint = new Waypoint({
+      element: document.querySelector('body'),
+      handler: function(direction) {
+         $('#stickytop-wrapper').addClass('in');
+      },
+      offset: '-90%' 
     });
-    </script>
+
+    });
+</script>
 
 
  <?php else: ?>

@@ -29,22 +29,22 @@
 
 
 <?php if($OPTIN_TIMER === "scrolldown"): ?>
-<script>
-jQuery(document).ready(function ($) {
+  <script>
+    jQuery(document).ready(function ($) {
 
-  $('#menu-close-flyin').on('click',function(){
-     $('.optin-flyin-display').css({'display':'none'});
+    $('#menu-close-flyin').on('click',function(){
+       $('.optin-flyin-display').css({'display':'none'});
 
-  });
-    //__footer popup show__//
-    $('.optin-flyin-display').waypoint(function(direction) {
-     $('.optin-flyin-display').animate({bottom: '0px'});
-    }, {
+    });
+      //__footer popup show__//
+      $('.optin-flyin-display').waypoint(function(direction) {
+       $('.optin-flyin-display').animate({bottom: '0px'});
+      }, {
 
-   offset: '90%' // 
-  }) ;
-});
-</script>
+     offset: '90%' // 
+    }) ;
+    });
+  </script>
 <?php else: ?>
 
 <script>

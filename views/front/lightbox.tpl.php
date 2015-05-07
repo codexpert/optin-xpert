@@ -37,12 +37,15 @@
     function getRelatedNavigation(el){
       return $(el);
     }
-    $('footer:last-child').waypoint(
-      function(direction) {
+
+    var waypoint = new Waypoint({
+      element: document.querySelector('body'),
+      handler: function(direction) {
         $('#lightBox').modal('show');
-        getRelatedNavigation(this).toggleClass('active', direction === 'down');
-      }, {offset: '90%'}
-    );
+      },
+      offset: '-80%' 
+    });
+
   });
   </script>
   <?php else: ?>
