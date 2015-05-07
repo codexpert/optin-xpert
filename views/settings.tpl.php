@@ -65,7 +65,7 @@
 
 
 <tr valign="top">
-    <th scope="row">layout custom</th>
+    <th scope="row">layout custom Data</th>
       <td>
         <select name="layout_custom" id="layout_custom">          
           <option value="no"<?php selected( get_option('layout_custom' ), 'no' ); ?>>No</option>
@@ -126,7 +126,7 @@
 
 
 <tr valign="top">
-  <th scope="row">Optin Time</th>
+  <th scope="row">Optin Popup Option</th>
     <td>
       <select name="optin_timer">
         <option value="select"<?php selected( get_option('optin_timer' ), 'select' ); ?>>Select Your--</option>
@@ -141,7 +141,7 @@
 </tr>
 
   <tr valign="top">
-    <th scope="row">Optin Session</th>
+    <th scope="row">Optin Expire Time</th>
       <td>
         <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" required/>
         <select name="optin_session_value">
@@ -155,14 +155,14 @@
   </tr>
 
 <tr valign="top">
-<th scope="row">Home page</th>
+<th scope="row">Is Show Home Page?</th>
   <td>
     <input type="checkbox" name="is_home" value="true"<?php if (get_option('is_home')==true) echo 'checked="checked" '; ?>>    
   </td>
 </tr>
 
   <tr valign="top">
-    <th scope="row">Select Your Post</th>
+    <th scope="row">Select Post Where Show</th>
       <td >
         <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e">
         <?php
@@ -174,16 +174,14 @@
               <option value="<?php echo $post->post_name; ?>" <?php echo selected(in_array($post->post_name, $selecteded)); ?>>
                   <?php echo $post->post_title; ?>
               </option>
-              <?php
-             endforeach;
-          ?>
+              <?php endforeach; ?>
         </select>
       </td>
   </tr>
 
 
   <tr valign="top">
-    <th scope="row">Select Your Page</th>
+    <th scope="row">Select Page Where Show</th>
       <td >
         <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">
             <?php
@@ -195,9 +193,7 @@
                 <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected)); ?>>
                     <?php echo $page->post_title; ?>
                 </option>
-                <?php
-               endforeach;
-            ?>
+                <?php endforeach; ?>
         </select>
      </td>
   </tr>

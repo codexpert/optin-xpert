@@ -10,8 +10,7 @@
     
     <div class="flyin-optin-content">
         <?php if(empty($OPTIN_DATA)): ?>  
-          <h4>Subscribe with us</h4>
-          <p> Hello there!!! </p>
+          <p>Subscribe and learn of new tools</p>
         <?php else: ?>
            <?php echo $OPTIN_DATA; ?>
         <?php endif; ?> 

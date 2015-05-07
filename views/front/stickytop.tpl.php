@@ -13,7 +13,7 @@
 
     <div class="stickytop-text">
       <?php if(empty($OPTIN_DATA)): ?>  
-        <p>Subcribe and learn of new tools  </p>
+        <p>Subscribe and learn of new tools</p>
       <?php else: ?>
          <?php echo $OPTIN_DATA; ?>
       <?php endif; ?> 
