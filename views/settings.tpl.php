@@ -19,9 +19,6 @@
       </td>
   </tr>
 
-
-
-
   <tr class="addon-settings-layout lightbox layout-hide" data-addon-layout="lightbox-layout"  valign="top">
      <th scope="row">Lightbox Layout Preset</th>
       <td>
@@ -93,7 +90,7 @@
                          'mce-ico' => false,
                          'formatselect' => true,
                          'textarea_id'=> 20,
-                         'media_buttons' => true,
+                         'media_buttons' => false,
                          'teeny' => false,
                          'tinymce'=> array(
                           'height' => '300',
@@ -101,7 +98,6 @@
                           //'forced_root_block' => "h2",
                          'theme_advanced_disable' => 'fullscreen'
                          ));
-
           wp_editor(  get_option('wp_editor_data'),'wp_editor_data', $settings );?>
         </div>
      </td>
@@ -160,7 +156,6 @@
     <input type="checkbox" name="is_home" value="true"<?php if (get_option('is_home')==true) echo 'checked="checked" '; ?>>    
   </td>
 </tr>
-
   <tr valign="top">
     <th scope="row">Select Post Where Show</th>
       <td >        
