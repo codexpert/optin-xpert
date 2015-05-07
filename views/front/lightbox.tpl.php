@@ -1,4 +1,4 @@
-<div id="lightBox" class="modal fade in">
+<div id="lightBox" class="modal fade in optin-subscribe">
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
           <div class="modal-body">

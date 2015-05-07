@@ -1,4 +1,4 @@
-<div id="stickytop-wrapper" class="stickytop-wrapper clearfix">
+<div id="stickytop-wrapper optin-subscribe"  class="stickytop-wrapper clearfix">
   <div class="stikcytop-optin-content">
        <a id="stickytop-close" href="#" class="btn pull-right">X</a>
        

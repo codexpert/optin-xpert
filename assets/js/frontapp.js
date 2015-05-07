@@ -59,8 +59,8 @@ jQuery(document).ready(function($){
 
       $.post("", data, function(response) {
         if(response.sent){
-          alert("wating for something special");
-           $(".optin-flyin-display").fadeOut("slow");
+          alert("Wating for something special");
+           $(".optin-subscribe").fadeOut("slow");
            $("#tx-optin-form input[name=optin_mail]").val("");           
         } else {
           alert("please try again later");

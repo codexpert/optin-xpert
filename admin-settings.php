@@ -39,8 +39,13 @@ function xpert_settings_page() {
   $mc_api_key = get_option('optin_mailchimp_api');
   $mc_lists = get_mail_chimp_lists($mc_api_key);
   $mc_list = get_option('mc_list', "");
+  $posts = (array) get_posts(); 
+  $pages = (array) get_pages();
+  $selected_post = (array) get_option('post_id', array());
+  $selected_page = (array) get_option('page_id', array());
 
-  echo view(__DIR__. "/views/settings.tpl.php", compact('mc_lists', 'mc_api_key', 'mc_list'));
+  echo view(__DIR__. "/views/settings.tpl.php", 
+  compact('mc_lists', 'mc_api_key', 'mc_list','selected_post','posts','selected_page','pages'));
 }
 
 add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line

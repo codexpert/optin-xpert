@@ -163,18 +163,13 @@
 
   <tr valign="top">
     <th scope="row">Select Post Where Show</th>
-      <td >
-        <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e">
-        <?php
-          $result = get_posts();
-          $selecteded = get_option('post_id', array());
-
-          foreach ($result as $post):
-              ?>
-              <option value="<?php echo $post->post_name; ?>" <?php echo selected(in_array($post->post_name, $selecteded)); ?>>
-                  <?php echo $post->post_title; ?>
-              </option>
-              <?php endforeach; ?>
+      <td >        
+        <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e"> 
+          <?php foreach ($posts as $post): ?>
+            <option value="<?php echo $post->post_name; ?>" <?php echo selected(in_array($post->post_name, $selected_post)); ?>>
+                <?php echo $post->post_title; ?>
+            </option>
+          <?php endforeach; ?>
         </select>
       </td>
   </tr>
@@ -183,23 +178,18 @@
   <tr valign="top">
     <th scope="row">Select Page Where Show</th>
       <td >
-        <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">
-            <?php
-            $results = get_pages();
-            $selected = get_option('page_id', array());
-
-            foreach ($results as $page):
-                ?>
-                <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected)); ?>>
+        <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">          
+           <?php foreach ((array)$pages as $page): ?>               
+                <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected_page)); ?>>
                     <?php echo $page->post_title; ?>
                 </option>
-                <?php endforeach; ?>
+          <?php endforeach; ?>
         </select>
      </td>
   </tr>
 </table>
 
-    <?php submit_button(); ?>
+<?php submit_button(); ?>
 
 </form>
 </div>

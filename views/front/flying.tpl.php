@@ -1,4 +1,4 @@
-<div class="optin-flyin-display" >
+<div class="optin-flyin-display optin-subscribe" >
     <div class="flyin-optin-image">
        <a id="menu-close-flyin" href="#" class="btn btn-light btn-lg pull-right">X</a>
         <?php if(empty($OPTIN_IMAGE)): ?>  
