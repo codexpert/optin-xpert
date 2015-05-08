@@ -1,4 +1,4 @@
-<div id="lightBox" class="modal fade in optin-subscribe">
+<div id="lightBox" class="modal fade in email-subscribe">
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
           <div class="modal-body">
@@ -33,16 +33,13 @@
 <?php if($OPTIN_TIMER === "scrolldown"): ?>
   <script>
   jQuery(document).ready(function ($) {
-    function getRelatedNavigation(el){
-      return $(el);
-    }
-
+    
     var waypoint = new Waypoint({
       element: document.querySelector('body'),
       handler: function(direction) {
         $('#lightBox').modal('show');
       },
-      offset: '-80%' 
+      offset: '-90%' 
     });
 
   });
