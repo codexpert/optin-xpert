@@ -1,4 +1,4 @@
-<div id="lightBox" class="modal fade in email-subscribe">
+<div id="lightBox" class="modal fade email-subscribe">
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
           <div class="modal-body">

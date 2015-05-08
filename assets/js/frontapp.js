@@ -61,9 +61,10 @@ jQuery(document).ready(function($){
         if(response.sent){
           alert("Wating for something special");
 
-           $(".email-subscribe").fadeOut("slow");           
+           $(".email-subscribe").fadeOut("slow");  
+           $(".email-subscribe").modal('hide');
            $("#tx-optin-form input[name=optin_mail]").val("");       
-               
+
         } else {
           alert("please try again later");
         }

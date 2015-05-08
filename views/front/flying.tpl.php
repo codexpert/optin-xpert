@@ -14,14 +14,15 @@
         <?php else: ?>
            <?php echo $OPTIN_DATA; ?>
         <?php endif; ?> 
-
+    </div>
+    <div class="flyin-optin-mail">
         <form method="post" id="tx-optin-form" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>">
           <div id = "optin-email-subcribe" class="form-group">
             <input  type="email" name="optin_mail" value="" class="form-control" id="optin_mail" placeholder="Enter email" required>
           </div>
         <button id="optin-email-button" type="submit" class="btn btn-primary ">Subscribe!!</button>
         </form>
-    </div>
+        </div>
 </div>
 </div>
 

@@ -18,6 +18,17 @@
   padding: 0!important;
 }
 
+input#optin_mail {
+  border-radius: 0;
+}
+
+button#optin-email-button {
+  border-radius: 0;
+}
+button#optin-stiky-email-button{
+   border-radius: 0;
+}
+
 .lightbox-optin-image {
     width: 25%;
     float: left;
@@ -209,6 +220,13 @@ button#optin-stiky-email-button {
     text-align: center;
   }
 
+.flyin-optin-mail{   
+    float: left;
+    padding: 37px 55px 0;
+    position: relative;
+   background: #475b65;
+    text-align: center;
+}
 
 #menu-close-flyin{
     border-radius: 30px;
