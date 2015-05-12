@@ -126,7 +126,7 @@ final class TX_XpertOptin
       <script>
         jQuery(document).ready(function ($) {
           var setOptinCookie = function(){
-            console.log('af');
+      
             var date = new Date();
             var timeVale = '<?php echo OPTIN_SESSION_INPUT; ?>';        
             var totalTime = '<?php echo OPTIN_SESSION; ?>';            
@@ -136,7 +136,7 @@ final class TX_XpertOptin
 
           $('.tx-optin-submit').on('click','setOptinCookie');
           $('.tx-optin-close, #tx-optin-lightbox').on('click', function(){
-            console.log('asdf');
+           
             if($(this).hasClass("flyin") && $(this).hasClass("scrolldown")) return;
             setOptinCookie();
           });
