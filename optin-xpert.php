@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: WP Optin
-Plugin URI: http://themexpert.com/wordpress-plugins/xpert-optin
+Plugin Name: Optin Xpert
+Plugin URI: http://themexpert.com/wordpress-plugins/optin-xpert
 Version: 1.0
 Author: ThemeXpert
 Authro URI : http://www.themexpert.com
 Description: Supercharge your WordPress optin plugin
 License: GPLv2 or later
-Text Domain: xo
+Text Domain: ox
 */
 
 require_once 'admin-settings.php';
