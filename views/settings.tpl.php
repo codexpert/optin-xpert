@@ -20,7 +20,7 @@
   </tr>
 
   <tr class="addon-settings-layout lightbox layout-hide" data-addon-layout="lightbox-layout"  valign="top">
-     <th scope="row">Lightbox Layout Preset</th>
+     <th scope="row">Styles</th>
       <td>
         <select id="lightbox-layout" class="image-picker show-html" name="lightbox-layout">
 
@@ -34,7 +34,7 @@
 
 
   <tr class="addon-settings-layout flyin  layout-hide" data-addon-layout="flyer-layout" valign="top">
-     <th scope="row">Flyer Layout Preset</th>
+     <th scope="row">Styles</th>
       <td>
         <select id="flyer-layout" class="image-picker show-html" name="flyer-layout">
 
@@ -48,7 +48,7 @@
 
 
   <tr class="addon-settings-layout stickytop layout-hide" data-addon-layout="stickytop-layout" valign="top">
-     <th scope="row">Stickytop Layout Preset</th>
+     <th scope="row">Styles</th>
       <td>
         <select id="stickytop-layout" class="image-picker show-html" name="stickytop-layout">
 
@@ -62,7 +62,7 @@
 
 
 <tr valign="top">
-    <th scope="row">layout custom Data</th>
+    <th scope="row">Customize</th>
       <td>
         <select name="layout_custom" id="layout_custom">          
           <option value="no"<?php selected( get_option('layout_custom' ), 'no' ); ?>>No</option>
@@ -72,7 +72,7 @@
   </tr>   
 
   <tr class="addon-settings hide" data-addon="layout-custom" valign="top">
-    <th scope="row">Upload Image</th>
+    <th scope="row">Image</th>
       <td>
         <input name = "optin_upload_media" type="text" id="tx-new-media-image" size="70" value="<?php echo esc_attr( get_option('optin_upload_media') ); ?>" />
         <a href="#" class="tx-open-media button button-primary" >Upload Image</a>
@@ -80,7 +80,7 @@
   </tr>
 
   <tr class="addon-settings hide" data-addon="layout-custom" valign="top" id="editor_input">
-    <th scope="row">Optin Text</th>
+    <th scope="row">Text</th>
      <td name="wp_editor_text">
         <div>
            <?php
@@ -122,7 +122,7 @@
 
 
 <tr valign="top">
-  <th scope="row">Optin Popup Option</th>
+  <th scope="row">Trigger</th>
     <td>
       <select name="optin_timer">
         <option value="select"<?php selected( get_option('optin_timer' ), 'select' ); ?>>Select Your--</option>
@@ -137,7 +137,7 @@
 </tr>
 
   <tr valign="top">
-    <th scope="row">Optin Expire Time</th>
+    <th scope="row">Expire Length</th>
       <td>
         <input type="text" name="optin_session_input" value="<?php echo esc_attr( get_option('optin_session_input') ); ?>" required/>
         <select name="optin_session_value">
@@ -151,13 +151,13 @@
   </tr>
 
 <tr valign="top">
-<th scope="row">Is Show Home Page?</th>
+<th scope="row">Load Home Page</th>
   <td>
     <input type="checkbox" name="is_home" value="true"<?php if (get_option('is_home')==true) echo 'checked="checked" '; ?>>    
   </td>
 </tr>
   <tr valign="top">
-    <th scope="row">Select Post Where Show</th>
+    <th scope="row">Post</th>
       <td >        
         <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e"> 
           <?php foreach ($posts as $post): ?>
@@ -171,7 +171,7 @@
 
 
   <tr valign="top">
-    <th scope="row">Select Page Where Show</th>
+    <th scope="row">Pages</th>
       <td >
         <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">          
            <?php foreach ((array)$pages as $page): ?>               

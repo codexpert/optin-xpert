@@ -125,6 +125,8 @@ final class TX_XpertOptin
       ?>
       <script>
         jQuery(document).ready(function ($) {
+
+
           var setOptinCookie = function(){
       
             var date = new Date();
@@ -134,12 +136,18 @@ final class TX_XpertOptin
             $.cookie('optinSession',1, { expires: date });
           };
 
-          $('.tx-optin-submit').on('click','setOptinCookie');
+
+
+          $('.tx-optin-submit').on('click',function() {
+            $.cookie('subscribed', '1year', { expires: 365 });            
+          });
+
           $('.tx-optin-close, #tx-optin-lightbox').on('click', function(){
            
             if($(this).hasClass("flyin") && $(this).hasClass("scrolldown")) return;
             setOptinCookie();
           });
+
         });
       </script>
       <?php
@@ -155,7 +163,10 @@ final class TX_XpertOptin
     global $optinSession;
 
     $optinFlag = isset($_COOKIE['optinSession']) ? $_COOKIE['optinSession'] : false;
+    $subscribed = isset($_COOKIE['subscribe']) ? true : false;
     
+    if ($subscribed) return;
+
     if ($optinFlag) return;
         
     if (is_page($optinPage) || 
