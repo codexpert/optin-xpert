@@ -1,6 +1,14 @@
 
 /*lightbox style*/
 
+div#optin-email-subcribe{
+
+  background-color: rgba(255,255,255,0.15);
+  padding: 10px;
+  text-align: center;
+
+}
+
 .modal-content {
   width: 700px;
   display: block;
@@ -39,17 +47,22 @@ button#optin-stiky-email-button{
 
 
 .lightbox-optin-image img {
-    position: absolute;
-    top: 30%;
-    left: 24%;
+      position: absolute;
+      top: 30%;
+      left: 28%;
+      width: 60%;
 }
 
 .lightbox-optin-content {
     width: 75%;
     float: left;
-    padding: 30px 30px 30px 90px;
+    padding: 49px 30px 30px 90px;
     position: relative;
     color: #fff;
+    font-family: sans-serif;
+}
+.lightbox-optin-content p{
+  font-size: 14px
 }
 
 
@@ -66,25 +79,25 @@ button#optin-stiky-email-button{
 
 
 .lightbox_layout2 .lightbox-optin-image{
-  width: 40%;
+  width: 30%;
 }
 
 .lightbox_layout2 .lightbox-optin-image img{
-  left: 30%;
+  left: 21%;
 }
 
 .lightbox_layout2 .lightbox-optin-content{
   width: 60%;
-  padding: 30px 30px 30px 30px;
+  padding: 38px 10px 25px 15px;
 }
 
 .lightbox_layout3 .lightbox-optin-image {
   background: none;
 }
-
+/*
 .lightbox_layout3 .lightbox-optin-image img {
   left: 50%;
-}
+}*/
 
 /*Stickytop style*/
 
@@ -128,16 +141,17 @@ button#optin-stiky-email-button{
 .stickytop-optin-content {
     width: 30%;
     float: left;
-    padding: 12px 38px 0 90px;
+    padding: 3px 38px 0 90px;
     position: relative;
     color: #fff;
+    font-family: sans-serif;
 
 }
 
 .stickytop-text{
   float: left;
   position: relative;
-  padding: 0 26px 0 139px;
+  padding: 7px 20px 0 45px;
   color: #fff;
 }
 
@@ -179,15 +193,19 @@ button#optin-stiky-email-button{
 button#optin-stiky-email-button {
     float: right;
     margin-right: -133px;
-    margin-top: -49px;
+    margin-top: -56px;
 
   }
+  .stickytop-text p {
+  font-size: 14px;
+  font-family: sans-serif;
+}
 
 /*flyer style*/
 
 .optin-flyin-display{
     right: 0;
-    width: 310px;
+    width: 320px;
     position: fixed;   
     bottom: -100%;
     z-index: 1000;
@@ -198,15 +216,16 @@ button#optin-stiky-email-button {
     width: 100%;
     float: left;
     background: #94CA66;
-    height: 134px;
+    height: 150px;
     position: relative;
 }
 
 
 .flyin-optin-image img{
     position: absolute;
-    top: 14px;
-    left: 34%;
+    top: 30px;
+    left: 37%;
+    width: 31%;
 }
 
 
@@ -217,7 +236,10 @@ button#optin-stiky-email-button {
     padding: 37px 55px 0;
     position: relative;
    /*  color: #fff;*/
+    background: #475b65;
     text-align: center;
+     font-family: sans-serif;
+    
   }
 
 .flyin-optin-mail{   
@@ -225,7 +247,7 @@ button#optin-stiky-email-button {
     padding: 37px 55px 0;
     position: relative;
    background: #475b65;
-    text-align: center;
+   text-align: center;
 }
 
 #menu-close-flyin{
@@ -238,7 +260,7 @@ button#optin-stiky-email-button {
 .flyin-optin-content.flyer_layout1,
 .flyin-optin-content.flyer_layout2,
 .flyin-optin-content.flyer_layout3{
-  background: #475b65;
+  background: #475b65;;
 }
 
 
@@ -249,13 +271,17 @@ button#optin-stiky-email-button {
   color: black;
 }
 
+.flyin-optin-content p{
+    font-size: 14px;
+}
+
 
 .flyin-optin-content.flyer_layout2:before{
   content: "";
   position: absolute;
   left: 0;
   display: block;
-  border-top: 43px solid #94CA66;
+  border-top: 30px solid #94CA66;
   border-left: 172px solid transparent;
   border-right: 205px solid transparent;
   top: 0px;
@@ -266,4 +292,6 @@ button#optin-stiky-email-button {
 .flyin-optin-image.flyer_layout3 {
   background: #475b65;
 }
+
+
 

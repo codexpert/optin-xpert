@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
 
            
             button: {
-                text:  'tgm_nmp_media.button'
+                text:  'Upload Image'
             }
         });
 

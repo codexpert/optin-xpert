@@ -1,11 +1,11 @@
 <div id="stickytop-wrapper"  class="stickytop-wrapper email-subscribe clearfix">
   <div class="stikcytop-optin-content">
-       <a id="stickytop-close" href="#" class="btn pull-right">X</a>
+       <a id="stickytop-close" href="#" class="btn tx-optin-close pull-right">X</a>
        
 
     <div class="stickytop-optin-image">
       <?php if(empty($OPTIN_IMAGE)): ?>  
-        <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) ?>"; ?>
+        <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.svg', __FILE__ ) ?>"; ?>
       <?php else: ?>
         <img src="<?php echo $OPTIN_IMAGE ?>"; ?>
       <?php endif; ?> 
@@ -13,7 +13,8 @@
 
     <div class="stickytop-text">
       <?php if(empty($OPTIN_DATA)): ?>  
-        <p>Subscribe and learn of new tools</p>
+        <h2>Subscribe With Us</h2>
+        <p>Join our mailing list to receive the latest news and updates.</p>
       <?php else: ?>
          <?php echo $OPTIN_DATA; ?>
       <?php endif; ?> 
@@ -24,7 +25,7 @@
             <div id = "optin-email-subcribe" class="form-group">
             <input  type="email" name="optin_mail" value="<?php echo $optin_mail; ?>" class="form-control" id="optin_mail" placeholder="Enter email" required>
             </div>
-            <button id="optin-stiky-email-button" type="submit" class="btn btn-success ">Subscribe!!</button>
+            <button id="optin-stiky-email-button" type="submit" class="btn tx-optin-submit btn-success ">Subscribe!!</button>
           </form>
       </div>
     </div>
@@ -37,15 +38,16 @@
      
       $('#stickytop-close').on('click',function(){
       $('#stickytop-wrapper').css({'display':'none'});
-     
+     $('body').css({'margin-top':'0'});
       });  
 
     var waypoint = new Waypoint({
       element: document.querySelector('body'),
       handler: function(direction) {
          $('#stickytop-wrapper').addClass('in');
+         $('body').css({'margin-top':'60px'});
       },
-      offset: '-90%' 
+      offset: '-100%' 
     });
 
     });

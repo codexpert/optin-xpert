@@ -125,12 +125,20 @@ final class TX_XpertOptin
       ?>
       <script>
         jQuery(document).ready(function ($) {
-          $('#menu-close-flyin, #stickytop-close, #lightBox, #optin-email-button, #optin-stiky-email-button').on('click',function(){
+          var setOptinCookie = function(){
+            console.log('af');
             var date = new Date();
             var timeVale = '<?php echo OPTIN_SESSION_INPUT; ?>';        
             var totalTime = '<?php echo OPTIN_SESSION; ?>';            
             date.setTime(date.getTime() + (timeVale * totalTime * 1000));
             $.cookie('optinSession',1, { expires: date });
+          };
+
+          $('.tx-optin-submit').on('click','setOptinCookie');
+          $('.tx-optin-close, #tx-optin-lightbox').on('click', function(){
+            console.log('asdf');
+            if($(this).hasClass("flyin") && $(this).hasClass("scrolldown")) return;
+            setOptinCookie();
           });
         });
       </script>

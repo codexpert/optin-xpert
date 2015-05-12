@@ -1,11 +1,11 @@
-<div id="lightBox" class="modal fade email-subscribe">
+<div id="tx-optin-lightbox" class="modal fade email-subscribe">
   <div class="modal-dialog">
     <div class="modal-content clearfix">     
           <div class="modal-body">
 
             <div class="lightbox-optin-image">
               <?php if(empty($OPTIN_IMAGE)): ?>  
-                <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.png', __FILE__ ) ?>"; ?>
+                <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.svg', __FILE__ ) ?>"; ?>
               <?php else: ?>
                 <img src="<?php echo $OPTIN_IMAGE ?>"; ?>
               <?php endif; ?> 
@@ -13,7 +13,8 @@
 
             <div class="lightbox-optin-content">              
               <?php if(empty($OPTIN_DATA)): ?>  
-                <p>Subscribe and learn of new tools</p>
+                <h2>Subscribe With Us</h2>
+               <p>Join our mailing list to receive the latest news and updates.</p>
               <?php else: ?>
                  <?php echo $OPTIN_DATA; ?>
               <?php endif; ?> 
@@ -22,7 +23,7 @@
                   <div id = "optin-email-subcribe" class="form-group">                    
                   <input  type="email" name="optin_mail" value="" class="form-control" id="optin_mail" placeholder="Enter email" required>
                   </div>
-                  <button id="optin-email-button" type="submit" class="btn btn-success ">Subscribe!!</button>
+                  <button id="optin-email-button" type="submit" class="btn tx-optin-submit btn-success ">Subscribe!!</button>
                 </form>
             </div>
         </div>        
@@ -37,9 +38,9 @@
     var waypoint = new Waypoint({
       element: document.querySelector('body'),
       handler: function(direction) {
-        $('#lightBox').modal('show');
+        $('#tx-optin-lightbox').modal('show');
       },
-      offset: '-90%' 
+      offset: '-100%' 
     });
 
   });
@@ -51,7 +52,7 @@
     var TIMER = <?php echo $OPTIN_TIMER; ?>; // jshint ignore:line
     //hide a div after  seconds
     setTimeout( function(){
-      $('#lightBox').modal('show');
+      $('#tx-optin-lightbox').modal('show');
     }, TIMER);
   });
   </script>
