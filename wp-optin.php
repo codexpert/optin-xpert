@@ -116,7 +116,7 @@ final class TX_XpertOptin
       wp_enqueue_script(TX_OPTIN_PREFIX . '-image-picker-js', plugins_url('assets/vendor/image-picker/js/image-picker.min.js', __FILE__), array());
       wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-app-js', plugins_url('assets/js/app.js', __FILE__), array());
       wp_localize_script(TX_OPTIN_PREFIX . '-optin-app-js', 'layout_style', get_option('optin_type'));      
-      wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-selectize-css', plugins_url('assets/vendor/selectize/css/app.css', __FILE__), array());
+      wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-selectize-css', plugins_url('assets/vendor/selectize/css/selectize.css', __FILE__), array());
       wp_enqueue_style(TX_OPTIN_PREFIX . '-image-picker-css', plugins_url('assets/vendor/image-picker/css/image-picker.css', __FILE__), array());
       wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-app-back-css', plugins_url('assets/css/app.css', __FILE__), array());
     }

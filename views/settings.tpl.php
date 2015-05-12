@@ -161,6 +161,7 @@
       <td >        
         <select id="post_id" name="post_id[]" multiple="multiple" accesskey="e"> 
           <?php foreach ($posts as $post): ?>
+            <option value="allpost"<?php echo selected(in_array('allpost', $selected_post)); ?>>All Post</option>
             <option value="<?php echo $post->post_name; ?>" <?php echo selected(in_array($post->post_name, $selected_post)); ?>>
                 <?php echo $post->post_title; ?>
             </option>
@@ -173,11 +174,12 @@
   <tr valign="top">
     <th scope="row">Pages</th>
       <td >
-        <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">          
+        <select id="page_id" name="page_id[]" multiple="multiple" accesskey="e">            
+           <option value="allpage"<?php echo selected(in_array('allpage', $selected_page)); ?>>All Pages</option>
            <?php foreach ((array)$pages as $page): ?>               
                 <option value="<?php echo $page->post_name; ?>" <?php echo selected(in_array($page->post_name, $selected_page)); ?>>
                     <?php echo $page->post_title; ?>
-                </option>
+           </option>
           <?php endforeach; ?>
         </select>
      </td>

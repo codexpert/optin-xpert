@@ -1,8 +1,8 @@
 <div id="tx-optin-lightbox" class="modal fade email-subscribe">
-  <div class="modal-dialog">
+  <div class="modal-dialog">  
     <div class="modal-content clearfix">     
           <div class="modal-body">
-
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <div class="lightbox-optin-image">
               <?php if(empty($OPTIN_IMAGE)): ?>  
                 <img src="<?php echo plugins_url('../../assets/image/flyer-icon_tx.svg', __FILE__ ) ?>"; ?>
