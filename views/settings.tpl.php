@@ -11,7 +11,7 @@
     <th scope="row">Optin Type</th>
       <td>
         <select name="optin_type" id="optin_type_hook">
-          <option data-addon-layout="select" value="select"  <?php selected( get_option('optin_type' ), 'select' ); ?>>Select Your--</option>
+          
           <option data-addon-layout="lightbox-layout" value="lightbox"  <?php selected( get_option('optin_type' ), 'lightbox' ); ?>>Light Box</option>
           <option data-addon-layout="flyer-layout" value="flyin" <?php selected( get_option('optin_type' ), 'flyin' ); ?>>Flyin</option>
           <option data-addon-layout="stickytop-layout" value="stickytop" <?php selected( get_option('optin_type' ), 'stickytop' ); ?>>Sticky Top</option>
