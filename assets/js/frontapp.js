@@ -59,14 +59,14 @@ jQuery(document).ready(function($){
 
       $.post("", data, function(response) {
         if(response.sent){
-          alert("Hey!! Watting for special");
+          // alert("Hey!! Watting for special");
 
            $(".email-subscribe").fadeOut("slow");  
            $(".email-subscribe").modal('hide');
            $("#tx-optin-form input[name=optin_mail]").val("");       
 
         } else {
-          alert("please try again later");
+          // alert("please try again later");
         }
       });
 

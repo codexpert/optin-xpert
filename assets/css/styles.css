@@ -54,7 +54,7 @@ button#optin-stiky-email-button{
 }
 
 .lightbox-optin-content {
-    width: 75%;
+    width: 73%;
     float: left;
     padding: 49px 30px 30px 90px;
     position: relative;
@@ -171,7 +171,7 @@ button#optin-stiky-email-button{
 #stickytop-close{
     border-radius: 30px;
     background-color: #fff;
-    margin-top: 44px;
+    margin-top: 14px;
     right: 0px;
 }
 

@@ -1,6 +1,6 @@
 <div id="stickytop-wrapper"  class="stickytop-wrapper email-subscribe clearfix">
   <div class="stikcytop-optin-content">
-       <a id="stickytop-close" href="#" class="btn tx-optin-close pull-right">X</a>
+       <a id="stickytop-close" href="#" class="btn tx-optin-close pull-right">x</a>
        
 
     <div class="stickytop-optin-image">
