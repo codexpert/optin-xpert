@@ -5,7 +5,7 @@ Plugin URI: http://themexpert.com/wordpress-plugins/optin-xpert
 Version: 1.0
 Author: ThemeXpert
 Authro URI : http://www.themexpert.com
-Description: Supercharge your WordPress optin plugin
+Description: Optin Xpert turns your site visitors into loyal subscribers, and subscribers to customers in a elegent way. 
 License: GPLv2 or later
 Text Domain: ox
 */
