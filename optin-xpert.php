@@ -43,7 +43,7 @@ function tx_ajax_optin_subscribe_action() {
   $list_id = get_option('mc_list'); 
   $email = $_POST["email"];
   
-  $sent = mc_subscribe_user($api_key, $list_id, $email);
+  $sent = tx_mc_subscribe_user($api_key, $list_id, $email);
 
   wp_send_json(["sent"=> $sent]);
 
@@ -51,7 +51,7 @@ function tx_ajax_optin_subscribe_action() {
 }
 
 
-function mc_subscribe_user($api_key, $list_id, $email){
+function tx_mc_subscribe_user($api_key, $list_id, $email){
   $api    = new MCAPI($api_key);
 
   return $api->listSubscribe($list_id, $email);
@@ -85,10 +85,10 @@ final class TX_XpertOptin
 {
     /** * Hook WordPress */
     public function __construct() {
-      add_action('wp_enqueue_scripts', [$this, 'loaOptinScripts']);
-      add_action('admin_enqueue_scripts', [$this, 'loadBackendSiteScripts']);
-      add_action('wp_head', [$this, 'inject_optin_cookie']);
-      add_action('template_redirect', [$this, 'plugin_is_page']);
+      add_action('wp_enqueue_scripts', [$this, 'tx_loaOptinScripts']);
+      add_action('admin_enqueue_scripts', [$this, 'tx_loadBackendSiteScripts']);
+      add_action('wp_head', [$this, 'tx_inject_optin_cookie']);
+      add_action('template_redirect', [$this, 'tx_optin_plugin_is_page']);
     }
     
     /**
@@ -98,7 +98,7 @@ final class TX_XpertOptin
      * @return void
      * @since 0.1
      */
-    public function loaOptinScripts() {
+    public function tx_loaOptinScripts() {
       wp_enqueue_script(TX_OPTIN_PREFIX . '-bs-optin-js', plugins_url('assets/vendor/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
       wp_enqueue_script(TX_OPTIN_PREFIX . '-waypoint-optin-js', plugins_url('assets/vendor/waypoint/js/jquery.waypoints.min.js', __FILE__), array());
       wp_enqueue_script(TX_OPTIN_PREFIX . '-optin-style-cookie', plugins_url('assets/js/jquery.cookie.js', __FILE__), array());
@@ -110,7 +110,7 @@ final class TX_XpertOptin
       wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-style-css', plugins_url('assets/css/styles.css', __FILE__), array());
     }
     
-    function loadBackendSiteScripts(){
+    function tx_loadBackendSiteScripts(){
       wp_enqueue_media();
       wp_enqueue_script(TX_OPTIN_PREFIX . '-selectize-js', plugins_url('assets/vendor/selectize/js/standalone/selectize.js', __FILE__), array('jquery'));
       wp_enqueue_script(TX_OPTIN_PREFIX . '-image-picker-js', plugins_url('assets/vendor/image-picker/js/image-picker.min.js', __FILE__), array());
@@ -121,7 +121,7 @@ final class TX_XpertOptin
       wp_enqueue_style(TX_OPTIN_PREFIX . '-optin-app-back-css', plugins_url('assets/css/app.css', __FILE__), array());
     }
 
-    function inject_optin_cookie() {
+    function tx_inject_optin_cookie() {
       ?>
       <script>
         jQuery(document).ready(function ($) {
@@ -156,7 +156,7 @@ final class TX_XpertOptin
 
 
 
-   function plugin_is_page() {
+   function tx_optin_plugin_is_page() {
     global $optinPost;
     global $optinPage;
     global $optinHome;
@@ -173,11 +173,11 @@ final class TX_XpertOptin
       is_single($optinPost) || 
       is_home($optinHome) == $optinHome) {
 
-      add_action('wp_footer', [$this, 'load_tx_optin_template']);
+      add_action('wp_footer', [$this, 'tx_optin_load_template']);
     }
   }
 
-  function load_tx_optin_template(){
+  function tx_optin_load_template(){
     global $optinType;
     global $optinTimer;
 
@@ -196,7 +196,7 @@ final class TX_XpertOptin
 
     $template = __DIR__."/views/front/".$templates[$optinType];
 
-    echo view($template, $DATA);
+    echo tx_view($template, $DATA);
   }
 }
 

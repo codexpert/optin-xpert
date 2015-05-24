@@ -1,17 +1,17 @@
 <?php
 
-function wp_create_menu() {
+function tx_wp_optin_menu() {
   //create new top-level menu
-  add_menu_page('Xpert Optin Menu', 'Xpert Optin', 'administrator', __FILE__, 'xpert_settings_page','dashicons-admin-plugins');
+  add_menu_page('Xpert Optin Menu', 'Xpert Optin', 'administrator', __FILE__, 'tx_optin_settings_page','dashicons-admin-plugins');
   //call register settings function
   
 
-  add_action( 'admin_init', 'register_mysettings' );
+  add_action( 'admin_init', 'tx_register_optin_mysettings' );
 }
 // create custom plugin settings menu
-add_action('admin_menu', 'wp_create_menu');
+add_action('admin_menu', 'tx_wp_optin_menu');
 
-function register_mysettings() {
+function tx_register_optin_mysettings() {
   //register our settings
     
   register_setting( 'xpert-settings-group', 'optin_timer' );    
@@ -35,7 +35,7 @@ function register_mysettings() {
  
 
 
-function xpert_settings_page() {
+function tx_optin_settings_page() {
   $mc_api_key = get_option('optin_mailchimp_api');
   $mc_lists = get_mail_chimp_lists($mc_api_key);
   $mc_list = get_option('mc_list', "");
@@ -44,13 +44,13 @@ function xpert_settings_page() {
   $selected_post = (array) get_option('post_id', array());
   $selected_page = (array) get_option('page_id', array());
 
-  echo view(__DIR__. "/views/settings.tpl.php", 
+  echo tx_view(__DIR__. "/views/settings.tpl.php", 
   compact('mc_lists', 'mc_api_key', 'mc_list','selected_post','posts','selected_page','pages'));
 }
 
-add_filter("mce_buttons", "tinymce_editor_buttons", 99); //targets the first line
+add_filter("mce_buttons", "tx_tinymce_editor_buttons", 99); //targets the first line
 
-function tinymce_editor_buttons($buttons) {
+function tx_tinymce_editor_buttons($buttons) {
   return array(
     "forecolor",   
     "bold",      
