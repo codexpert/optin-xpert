@@ -163,7 +163,7 @@ final class TX_XpertOptin
     global $optinSession;
 
     $optinFlag = isset($_COOKIE['optinSession']) ? $_COOKIE['optinSession'] : false;
-    $subscribed = isset($_COOKIE['subscribe']) ? true : false;
+    $subscribed = isset($_COOKIE['subscribed']) ? true : false;
     
     if ($subscribed) return;
 
