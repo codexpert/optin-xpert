@@ -37,7 +37,7 @@ function tx_register_optin_mysettings() {
 
 function tx_optin_settings_page() {
   $mc_api_key = get_option('optin_mailchimp_api');
-  $mc_lists = get_mail_chimp_lists($mc_api_key);
+  $mc_lists = tx_get_mail_chimp_lists($mc_api_key);
   $mc_list = get_option('mc_list', "");
   $posts = (array) get_posts(); 
   $pages = (array) get_pages();

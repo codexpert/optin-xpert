@@ -21,7 +21,7 @@ if (isset($_POST["optin_mail"])){
 
 $api_key = get_option('optin_mailchimp_api'); // Enter your API key
 
-function get_mail_chimp_lists($api_key){
+function tx_get_mail_chimp_lists($api_key){
   $api    = new MCAPI($api_key);
   $response = $api->lists();
   
